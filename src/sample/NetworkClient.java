@@ -3,62 +3,96 @@ package sample;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.util.Scanner;
 
-public class NetworkClient implements Runnable {
-    private final String SERVER_IP = "localhost";
-    private final int MSG_SIZE = 512;
-    private final int SLEEP_MS = 100;
-    private String serverMsg;
-    private boolean isRunning;
+import java.io.*;
+import java.net.*;
+import java.util.concurrent.LinkedBlockingDeque;
+
+public class NetworkClient {
+    private final String SERVER_IP = "127.0.0.1";
+    private final int SERVER_PORT = 9001;
+    private final int MSG_SIZE = 1024;
 
     private DatagramSocket socket;
-    private InetAddress serverAddress;
 
-    public NetworkClient() {
+    private LinkedBlockingDeque<Object> msgQueue = new LinkedBlockingDeque<>();
+    private static NetworkClient _singleton = new NetworkClient();
+
+    private NetworkClient() {
         try {
-            serverAddress = InetAddress.getByName(SERVER_IP);
-
             socket = new DatagramSocket(0);
-            socket.setSoTimeout(SLEEP_MS);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+            socket.connect(InetAddress.getByName(SERVER_IP), SERVER_PORT);
+            socket.setSoTimeout(100);
+        } catch(Exception e){
+            e.printStackTrace();
         }
+
+        Thread t = new Thread(this::loop);
+        t.setDaemon(true);
+        t.start();
     }
 
-    public void sendMsgToServer(String msg) {
-        System.out.println("Printing from sendMSGTO server: " + msg);
-        byte[] buffer = msg.getBytes();
-        DatagramPacket request = new DatagramPacket(buffer, buffer.length, this.serverAddress, 80);
-        try {
-            socket.send(request);
-        } catch (Exception e) {
-        }
+    public static NetworkClient get(){
+        return _singleton;
     }
 
-    private void receiveMessageFromServer() {
-        byte[] buffer = new byte[MSG_SIZE];
-        DatagramPacket response = new DatagramPacket(buffer, buffer.length);
+    public Object pollMessage(){
+        return msgQueue.pollFirst();
+    }
 
-        try {
-            socket.receive(response);
-            serverMsg = new String(buffer, 0, response.getLength());
-            System.out.println(serverMsg); // debugging purpose only!
-            // TODO: Save the msg to a queue instead
-        } catch (Exception ex) {
-            try {
-                Thread.sleep(SLEEP_MS);
-            } catch (Exception e) {
+    // Delete this old method after presentation.
+//    public void sendMsgToServer(String msg) {
+//        byte[] buffer = msg.getBytes();
+//        DatagramPacket request = new DatagramPacket(buffer, buffer.length);
+//        try { socket.send(request); } catch (Exception e) {}
+//    }
+
+    public void sendObjectToServer(Serializable object) {
+        ByteArrayOutputStream byteArrayStream = new ByteArrayOutputStream();
+        try (ObjectOutputStream out = new ObjectOutputStream(byteArrayStream)) {
+            out.writeObject(object);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        DatagramPacket request = new DatagramPacket(byteArrayStream.toByteArray(), byteArrayStream.size());
+        try { socket.send(request); }
+        catch (Exception e) { e.printStackTrace();}
+    }
+
+    private void loop() {
+        while (true) {
+            DatagramPacket serverRequest = new DatagramPacket(new byte[MSG_SIZE], MSG_SIZE);
+
+            if (!receiveMessageFromServer(serverRequest)) {
+                continue;
             }
+
+            Object msg = deserializeRequest(serverRequest);
+            msgQueue.addLast(msg);
         }
     }
 
-    @Override
-    public void run() {
-        System.out.println("Client is running!");
-        isRunning = true;
-        while (isRunning) {
-            receiveMessageFromServer();
+    private boolean receiveMessageFromServer(DatagramPacket serverRequest){
+        try {
+            socket.receive(serverRequest);
+            return true;
+        } catch (SocketTimeoutException e) { // Ignore timeout
+        } catch (Exception e) { e.printStackTrace(); }
+
+        return false;
+    }
+
+    private Object deserializeRequest(DatagramPacket serverRequest){
+        try {
+            try (ByteArrayInputStream bin = new ByteArrayInputStream(serverRequest.getData())) {
+                try (ObjectInputStream ois = new ObjectInputStream(bin)) {
+                    return ois.readObject();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return null;
     }
 }
