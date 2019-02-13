@@ -9,6 +9,7 @@ public class User {
 
     public User() {
         //Creates a uniqe id and sets it to userID;
+        userName = "Unnamed";
         userID = UUID.randomUUID().toString();
     }
 

@@ -11,35 +11,40 @@ public class ChatOutputField {
     private Thread myListeningThread;
 
     public ChatOutputField() {
-        messages = new ArrayList<Message>();
-        myListeningThread = new Thread(()->{
-            while(true) {
+        messages = new ArrayList<>();
+        myListeningThread = new Thread(() -> {
+            while (true) {
                 checkClientIncomingMessages();
 
                 // Without this 1 CPU core will constantly be at 100%
-                try { Thread.sleep(1); }
-                catch (Exception e) { break; }
+                try {
+                    Thread.sleep(1);
+                } catch (Exception e) {
+                    break;
+                }
             }
         });
         myListeningThread.start();
     }
 
-    public void getChatMessages(){
+    public void getChatMessages() {
 
     }
 
-    public void displayChatMessages(){
+    public void displayChatMessages() {
 
     }
 
-    private void checkClientIncomingMessages(){
-        var clientMsg = (Message)NetworkClient.get().pollMessage();
-        if (clientMsg  != null) {
-            if (clientMsg instanceof Message) {
-                System.out.println("Client recieved the Message: " + clientMsg.getMessage() + " from the server");
-            } else {
-                System.out.println("Client recieved some string: " + clientMsg.toString() + " from the server");
-            }
+    private void checkClientIncomingMessages() {
+        var clientMsg = (Message) NetworkClient.get().pollMessage();
+        if (clientMsg != null) {
+            messages.add(clientMsg);
+            System.out.println("The chat history is:");
+            messages.stream()
+                    //.peek((Message::getTimeStamp))
+                    .forEach(Message::getMessage);
+            //System.out.println("Client recieved the Message: " + clientMsg.getMessage() + " from the server");
         }
     }
+
 }

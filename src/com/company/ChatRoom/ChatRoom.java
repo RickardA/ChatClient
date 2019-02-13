@@ -1,30 +1,33 @@
 package com.company.ChatRoom;
 
+import com.company.Message;
+import com.company.User;
+
 import java.util.ArrayList;
 
 public class ChatRoom {
     private String uniqeID;
     private String name;
-    private ArrayList<Object> usersInChatRooom;
-    private ArrayList<Object> chattHistory;
+    private ArrayList<User> usersInChatRooom;
+    private ArrayList<Message> chatHistory;
     private UsersOnlineList usersOnlineList;
     private ChatRoomList chatRoomList;
     private ChatOutputField chatRoomOutputField;
     private UserInputField userInputField;
 
     public ChatRoom(String name){
-        usersInChatRooom = new ArrayList<>();
-        userInputField = new UserInputField();
-        chatRoomOutputField = new ChatOutputField();
-        chattHistory = new ArrayList<>();
         this.name = name;
+        usersInChatRooom = new ArrayList<>();
+        userInputField = new UserInputField(name);
+        chatRoomOutputField = new ChatOutputField();
+        chatHistory = new ArrayList<>();
     }
 
-    public void addUserToChatRoom(Object user){
+    public void addUserToChatRoom(ArrayList<User> user){
 
     }
 
-    public void removeUserFromChatRoom(Object user){
+    public void removeUserFromChatRoom(ArrayList<User> user){
 
     }
 

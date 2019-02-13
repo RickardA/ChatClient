@@ -3,8 +3,8 @@ package com.company;
 import com.company.ChatRoom.ChatRoom;
 
 public class ViewController {
-    StartPage startPage;
-    ChatRoom chatRoom;
+    private StartPage startPage;
+    private ChatRoom chatRoom;
 
     public ViewController() {
         //startPage = new StartPage();
