@@ -15,6 +15,7 @@ public class ChatRoom {
     public ChatRoom(String name){
         usersInChatRooom = new ArrayList<>();
         userInputField = new UserInputField();
+        chatRoomOutputField = new ChatOutputField();
         chattHistory = new ArrayList<>();
         this.name = name;
     }

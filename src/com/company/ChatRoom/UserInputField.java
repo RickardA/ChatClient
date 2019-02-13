@@ -23,7 +23,7 @@ public class UserInputField{
 
     public void createMessage(String message){
         //Here we should create an object of message to send
-        Message messageObject = new Message(message,"hejhopp","idag");
+        Message messageObject = new Message(message,"19234212313","2019-02-13 19:23:12");
         sendMessage(messageObject);
     }
 

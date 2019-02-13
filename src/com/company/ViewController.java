@@ -7,7 +7,7 @@ public class ViewController {
     ChatRoom chatRoom;
 
     public ViewController() {
-        startPage = new StartPage();
+        //startPage = new StartPage();
         chatRoom = new ChatRoom("General");
     }
 
