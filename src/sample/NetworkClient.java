@@ -27,8 +27,9 @@ public class NetworkClient implements Runnable {
     }
 
     public void sendMsgToServer(String msg) {
+        System.out.println("Printing from sendMSGTO server: " + msg);
         byte[] buffer = msg.getBytes();
-        DatagramPacket request = new DatagramPacket(buffer, buffer.length, this.serverAddress, 8080);
+        DatagramPacket request = new DatagramPacket(buffer, buffer.length, this.serverAddress, 80);
         try {
             socket.send(request);
         } catch (Exception e) {
