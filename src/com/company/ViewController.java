@@ -1,14 +1,14 @@
-package sample;
+package com.company;
 
-import sample.ChatRoom.ChatRoom;
+import com.company.ChatRoom.ChatRoom;
 
 public class ViewController {
     StartPage startPage;
     ChatRoom chatRoom;
 
-    public ViewController(NetworkClient client) {
+    public ViewController() {
         startPage = new StartPage();
-        chatRoom = new ChatRoom("General",client);
+        chatRoom = new ChatRoom("General");
     }
 
     public void changeView(){

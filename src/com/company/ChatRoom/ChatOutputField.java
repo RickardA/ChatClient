@@ -1,6 +1,6 @@
-package sample.ChatRoom;
+package com.company.ChatRoom;
 
-import sample.Message;
+import com.company.Message;
 
 import java.util.ArrayList;
 

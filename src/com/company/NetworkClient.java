@@ -1,4 +1,4 @@
-package sample;
+package com.company;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -39,13 +39,6 @@ public class NetworkClient {
     public Object pollMessage(){
         return msgQueue.pollFirst();
     }
-
-    // Delete this old method after presentation.
-//    public void sendMsgToServer(String msg) {
-//        byte[] buffer = msg.getBytes();
-//        DatagramPacket request = new DatagramPacket(buffer, buffer.length);
-//        try { socket.send(request); } catch (Exception e) {}
-//    }
 
     public void sendObjectToServer(Serializable object) {
         ByteArrayOutputStream byteArrayStream = new ByteArrayOutputStream();

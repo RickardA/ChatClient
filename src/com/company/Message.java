@@ -1,12 +1,17 @@
-package sample;
+package com.company;
 
-public class Message {
+import java.io.Serializable;
+
+public class Message implements Serializable {
 
     private String message;
     private String senderID;
     private String timeStamp;
 
-    public Message() {
+    public Message(String message,String senderID,String timeStamp) {
+        this.message = message;
+        this.senderID = senderID;
+        this.timeStamp = timeStamp;
     }
 
     public String getMessage() {

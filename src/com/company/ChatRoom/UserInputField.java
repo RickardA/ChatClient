@@ -1,16 +1,15 @@
-package sample.ChatRoom;
+package com.company.ChatRoom;
 
-import sample.Message;
-import sample.NetworkClient;
+import com.company.Message;
+import com.company.NetworkClient;
 
 import java.util.Scanner;
 
-public class UserInputField {
+public class UserInputField{
     //Some variables might be needed
-    NetworkClient client;
 
-    public UserInputField(NetworkClient client) {
-        this.client = client;
+
+    public UserInputField() {
         getTextFromInput();
     }
 
@@ -24,17 +23,14 @@ public class UserInputField {
 
     public void createMessage(String message){
         //Here we should create an object of message to send
-        sendMessage(message);
+        Message messageObject = new Message(message,"hejhopp","idag");
+        sendMessage(messageObject);
     }
 
-    public void sendMessage(String message){
+    public void sendMessage(Message message){
         //Should take in a Message object instead of string
         //But for test purposes we do this :)
         System.out.println("Sending message to server");
-        try{
-            client.sendMsgToServer(message);
-        }catch (Exception e){
-
-        }
+        NetworkClient.get().sendObjectToServer(message);
     }
 }

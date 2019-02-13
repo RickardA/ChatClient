@@ -1,6 +1,4 @@
-package sample.ChatRoom;
-
-import sample.NetworkClient;
+package com.company.ChatRoom;
 
 import java.util.ArrayList;
 
@@ -14,9 +12,9 @@ public class ChatRoom {
     private ChatOutputField chatRoomOutputField;
     private UserInputField userInputField;
 
-    public ChatRoom(String name, NetworkClient client){
+    public ChatRoom(String name){
         usersInChatRooom = new ArrayList<>();
-        userInputField = new UserInputField(client);
+        userInputField = new UserInputField();
         chattHistory = new ArrayList<>();
         this.name = name;
     }
