@@ -1,15 +1,19 @@
 package com.company;
 
+import java.io.Serializable;
+import java.net.SocketAddress;
 import java.util.UUID;
 
-public class User {
+public class User implements Serializable {
 
     private String userName;
     private String userID;
+    private SocketAddress userSocketAddress;
 
-    public User() {
+
+    public User(String name) {
         //Creates a uniqe id and sets it to userID;
-        userName = "Unnamed";
+        userName = name;
         userID = UUID.randomUUID().toString();
     }
 
@@ -27,5 +31,13 @@ public class User {
 
     public void setUserID(String userID) {
         this.userID = userID;
+    }
+
+    public SocketAddress getUserSocketAddress() {
+        return userSocketAddress;
+    }
+
+    public void setUserSocketAddress() {
+        this.userSocketAddress = NetworkClient.get().getSocketAddress();
     }
 }

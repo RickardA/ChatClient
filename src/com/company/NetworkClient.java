@@ -12,6 +12,7 @@ public class NetworkClient {
     private final String SERVER_IP = "127.0.0.1";
     private final int SERVER_PORT = 9001;
     private final int MSG_SIZE = 1024;
+    private User test = new User("Test");
 
     private DatagramSocket socket;
 
@@ -23,21 +24,24 @@ public class NetworkClient {
             socket = new DatagramSocket(0);
             socket.connect(InetAddress.getByName(SERVER_IP), SERVER_PORT);
             socket.setSoTimeout(100);
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
+        test.setUserSocketAddress();
+        sendObjectToServer(test);
 
         Thread t = new Thread(this::loop);
         t.setDaemon(true);
         t.start();
     }
 
-    public static NetworkClient get(){
+    public static NetworkClient get() {
         return _singleton;
     }
 
-    public Object pollMessage(){
-        return msgQueue.pollFirst();
+    public Object pollMessage() {
+        return msgQueue;
     }
 
     public void sendObjectToServer(Serializable object) {
@@ -49,8 +53,11 @@ public class NetworkClient {
         }
 
         DatagramPacket request = new DatagramPacket(byteArrayStream.toByteArray(), byteArrayStream.size());
-        try { socket.send(request); }
-        catch (Exception e) { e.printStackTrace();}
+        try {
+            socket.send(request);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void loop() {
@@ -66,17 +73,19 @@ public class NetworkClient {
         }
     }
 
-    private boolean receiveMessageFromServer(DatagramPacket serverRequest){
+    private boolean receiveMessageFromServer(DatagramPacket serverRequest) {
         try {
             socket.receive(serverRequest);
             return true;
         } catch (SocketTimeoutException e) { // Ignore timeout
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return false;
     }
 
-    private Object deserializeRequest(DatagramPacket serverRequest){
+    private Object deserializeRequest(DatagramPacket serverRequest) {
         try {
             try (ByteArrayInputStream bin = new ByteArrayInputStream(serverRequest.getData())) {
                 try (ObjectInputStream ois = new ObjectInputStream(bin)) {
@@ -87,5 +96,10 @@ public class NetworkClient {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public SocketAddress getSocketAddress() {
+        SocketAddress clientSocketAddress = socket.getLocalSocketAddress();
+        return clientSocketAddress;
     }
 }

@@ -36,14 +36,17 @@ public class ChatOutputField {
     }
 
     private void checkClientIncomingMessages() {
-        var clientMsg = (Message) NetworkClient.get().pollMessage();
+        var clientMsg = NetworkClient.get().pollMessage();
         if (clientMsg != null) {
-            messages.add(clientMsg);
+            if (clientMsg instanceof Message) {
+            messages = (ArrayList<Message>) clientMsg;
+
             System.out.println("The chat history is:");
             messages.stream()
                     //.peek((Message::getTimeStamp))
                     .forEach(Message::getMessage);
             //System.out.println("Client recieved the Message: " + clientMsg.getMessage() + " from the server");
+            }
         }
     }
 
