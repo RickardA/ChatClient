@@ -5,12 +5,13 @@ import com.company.ChatRooms.ChatRoomList;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ClientProgram {
+public class ClientProgram{
     private StartPage startPage;
     private ChatRoomList chatRooms;
     private static ClientProgram _singelton = new ClientProgram();
 
     public ClientProgram() {}
+
 
     public void checkIncommingPackage() {
         System.out.println("Printing from checkIncommingPackage");

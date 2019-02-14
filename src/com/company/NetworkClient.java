@@ -68,16 +68,15 @@ public class NetworkClient {
                 continue;
             }
 
-            System.out.println("New message recieved");
             Object msg = deserializeRequest(serverRequest);
             msgQueue.addLast(msg);
-            ClientProgram.get().checkIncommingPackage();
+            Thread thread = new Thread(ClientProgram.get()::checkIncommingPackage);
+            thread.start();
         }
     }
 
     private boolean receiveMessageFromServer(DatagramPacket serverRequest) {
         try {
-            System.out.println("recieving package from server");
             socket.receive(serverRequest);
             return true;
         } catch (SocketTimeoutException e) { // Ignore timeout
