@@ -9,7 +9,6 @@ public class ChatRoomList {
 
     public ChatRoomList() {
         chatRoomList = new ArrayList<>();
-
     }
 
     public static ChatRoomList get() {
@@ -25,6 +24,7 @@ public class ChatRoomList {
     }
 
     public void updateChatRoomList (ArrayList<ChatRoom> chatRoomList) {
+
         this.chatRoomList = chatRoomList;
     }
 }

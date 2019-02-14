@@ -39,7 +39,7 @@ public class NetworkClient {
     }
 
     public Object pollMessage() {
-        return msgQueue;
+        return msgQueue.pollFirst();
     }
 
     public void sendObjectToServer(Serializable object) {
@@ -68,8 +68,8 @@ public class NetworkClient {
             }
 
             Object msg = deserializeRequest(serverRequest);
-            System.out.println("Printing from reciever: " + msg);
             msgQueue.addLast(msg);
+            ClientProgram.get().checkIncommingPackage();
         }
     }
 

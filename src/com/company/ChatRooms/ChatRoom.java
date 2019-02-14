@@ -25,6 +25,11 @@ public class ChatRoom implements Serializable {
         chatHistory = new ArrayList<>();
     }
 
+    public void show(){
+        System.out.println("Welcome to the group " + name);
+        chatRoomOutputField.show();
+    }
+
     public void addUserToChatRoom(ArrayList<User> user){
 
     }
@@ -41,21 +46,8 @@ public class ChatRoom implements Serializable {
 
     }
 
-    public String getMessage(){
-        String string = "hello";
-        return string;
+    public String getName(){
+        return name;
     }
 
-    public static class ChatRooms implements Serializable{
-        private ArrayList<ChatRoom> chatRoomList;
-        static final long serialVersionUID = 30;
-
-        public ChatRooms() {
-            chatRoomList = new ArrayList<>();
-        }
-
-        public ArrayList<ChatRoom> getChatRoomList() {
-            return chatRoomList;
-        }
-    }
 }

@@ -11,42 +11,26 @@ public class ChatOutputField {
 
     public ChatOutputField() {
         messages = new ArrayList<>();
-        myListeningThread = new Thread(() -> {
-            while (true) {
-                checkClientIncomingMessages();
+    }
 
-                // Without this 1 CPU core will constantly be at 100%
-                try {
-                    Thread.sleep(1);
-                } catch (Exception e) {
-                    break;
-                }
-            }
-        });
-        myListeningThread.start();
+    public void show(){
+        showMessages();
     }
 
     public void getChatMessages() {
 
     }
 
-    public void displayChatMessages() {
-
+    public void setChatMessages(Message message) {
+        
     }
 
-    private void checkClientIncomingMessages() {
-        var clientMsg = NetworkClient.get().pollMessage();
-        if (clientMsg != null) {
-            if (clientMsg instanceof Message) {
-            messages = (ArrayList<Message>) clientMsg;
-
+    private void showMessages() {
             System.out.println("The chat history is:");
             messages.stream()
                     //.peek((Message::getTimeStamp))
                     .forEach(Message::getMessage);
             //System.out.println("Client recieved the Message: " + clientMsg.getMessage() + " from the server");
             }
-        }
     }
 
-}

@@ -16,14 +16,11 @@ public class UserInputField {
 
     public UserInputField(String channelName) {
         this.channelName = channelName;
-        updateChannelThread = new Thread(this::getTextFromInput);
-        updateChannelThread.start();
     }
 
     public void getTextFromInput() {
-        System.out.println("Welcome to the " + channelName + " channel, please input your messages below!");
+        System.out.println("please input your messages below!");
         while (!stopTyping) {
-
             String message;
             Scanner userInput = new Scanner(System.in);
             message = userInput.nextLine();
