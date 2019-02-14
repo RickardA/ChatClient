@@ -1,4 +1,4 @@
-package com.company.ChatRoom;
+package com.company.ChatRooms;
 
 import java.util.ArrayList;
 

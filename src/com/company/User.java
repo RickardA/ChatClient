@@ -6,15 +6,16 @@ import java.util.UUID;
 
 public class User implements Serializable {
 
+    static final long serialVersionUID = 12;
     private String userName;
-    private String userID;
+    /*  private String userID;*/
     private SocketAddress userSocketAddress;
 
 
     public User(String name) {
         //Creates a uniqe id and sets it to userID;
         userName = name;
-        userID = UUID.randomUUID().toString();
+        //userID = UUID.randomUUID().toString();
     }
 
     public String getUserName() {
@@ -25,19 +26,19 @@ public class User implements Serializable {
         this.userName = userName;
     }
 
-    public String getUserID() {
+   /* public String getUserID() {
         return userID;
-    }
-
+    }*/
+/*
     public void setUserID(String userID) {
         this.userID = userID;
-    }
+    }*/
 
     public SocketAddress getUserSocketAddress() {
         return userSocketAddress;
     }
 
-    public void setUserSocketAddress() {
-        this.userSocketAddress = NetworkClient.get().getSocketAddress();
+   public void setUserSocketAddress() {
+        this.userSocketAddress = NetworkClient.get().getSocketAdress();
     }
 }

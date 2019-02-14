@@ -1,8 +1,7 @@
-package com.company.ChatRoom;
+package com.company.ChatRooms;
 
 import com.company.Message;
 import com.company.NetworkClient;
-import javafx.scene.Parent;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

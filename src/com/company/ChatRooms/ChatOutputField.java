@@ -1,9 +1,8 @@
-package com.company.ChatRoom;
+package com.company.ChatRooms;
 
 import com.company.Message;
 import com.company.NetworkClient;
 
-import java.net.SocketAddress;
 import java.util.ArrayList;
 
 public class ChatOutputField {

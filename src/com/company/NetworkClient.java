@@ -12,7 +12,6 @@ public class NetworkClient {
     private final String SERVER_IP = "127.0.0.1";
     private final int SERVER_PORT = 9001;
     private final int MSG_SIZE = 1024;
-    private User test = new User("Test");
 
     private DatagramSocket socket;
 
@@ -20,6 +19,7 @@ public class NetworkClient {
     private static NetworkClient _singleton = new NetworkClient();
 
     private NetworkClient() {
+        System.out.println("Printing from network client");
         try {
             socket = new DatagramSocket(0);
             socket.connect(InetAddress.getByName(SERVER_IP), SERVER_PORT);
@@ -28,8 +28,6 @@ public class NetworkClient {
             e.printStackTrace();
         }
 
-        test.setUserSocketAddress();
-        sendObjectToServer(test);
 
         Thread t = new Thread(this::loop);
         t.setDaemon(true);
@@ -61,6 +59,7 @@ public class NetworkClient {
     }
 
     private void loop() {
+        System.out.println("starting loop");
         while (true) {
             DatagramPacket serverRequest = new DatagramPacket(new byte[MSG_SIZE], MSG_SIZE);
 
@@ -69,6 +68,7 @@ public class NetworkClient {
             }
 
             Object msg = deserializeRequest(serverRequest);
+            System.out.println("Printing from reciever: " + msg);
             msgQueue.addLast(msg);
         }
     }
@@ -98,8 +98,8 @@ public class NetworkClient {
         return null;
     }
 
-    public SocketAddress getSocketAddress() {
-        SocketAddress clientSocketAddress = socket.getLocalSocketAddress();
-        return clientSocketAddress;
+    public SocketAddress getSocketAdress(){
+        System.out.println("get adress shit");
+        return _singleton.socket.getLocalSocketAddress();
     }
 }
