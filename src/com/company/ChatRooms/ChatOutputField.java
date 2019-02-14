@@ -5,16 +5,18 @@ import com.company.NetworkClient;
 
 import java.util.ArrayList;
 
-public class ChatOutputField {
+public class ChatOutputField implements Runnable{
     private ArrayList<Message> messages;
     private Thread myListeningThread;
 
-    public ChatOutputField() {
-        messages = new ArrayList<>();
+    public ChatOutputField(ArrayList<Message> chatHistory) {
+        messages = chatHistory;
+        showMessages();
     }
 
-    public void show(){
-        showMessages();
+    @Override
+    public void run() {
+
     }
 
     public void getChatMessages() {
@@ -22,15 +24,14 @@ public class ChatOutputField {
     }
 
     public void setChatMessages(Message message) {
-        
+
     }
 
     private void showMessages() {
-            System.out.println("The chat history is:");
-            messages.stream()
-                    //.peek((Message::getTimeStamp))
-                    .forEach(Message::getMessage);
-            //System.out.println("Client recieved the Message: " + clientMsg.getMessage() + " from the server");
-            }
+        System.out.println("The chat history is:");
+        for (int i = 0; i < messages.size(); i++) {
+            System.out.println(messages.get(i).getMessage() + " Timestamp: " + messages.get(i).getTimeStamp());
+        }
     }
+}
 

@@ -17,7 +17,6 @@ public class Message implements Serializable {
     }
 
     public String getMessage() {
-        System.out.println("User " + timeStamp + ": " + message);
         return message;
     }
 

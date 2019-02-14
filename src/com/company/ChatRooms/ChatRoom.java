@@ -1,9 +1,10 @@
 package com.company.ChatRooms;
 
-import com.company.Message;
-import com.company.User;
+import com.company.*;
 
+import java.beans.Transient;
 import java.io.Serializable;
+import java.net.SocketAddress;
 import java.util.ArrayList;
 
 public class ChatRoom implements Serializable {
@@ -11,43 +12,47 @@ public class ChatRoom implements Serializable {
     private String name;
     private ArrayList<User> usersInChatRooom;
     private ArrayList<Message> chatHistory;
-    private UsersOnlineList usersOnlineList;
-    private ChatRoomList chatRoomList;
-    private ChatOutputField chatRoomOutputField;
-    private UserInputField userInputField;
+    private transient Thread updateChannelThread;
     static final long serialVersionUID = 20;
 
-    public ChatRoom(String name){
+
+    public ChatRoom(String name, String id) {
         this.name = name;
+        this.uniqeID = id;
         usersInChatRooom = new ArrayList<>();
-        userInputField = new UserInputField(name);
-        chatRoomOutputField = new ChatOutputField();
         chatHistory = new ArrayList<>();
     }
 
     public void show(){
-        System.out.println("Welcome to the group " + name);
-        chatRoomOutputField.show();
+        new Thread(new ChatOutputField(chatHistory)).start();
+        new Thread(new UserInputField()).start();
     }
 
-    public void addUserToChatRoom(ArrayList<User> user){
-
+    private void addUserToChatRoom(User user) {
+        usersInChatRooom.add(user);
     }
 
-    public void removeUserFromChatRoom(ArrayList<User> user){
-
+    private void removeUserFromChatRoom(User user) {
+        usersInChatRooom.remove(user);
     }
 
-    public void checkUsersInChatRoom(){
-
-    }
-
-    public void addMessage(){
+    private void checkUsersInChatRoom() {
 
     }
 
-    public String getName(){
+    public String getUniqeID() {
+        return uniqeID;
+    }
+
+    public void setUniqeID(String uniqeID) {
+        this.uniqeID = uniqeID;
+    }
+
+    public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 }

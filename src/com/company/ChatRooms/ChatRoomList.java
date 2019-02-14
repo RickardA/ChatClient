@@ -24,7 +24,6 @@ public class ChatRoomList {
     }
 
     public void updateChatRoomList (ArrayList<ChatRoom> chatRoomList) {
-
         this.chatRoomList = chatRoomList;
     }
 }

@@ -7,15 +7,16 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Scanner;
 
-public class UserInputField {
-    //Some variables might be needed
+public class UserInputField implements Runnable{
     private boolean stopTyping = false;
-    private Thread updateChannelThread;
-    private String channelName;
 
+    public UserInputField() {
+        getTextFromInput();
+    }
 
-    public UserInputField(String channelName) {
-        this.channelName = channelName;
+    @Override
+    public void run() {
+
     }
 
     public void getTextFromInput() {
@@ -24,6 +25,7 @@ public class UserInputField {
             String message;
             Scanner userInput = new Scanner(System.in);
             message = userInput.nextLine();
+            System.out.println(message);
             createMessage(message);
             if (message.equals("stop")) {
                 stopTyping = true;
@@ -40,7 +42,7 @@ public class UserInputField {
     }
 
     public void sendMessageToServer(Message message) {
-
+        System.out.println("Sending message object to server from user input field");
         //Should take in a Message object instead of string
         //But for test purposes we do this :)
         //System.out.println("Sending message to server");

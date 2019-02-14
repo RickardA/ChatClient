@@ -1,11 +1,14 @@
 package com.company;
 
+import com.company.ChatRooms.ChatRoom;
+
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingDeque;
 
 public class NetworkClient {
@@ -19,7 +22,6 @@ public class NetworkClient {
     private static NetworkClient _singleton = new NetworkClient();
 
     private NetworkClient() {
-        System.out.println("Printing from network client");
         try {
             socket = new DatagramSocket(0);
             socket.connect(InetAddress.getByName(SERVER_IP), SERVER_PORT);
@@ -27,7 +29,6 @@ public class NetworkClient {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         Thread t = new Thread(this::loop);
         t.setDaemon(true);
@@ -53,13 +54,13 @@ public class NetworkClient {
         DatagramPacket request = new DatagramPacket(byteArrayStream.toByteArray(), byteArrayStream.size());
         try {
             socket.send(request);
+            System.out.println("message object is finally sent to server");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private void loop() {
-        System.out.println("starting loop");
         while (true) {
             DatagramPacket serverRequest = new DatagramPacket(new byte[MSG_SIZE], MSG_SIZE);
 
@@ -67,6 +68,7 @@ public class NetworkClient {
                 continue;
             }
 
+            System.out.println("New message recieved");
             Object msg = deserializeRequest(serverRequest);
             msgQueue.addLast(msg);
             ClientProgram.get().checkIncommingPackage();
@@ -75,6 +77,7 @@ public class NetworkClient {
 
     private boolean receiveMessageFromServer(DatagramPacket serverRequest) {
         try {
+            System.out.println("recieving package from server");
             socket.receive(serverRequest);
             return true;
         } catch (SocketTimeoutException e) { // Ignore timeout
@@ -99,7 +102,6 @@ public class NetworkClient {
     }
 
     public SocketAddress getSocketAdress(){
-        System.out.println("get adress shit");
         return _singleton.socket.getLocalSocketAddress();
     }
 }

@@ -13,6 +13,7 @@ public class ClientProgram {
     public ClientProgram() {}
 
     public void checkIncommingPackage() {
+        System.out.println("Printing from checkIncommingPackage");
         var serverResponse = NetworkClient.get().pollMessage();
         if (serverResponse != null){
             if (serverResponse.getClass().getSimpleName().equals("ArrayList")) {
@@ -43,6 +44,7 @@ public class ClientProgram {
     }
 
     private void showChoosenChatRoom(int index){
+       /* System.out.println(ChatRoomList.get().getChatRooms().get(index).getMessage().get(0).getMessage());*/
         ChatRoom chatRoom = ChatRoomList.get().getChatRooms().get(index);
         chatRoom.show();
     }
