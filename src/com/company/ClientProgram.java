@@ -10,24 +10,25 @@ public class ClientProgram{
     private static ClientProgram _singelton = new ClientProgram();
 
     public ClientProgram() {
-
+        Thread incommingPackage = new Thread(this :: checkIncommingPackage);
+        incommingPackage.setDaemon(true);
+        incommingPackage.start();
     }
 
 
     public void checkIncommingPackage() {
-        System.out.println("Printing from checkIncommingPackage");
-        var serverResponse = NetworkClient.get().pollMessage();
-        System.out.println(serverResponse.getClass().getSimpleName());
-        if (serverResponse != null){
-            if (serverResponse instanceof ChatRoomList) {
-                System.out.println("Recieving chatRoomList! (Object)");
-                System.out.println(((ChatRoomList) serverResponse).getChatRooms().get(0).getName());
-                ChatRoomList.get().updateChatRoomList(((ChatRoomList) serverResponse).getChatRooms());
-                userChooseChatRoom();
-            }
-            else if (serverResponse instanceof MessageList){
-                System.out.println("Recieving messageList! (Object)");
-                ChatRoomList.get().getChatRooms().get(0).updateChatHistory(((MessageList) serverResponse));
+        while (true) {
+            var serverResponse = NetworkClient.get().pollMessage();
+            if (serverResponse != null) {
+                if (serverResponse instanceof ChatRoomList) {
+                    System.out.println("Recieving chatRoomList! (Object)");
+                    System.out.println(((ChatRoomList) serverResponse).getChatRooms().get(0).getName());
+                    ChatRoomList.get().updateChatRoomList(((ChatRoomList) serverResponse).getChatRooms());
+                    userChooseChatRoom();
+                } else if (serverResponse instanceof MessageList) {
+                    System.out.println("Recieving messageList! (Object)");
+                    ChatRoomList.get().getChatRooms().get(0).updateChatHistory(((MessageList) serverResponse));
+                }
             }
         }
     }

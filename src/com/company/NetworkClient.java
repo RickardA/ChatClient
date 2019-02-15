@@ -70,8 +70,8 @@ public class NetworkClient {
 
             Object msg = deserializeRequest(serverRequest);
             msgQueue.addLast(msg);
-            Thread thread = new Thread(ClientProgram.get()::checkIncommingPackage);
-            thread.start();
+           /* Thread thread = new Thread(ClientProgram.get()::checkIncommingPackage);
+            thread.start();*/
         }
     }
 
