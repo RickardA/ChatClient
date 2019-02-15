@@ -1,15 +1,16 @@
 package com.company.ChatRooms;
 
 import com.company.Message;
+import com.company.MessageList;
 import com.company.NetworkClient;
 
 import java.util.ArrayList;
 
 public class ChatOutputField implements Runnable{
-    private ArrayList<Message> messages;
+    private MessageList messages;
     private Thread myListeningThread;
 
-    public ChatOutputField(ArrayList<Message> chatHistory) {
+    public ChatOutputField(MessageList chatHistory) {
         messages = chatHistory;
         showMessages();
     }
@@ -23,14 +24,15 @@ public class ChatOutputField implements Runnable{
 
     }
 
-    public void setChatMessages(Message message) {
-
+    public void UpdateChatMessages(MessageList messageList) {
+        messages = messageList;
+        showMessages();
     }
 
     private void showMessages() {
         System.out.println("The chat history is:");
-        for (int i = 0; i < messages.size(); i++) {
-            System.out.println(messages.get(i).getMessage() + " Timestamp: " + messages.get(i).getTimeStamp());
+        for (int i = 0; i < messages.getMessagesList().size(); i++) {
+            System.out.println(messages.getMessagesList().get(i).getMessage() + " Timestamp: " + messages.getMessagesList().get(i).getTimeStamp());
         }
     }
 }

@@ -1,11 +1,12 @@
 package com.company.ChatRooms;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ChatRoomList {
+public class ChatRoomList implements Serializable {
     private ArrayList<ChatRoom> chatRoomList;
     private static ChatRoomList _singleton = new ChatRoomList();
-
+    static final long serialVersionUID = 30;
 
     public ChatRoomList() {
         chatRoomList = new ArrayList<>();

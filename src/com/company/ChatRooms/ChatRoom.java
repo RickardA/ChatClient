@@ -11,8 +11,8 @@ public class ChatRoom implements Serializable {
     private String uniqeID;
     private String name;
     private ArrayList<User> usersInChatRooom;
-    private ArrayList<Message> chatHistory;
-    private transient Thread updateChannelThread;
+    private MessageList chatHistory;
+    private ChatOutputField chatOutputField;
     static final long serialVersionUID = 20;
 
 
@@ -20,12 +20,16 @@ public class ChatRoom implements Serializable {
         this.name = name;
         this.uniqeID = id;
         usersInChatRooom = new ArrayList<>();
-        chatHistory = new ArrayList<>();
+        chatHistory = new MessageList();
     }
 
     public void show(){
-        new Thread(new ChatOutputField(chatHistory)).start();
+        new Thread(chatOutputField = new ChatOutputField(chatHistory)).start();
         new Thread(new UserInputField()).start();
+    }
+    public void updateChatHistory(MessageList messageList){
+        chatHistory = messageList;
+        chatOutputField.UpdateChatMessages(chatHistory);
     }
 
     private void addUserToChatRoom(User user) {
@@ -36,18 +40,7 @@ public class ChatRoom implements Serializable {
         usersInChatRooom.remove(user);
     }
 
-    private void checkUsersInChatRoom() {
-
-    }
-
-    public String getUniqeID() {
-        return uniqeID;
-    }
-
-    public void setUniqeID(String uniqeID) {
-        this.uniqeID = uniqeID;
-    }
-
+    private void checkUsersInChatRoom() {   }
     public String getName() {
         return name;
     }

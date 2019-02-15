@@ -7,24 +7,27 @@ import java.util.Scanner;
 
 public class ClientProgram{
     private StartPage startPage;
-    private ChatRoomList chatRooms;
     private static ClientProgram _singelton = new ClientProgram();
 
-    public ClientProgram() {}
+    public ClientProgram() {
+
+    }
 
 
     public void checkIncommingPackage() {
         System.out.println("Printing from checkIncommingPackage");
         var serverResponse = NetworkClient.get().pollMessage();
+        System.out.println(serverResponse.getClass().getSimpleName());
         if (serverResponse != null){
-            if (serverResponse.getClass().getSimpleName().equals("ArrayList")) {
-                System.out.println("Recieving chatRooms! (Array)");
-                ChatRoomList.get().updateChatRoomList((ArrayList<ChatRoom>) serverResponse);
+            if (serverResponse instanceof ChatRoomList) {
+                System.out.println("Recieving chatRoomList! (Object)");
+                System.out.println(((ChatRoomList) serverResponse).getChatRooms().get(0).getName());
+                ChatRoomList.get().updateChatRoomList(((ChatRoomList) serverResponse).getChatRooms());
                 userChooseChatRoom();
             }
-            else if (serverResponse instanceof Message){
-                System.out.println("Recieving message! (Object)");
-
+            else if (serverResponse instanceof MessageList){
+                System.out.println("Recieving messageList! (Object)");
+                ChatRoomList.get().getChatRooms().get(0).updateChatHistory(((MessageList) serverResponse));
             }
         }
     }
@@ -45,7 +48,6 @@ public class ClientProgram{
     }
 
     private void showChoosenChatRoom(int index){
-       /* System.out.println(ChatRoomList.get().getChatRooms().get(index).getMessage().get(0).getMessage());*/
         ChatRoom chatRoom = ChatRoomList.get().getChatRooms().get(index);
         chatRoom.show();
     }
