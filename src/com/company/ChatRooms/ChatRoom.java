@@ -27,8 +27,8 @@ public class ChatRoom implements Serializable {
         new Thread(chatOutputField = new ChatOutputField(chatHistory)).start();
         new Thread(new UserInputField()).start();
     }
-    public void updateChatHistory(MessageList messageList){
-        chatHistory = messageList;
+    public void updateChatHistory(Message message){
+        chatHistory.setMessagesList(message);
         chatOutputField.UpdateChatMessages(chatHistory);
     }
 

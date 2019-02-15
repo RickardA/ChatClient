@@ -62,16 +62,18 @@ public class NetworkClient {
 
     private void loop() {
         while (true) {
-            DatagramPacket serverRequest = new DatagramPacket(new byte[MSG_SIZE], MSG_SIZE);
+                DatagramPacket serverRequest = new DatagramPacket(new byte[MSG_SIZE], MSG_SIZE);
 
-            if (!receiveMessageFromServer(serverRequest)) {
-                continue;
-            }
+                if (!receiveMessageFromServer(serverRequest)) {
+                    continue;
+                }
 
-            Object msg = deserializeRequest(serverRequest);
-            msgQueue.addLast(msg);
+            System.out.println(serverRequest.getLength());
+                Object msg = deserializeRequest(serverRequest);
+                msgQueue.addLast(msg);
            /* Thread thread = new Thread(ClientProgram.get()::checkIncommingPackage);
             thread.start();*/
+
         }
     }
 
@@ -94,7 +96,8 @@ public class NetworkClient {
                     return ois.readObject();
                 }
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
         return null;

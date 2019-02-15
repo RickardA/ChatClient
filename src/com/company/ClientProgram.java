@@ -25,9 +25,9 @@ public class ClientProgram{
                     System.out.println(((ChatRoomList) serverResponse).getChatRooms().get(0).getName());
                     ChatRoomList.get().updateChatRoomList(((ChatRoomList) serverResponse).getChatRooms());
                     userChooseChatRoom();
-                } else if (serverResponse instanceof MessageList) {
+                } else if (serverResponse instanceof Message) {
                     System.out.println("Recieving messageList! (Object)");
-                    ChatRoomList.get().getChatRooms().get(0).updateChatHistory(((MessageList) serverResponse));
+                    ChatRoomList.get().getChatRooms().get(0).updateChatHistory(((Message) serverResponse));
                 }
             }
         }
