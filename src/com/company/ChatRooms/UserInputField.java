@@ -11,7 +11,7 @@ public class UserInputField implements Runnable{
     private boolean stopTyping = false;
 
     public UserInputField() {
-        getTextFromInput();
+        new Thread(this::getTextFromInput).start();
     }
 
     @Override
