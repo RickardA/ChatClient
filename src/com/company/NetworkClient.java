@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingDeque;
 
 public class NetworkClient {
-    private final String SERVER_IP = "localhost";
-    private final int SERVER_PORT = 9001;
+    private final String SERVER_IP = "127.0.0.1";
+    private final int SERVER_PORT = 8080;
     private final int MSG_SIZE = 1024;
 
     private DatagramSocket socket;
