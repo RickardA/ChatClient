@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     public static Stage primaryStage;
+    public static Controller controller;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -15,7 +16,7 @@ public class Main extends Application {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = loader.load();
-        Controller controller = loader.getController();
+        controller = loader.getController();
 
 //        primaryStage.getProperties().put("controller", controller);
 
@@ -28,7 +29,7 @@ public class Main extends Application {
 
 
 
-        ClientController clientController = new ClientController();
+        ClientController clientController = new ClientController(controller);
         clientController.startClient();
     }
 

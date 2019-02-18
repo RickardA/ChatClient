@@ -4,8 +4,8 @@ public class ClientController {
     ClientProgram clientProgram;
 
 
-    public ClientController(){
-
+    public ClientController(Controller controller){
+        NetworkClient.get().declareController(controller);
     }
 
     public void startClient(){

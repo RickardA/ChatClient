@@ -8,6 +8,7 @@ public class NetworkClient {
     private final String SERVER_IP = "127.0.0.1";
     private final int SERVER_PORT = 9001;
     private final int MSG_SIZE = 1024;
+    public Controller fxController;
 
     private DatagramSocket socket;
 
@@ -94,6 +95,11 @@ public class NetworkClient {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void declareController (Controller controller) {
+        this.fxController = controller;
+
     }
 
     public SocketAddress getSocketAdress(){

@@ -1,12 +1,13 @@
 package com.company.ChatRooms;
 
-import com.company.Controller;
+import com.company.Main;
 import com.company.MessageList;
+import javafx.application.Platform;
 
-public class ChatOutputField implements Runnable{
+public class ChatOutputField implements Runnable {
     private MessageList messages;
     private Thread myListeningThread;
-Controller controller;
+
     public ChatOutputField(MessageList chatHistory) {
         messages = chatHistory;
         showMessages();
@@ -26,16 +27,21 @@ Controller controller;
         showMessages();
     }
 
-    private void showMessages() {
-        System.out.println("The chat history is:");
+    public void showMessages() {
+//        System.out.println("The chat history is:");
 //        for (int i = 0; i < messages.getMessagesList().size(); i++) {
 //            System.out.println(messages.getMessagesList().get(i).getMessage() + " Timestamp: " + messages.getMessagesList().get(i).getTimeStamp());
+//
+//            NetworkClient.get().fxController.recieveMessage("Hej Sean");
+//
+//
+//        }
+//        messages.getMessagesList().get(messages.getMessagesList().size()).getMessage()
 
-//controller.recieveMessage()
+        Platform.runLater(()-> Main.controller.recieveMessage(messages.getMessagesList().get(messages.getMessagesList().size()-1).getMessage()));
 
-
-        }
-
+//        Platform.runLater(()-> Main.controller.recieveMessage(messages.getMessagesList().get(messages.getMessagesList().size()-1).getMessage()));
     }
+}
 
 

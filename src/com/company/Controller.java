@@ -29,17 +29,21 @@ public class Controller implements Initializable {
     @FXML
     public void sendMessage(ActionEvent event) {
 
+
         UserInputField userInputField = new UserInputField();
 
         userInputField.createMessage(inputbox.getText());
         inputbox.clear();
 
+        NetworkClient.get().sendObjectToServer(new Message(inputbox.getText(), "13", "12:01"));
+        System.out.println("Nu visar jag historiken i fönstret ^");
+
     }
 
-    public void recieveMessage(ActionEvent event) {
+    public void recieveMessage(String message) {
 
-
-        System.out.println("message got back");
+        outputbox.appendText(message +"\n");
+//        System.out.println("meddelande: " +message);
 //        startTask();                                               1
 
     }
