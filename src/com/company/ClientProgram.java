@@ -2,7 +2,6 @@ package com.company;
 import com.company.ChatRooms.ChatRoom;
 import com.company.ChatRooms.ChatRoomList;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ClientProgram{

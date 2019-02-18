@@ -1,8 +1,6 @@
 package com.company;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class Message implements Serializable {
 
@@ -20,9 +18,7 @@ public class Message implements Serializable {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+    public void setMessage(String message) { this.message = message; }
 
     public String getSenderID() {
         return senderID;
