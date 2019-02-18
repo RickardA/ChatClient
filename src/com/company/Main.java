@@ -35,7 +35,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        //hej hopp
+        //hej hop
         launch(args);
     }
 }
