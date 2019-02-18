@@ -48,4 +48,8 @@ public class ChatRoom implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getUniqeID() {
+        return uniqeID;
+    }
 }
