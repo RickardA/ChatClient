@@ -32,7 +32,18 @@ public class ChatOutputField implements Runnable{
 //            System.out.println(messages.getMessagesList().get(i).getMessage() + " Timestamp: " + messages.getMessagesList().get(i).getTimeStamp());
 //        }
 
-        Platform.runLater(()-> Main.controller.recieveMessage(messages.getMessagesList().get(messages.getMessagesList().size()-1).getMessage()));
+
+            if (messages.getMessagesList().isEmpty())
+            {
+                Platform.runLater(()-> Main.controller.recieveMessage("No history..."));
+            }
+            else
+            {
+                System.out.println(messages.getMessagesList().isEmpty());
+                Platform.runLater(()-> Main.controller.recieveMessage(messages.getMessagesList().get(messages.getMessagesList().size()-1).getMessage()));
+
+            }
+
     }
 }
 
