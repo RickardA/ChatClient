@@ -1,6 +1,5 @@
 package com.company;
 
-import com.company.ChatRooms.UserInputField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,6 +7,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 
@@ -30,15 +31,17 @@ public class Controller implements Initializable {
 
     @FXML
     public void sendMessage(ActionEvent event) {
-        UserInputField userInputField = new UserInputField();  // Fixa!
-
-        userInputField.createMessage(inputbox.getText());
+//        UserInputField userInputField = new UserInputField();  // Fixa!
+//        userInputField.createMessage(inputbox.getText());
+// Skapa message object här istället?
+        String timeStamp = new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
+        NetworkClient.get().sendObjectToServer(new Message(inputbox.getText(), "TestUser", timeStamp));
         inputbox.clear();
-        NetworkClient.get().sendObjectToServer(new Message(inputbox.getText(), "ID", "HH:MM"));
     }
 
     @FXML
     public void recieveMessage(String message) {
+
         outputbox.appendText(message+"\n");
     }
 }

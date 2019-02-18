@@ -21,8 +21,8 @@ public class Main extends Application {
 //        primaryStage.getProperties().put("controller", controller);
 
         primaryStage.setUserData(controller);
-
-        primaryStage.setTitle("ChatApp");
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("ChatApp -   #general");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
 

@@ -28,9 +28,7 @@ public class ChatOutputField implements Runnable{
     }
 
     private void showMessages() {
-//        for (int i = 0; i < messages.getMessagesList().size(); i++) {
-//            System.out.println(messages.getMessagesList().get(i).getMessage() + " Timestamp: " + messages.getMessagesList().get(i).getTimeStamp());
-//        }
+
 
 
             if (messages.getMessagesList().isEmpty())
@@ -39,11 +37,17 @@ public class ChatOutputField implements Runnable{
             }
             else
             {
-                System.out.println(messages.getMessagesList().isEmpty());
-                Platform.runLater(()-> Main.controller.recieveMessage(messages.getMessagesList().get(messages.getMessagesList().size()-1).getMessage()));
+                Main.controller.outputbox.clear();
+                Platform.runLater(new Runnable() {
+                    @Override public void run() {
+                        for (int i = 0; i < messages.getMessagesList().size(); i++) {
+                            Main.controller.recieveMessage(messages.getMessagesList().get(i).getSenderID() + " " + messages.getMessagesList().get(i).getTimeStamp() + "   " + messages.getMessagesList().get(i).getMessage());
+                        }
+
+                    }
+                });
 
             }
-
     }
 }
 
