@@ -8,7 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Wrapper implements Serializable {
-    Map<String,String> chatRoomOptions = new HashMap<>();
+    private Map<String,String> chatRoomOptions = new HashMap<>();
+    private String chatRoomID;
     static final long serialVersionUID = 80;
 
     public Wrapper() {
@@ -16,6 +17,10 @@ public class Wrapper implements Serializable {
 
     public Wrapper(Map<String, String> chatRoomOptions) {
         this.chatRoomOptions = chatRoomOptions;
+    }
+
+    public Wrapper (String chatRoomID){
+        this.chatRoomID = chatRoomID;
     }
 
     public Map<String, String> getChatRoomOptions() {
