@@ -3,9 +3,10 @@ package com.company;
 import com.company.ChatRooms.ChatRoom;
 import com.company.ChatRooms.ChatRoomList;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ClientProgram {
+public class ClientProgram{
     private StartPage startPage;
     private static ClientProgram _singelton = new ClientProgram();
     User user;
@@ -49,16 +50,18 @@ public class ClientProgram {
         return _singelton;
     }
 
-    private void userChooseChatRoom() {
-        System.out.println("These are the chat rooms to choose from: " +
-                "Type in the number of the chat rooms you want to connect to:");
-        for (int i = 0; i < ChatRoomList.get().getChatRooms().size(); i++) {
-            System.out.println(i + ": " + ChatRoomList.get().getChatRooms().get(i).getName());
-        }
-        Scanner scanner = new Scanner(System.in);
-        int chooise = scanner.nextInt();
-        showChoosenChatRoom(chooise);
-        sendUserJoinedChatRoomToServer();
+    private void userChooseChatRoom(){
+//        ### Removed temporary. Program now goes directly to chatroom 0. ###
+//        System.out.println("These are the chat rooms to choose from: " +
+//                "Type in the number of the chat rooms you want to connect to:");
+//        for (int i = 0; i < ChatRoomList.get().getChatRooms().size(); i++) {
+//            System.out.println(i + ": "+ChatRoomList.get().getChatRooms().get(i).getName());
+//        }
+//        Scanner scanner = new Scanner(System.in);
+//        int chooise = scanner.nextInt();
+//        showChoosenChatRoom(chooise);
+
+        showChoosenChatRoom(0);
     }
 
     private void showChoosenChatRoom(int index) {

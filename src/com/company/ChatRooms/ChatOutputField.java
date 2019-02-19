@@ -1,10 +1,8 @@
 package com.company.ChatRooms;
 
-import com.company.Message;
+import com.company.Main;
 import com.company.MessageList;
-import com.company.NetworkClient;
-
-import java.util.ArrayList;
+import javafx.application.Platform;
 
 public class ChatOutputField implements Runnable{
     private MessageList messages;
@@ -30,10 +28,26 @@ public class ChatOutputField implements Runnable{
     }
 
     private void showMessages() {
-        System.out.println("The chat history is:");
-        for (int i = 0; i < messages.getMessagesList().size(); i++) {
-            System.out.println(messages.getMessagesList().get(i).getMessage() + " Timestamp: " + messages.getMessagesList().get(i).getTimeStamp());
-        }
+
+
+
+            if (messages.getMessagesList().isEmpty())
+            {
+                Platform.runLater(()-> Main.controller.recieveMessage("No history..."));
+            }
+            else
+            {
+                Main.controller.outputbox.clear();
+                Platform.runLater(new Runnable() {
+                    @Override public void run() {
+                        for (int i = 0; i < messages.getMessagesList().size(); i++) {
+                            Main.controller.recieveMessage(messages.getMessagesList().get(i).getSenderID() + " " + messages.getMessagesList().get(i).getTimeStamp() + "   " + messages.getMessagesList().get(i).getMessage());
+                        }
+
+                    }
+                });
+
+            }
     }
 }
 
