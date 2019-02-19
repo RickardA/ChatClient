@@ -1,17 +1,34 @@
 package com.company;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    public static Stage primaryStage;
+    public static Controller controller;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        /*Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Macrosoft Skajp");
-        primaryStage.setScene(new Scene(root, 800, 600));
-        primaryStage.show();*/
-        Controller controller = new Controller();
+        Main.primaryStage = primaryStage;
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
+        Parent root = loader.load();
+        controller = loader.getController();
+
+//        primaryStage.getProperties().put("controller", controller);
+
+        primaryStage.setUserData(controller);
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("ChatApp -   #general");
+        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.show();
+
+
+
+        ClientController controller = new ClientController();
         controller.startClient();
     }
 

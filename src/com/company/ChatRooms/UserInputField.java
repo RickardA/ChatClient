@@ -48,5 +48,7 @@ public class UserInputField implements Runnable{
         //System.out.println("Sending message to server");
         NetworkClient.get().sendObjectToServer(message);
 
+
+
     }
 }
