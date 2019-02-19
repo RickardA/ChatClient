@@ -27,9 +27,9 @@ public class ClientProgram{
         while (true) {
             var serverResponse = NetworkClient.get().pollMessage();
             if (serverResponse != null) {
-                if (serverResponse instanceof ChatRoomList) {
-                    System.out.println(((ChatRoomList) serverResponse).getChatRooms().size());
-                    ChatRoomList.get().updateChatRoomList(((ChatRoomList) serverResponse).getChatRooms());
+                if (serverResponse instanceof ChatRoom) {
+                    System.out.println("ChatRoom recivied: "+ serverResponse);
+                    showChoosenChatRoom((ChatRoom)serverResponse);
                 } else if (serverResponse instanceof Message) {
                     //ChatRoomList.get().getChatRooms().get(0).updateChatHistory(((Message) serverResponse));
                 }else if (serverResponse instanceof Wrapper){
@@ -51,5 +51,10 @@ public class ClientProgram{
     private void updateChatRoomList(Map<String, String> chatRoomsList){
         ChatRoomList chatRoomList = new ChatRoomList();
         chatRoomList.updateChatRoomList(chatRoomsList);
+    }
+
+    private void showChoosenChatRoom(ChatRoom chatRoomObject){
+        ChatRoom chatRoom = chatRoomObject;
+        chatRoom.show();
     }
 }
