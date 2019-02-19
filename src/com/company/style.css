@@ -1,6 +1,16 @@
 * {
-
     -fx-faint-focus-color: transparent;
-
     -fx-focus-color:rgba(0,0,0,0.2);
+}
+
+
+
+.list-view:focused .list-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, -fx-selection-bar;
+    -fx-text-fill: -fx-selection-bar-text;
+}
+
+.list-view .list-cell:odd {
+    -fx-background-color: white;
+    -fx-text-fill: black;
 }
