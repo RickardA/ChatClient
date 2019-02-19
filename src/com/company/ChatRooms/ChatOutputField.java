@@ -41,7 +41,7 @@ public class ChatOutputField implements Runnable{
                 Platform.runLater(new Runnable() {
                     @Override public void run() {
                         for (int i = 0; i < messages.getMessagesList().size(); i++) {
-                            Main.controller.recieveMessage(messages.getMessagesList().get(i).getSenderID() + " " + messages.getMessagesList().get(i).getTimeStamp() + "   " + messages.getMessagesList().get(i).getMessage());
+                            Main.controller.recieveMessage(messages.getMessagesList().get(i).getSenderName() + " " + messages.getMessagesList().get(i).getTimeStamp() + "   " + messages.getMessagesList().get(i).getMessage());
                         }
 
                     }
