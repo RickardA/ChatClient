@@ -28,6 +28,6 @@ public class ChatRoomList implements Serializable {
     }
     public void updateChatRoomList (Map<String,String> chatRoomList) {
         this.chatRoomList = chatRoomList;
-        //here will Mathias + Chan countine erite code
+        System.out.println(this.chatRoomList);
     }
 }
