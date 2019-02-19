@@ -8,7 +8,8 @@ import java.util.Map;
 public class ClientProgram{
     private StartPage startPage;
     private static ClientProgram _singelton = new ClientProgram();
-    User user;
+    private ChatRoom chatRoom;
+    private User user;
 
 
     public ClientProgram() {
@@ -28,12 +29,10 @@ public class ClientProgram{
             var serverResponse = NetworkClient.get().pollMessage();
             if (serverResponse != null) {
                 if (serverResponse instanceof ChatRoom) {
-                    System.out.println("ChatRoom recivied: "+ serverResponse);
                     showChoosenChatRoom((ChatRoom)serverResponse);
                 } else if (serverResponse instanceof Message) {
-                    //ChatRoomList.get().getChatRooms().get(0).updateChatHistory(((Message) serverResponse));
+                    chatRoom.updateChatHistory((Message)serverResponse);
                 }else if (serverResponse instanceof Wrapper){
-                    System.out.println("Wrapper recieved ");
                     updateChatRoomList(((Wrapper) serverResponse).getChatRoomOptions());
                 }
             }
@@ -49,12 +48,12 @@ public class ClientProgram{
     }
 
     private void updateChatRoomList(Map<String, String> chatRoomsList){
-        ChatRoomList chatRoomList = new ChatRoomList();
+        ChatRoomList chatRoomList = new ChatRoomList(user);
         chatRoomList.updateChatRoomList(chatRoomsList);
     }
 
     private void showChoosenChatRoom(ChatRoom chatRoomObject){
-        ChatRoom chatRoom = chatRoomObject;
-        chatRoom.show();
+        this.chatRoom = chatRoomObject;
+        this.chatRoom.show();
     }
 }

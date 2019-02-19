@@ -54,7 +54,6 @@ public class NetworkClient {
         DatagramPacket request = new DatagramPacket(byteArrayStream.toByteArray(), byteArrayStream.size());
         try {
             socket.send(request);
-            //System.out.println("message object is finally sent to server");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -71,9 +70,6 @@ public class NetworkClient {
             System.out.println(serverRequest.getLength());
                 Object msg = deserializeRequest(serverRequest);
                 msgQueue.addLast(msg);
-           /* Thread thread = new Thread(ClientProgram.get()::checkIncommingPackage);
-            thread.start();*/
-
         }
     }
 
