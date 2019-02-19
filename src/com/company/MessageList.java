@@ -1,7 +1,5 @@
 package com.company;
 
-import com.company.ChatRooms.ChatRoom;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -18,7 +16,7 @@ public class MessageList implements Serializable{
     }
 
     public void setMessagesList(Message message) {
-        if (messagesList.size()<10){
+        if (messagesList.size()<50){
             messagesList.add(message);
         }
         else{

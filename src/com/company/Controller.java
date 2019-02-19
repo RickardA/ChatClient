@@ -35,6 +35,7 @@ public class Controller implements Initializable {
         String timeStamp = new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
         NetworkClient.get().sendObjectToServer(new Message(inputbox.getText(), "TestUser", timeStamp));
         inputbox.clear();
+        inputbox.requestFocus();
     }
 
     @FXML
