@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -35,11 +34,6 @@ public class Controller implements Initializable {
         //get and print chat history
     }
 
-    @FXML
-    public void onEnter(KeyEvent ke){
-        System.out.println("Key Pressed: " + ke.getCode());
-//        sendMessage(ae);
-    }
 
 
     @FXML

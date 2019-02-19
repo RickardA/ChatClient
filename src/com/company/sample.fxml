@@ -31,7 +31,7 @@
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin></Button>
-        <TextArea fx:id="outputbox" editable="false" onKeyPressed="#onEnter" prefHeight="200.0" prefWidth="460.0" wrapText="true" GridPane.rowIndex="1">
+        <TextArea fx:id="outputbox" editable="false" prefHeight="200.0" prefWidth="460.0" wrapText="true" GridPane.rowIndex="1">
          <font>
             <Font name="Arial" size="14.0" />
          </font></TextArea>
