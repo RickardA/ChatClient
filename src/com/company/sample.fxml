@@ -27,7 +27,7 @@
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
     </padding>
     <children>
-        <Button fx:id="sendbutton" mnemonicParsing="false" onAction="#sendMessage" text="Send" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <Button fx:id="sendbutton" mnemonicParsing="false" onAction="#sendButtonPressed" text="Send" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin></Button>
@@ -38,7 +38,7 @@
       <ListView fx:id="userbox" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
          <children>
-            <TextArea fx:id="inputbox" prefHeight="70.0" prefWidth="460.0" promptText="Enter your message..." wrapText="true">
+            <TextArea fx:id="inputbox" onKeyPressed="#enterPressed" prefHeight="70.0" prefWidth="460.0" promptText="Enter your message..." wrapText="true">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>

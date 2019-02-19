@@ -5,10 +5,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 
 
@@ -34,12 +34,21 @@ public class Controller implements Initializable {
         //get and print chat history
     }
 
+    @FXML
+    public void enterPressed(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ENTER)  {
+            sendMessage();
+        }
+    }
 
 
     @FXML
-    public void sendMessage(ActionEvent event) {
-// Skapa message object här istället?
-        String timeStamp = new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
+    public void sendButtonPressed(ActionEvent event) {
+    sendMessage();
+    }
+
+    @FXML
+    public void sendMessage() {
         NetworkClient.get().sendObjectToServer(new Message(inputbox.getText()));
         inputbox.clear();
         inputbox.requestFocus();
