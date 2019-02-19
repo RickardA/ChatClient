@@ -3,14 +3,20 @@ package com.company;
 import com.company.ChatRooms.ChatRoom;
 import com.company.ChatRooms.ChatRoomList;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ClientProgram {
     private StartPage startPage;
     private static ClientProgram _singelton = new ClientProgram();
+    User user;
+
 
     public ClientProgram() {
+        NetworkClient.get();
+        user = new User("TestUser");
+        user.setUserSocketAddress();
+        NetworkClient.get().sendObjectToServer(user);
+
         Thread incommingPackage = new Thread(this::checkIncommingPackage);
         incommingPackage.setDaemon(true);
         incommingPackage.start();
@@ -33,6 +39,10 @@ public class ClientProgram {
                 }
             }
         }
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public static ClientProgram get() {

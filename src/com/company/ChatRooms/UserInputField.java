@@ -35,19 +35,11 @@ public class UserInputField implements Runnable{
     }
 
     public void createMessage(String message) {
-        //Here we should create an object of message to send
-        // Alternative format "yyyyMMdd_HHmmss"
-        String timeStamp = new SimpleDateFormat("yy-MM-dd HH:mm").format(Calendar.getInstance().getTime());
-        Message messageObject = new Message(message, "19234212313");
+        Message messageObject = new Message(message);
         sendMessageToServer(messageObject);
     }
 
     public void sendMessageToServer(Message message) {
-        //System.out.println("Sending message object to server from user input field");
-        //Should take in a Message object instead of string
-        //But for test purposes we do this :)
-        //System.out.println("Sending message to server");
         NetworkClient.get().sendObjectToServer(message);
-
     }
 }

@@ -11,8 +11,7 @@ public class Main extends Application {
         primaryStage.setTitle("Macrosoft Skajp");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();*/
-        Controller controller = new Controller();
-        controller.startClient();
+        ClientProgram.get();
     }
 
 
