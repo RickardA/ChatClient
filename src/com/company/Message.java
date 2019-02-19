@@ -19,7 +19,7 @@ public class Message implements Serializable {
     public Message(String message) {
         this.message = message;
         this.senderName = ClientProgram.get().getUser().getUserName();
-        this.timeStamp = new SimpleDateFormat("yy-MM-dd HH:mm").format(Calendar.getInstance().getTime());;
+        this.timeStamp = new SimpleDateFormat("yy-MM-dd HH:mm").format(Calendar.getInstance().getTime());
         this.channelID = ChatRoomList.get().getChatRooms().get(0).getUniqeID();
     }
 
