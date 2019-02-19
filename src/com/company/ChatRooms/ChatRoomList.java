@@ -1,18 +1,17 @@
 package com.company.ChatRooms;
 
+import com.company.NetworkClient;
+
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class ChatRoomList implements Serializable {
-    private Map<String,String> chatRoomList;
+    private Map<String, String> chatRoomList;
     private static ChatRoomList _singleton = new ChatRoomList();
     static final long serialVersionUID = 30;
 
     public ChatRoomList() {
-        chatRoomList = new HashMap<String,String>();
+        chatRoomList = new HashMap<String, String>();
     }
 
     public static ChatRoomList get() {
@@ -24,10 +23,28 @@ public class ChatRoomList implements Serializable {
     }
 
     public void displayChatRooms() {
-
     }
-    public void updateChatRoomList (Map<String,String> chatRoomList) {
+
+    public void updateChatRoomList(Map<String, String> chatRoomList) {
         this.chatRoomList = chatRoomList;
-        //here will Mathias + Chan countine erite code
+        int index = 0;
+        System.out.println("These are the chatRooms to choose from, type the name of the room you want");
+        for (Map.Entry<String, String> chatRoom : this.chatRoomList.entrySet()) {
+            System.out.println(index + ":" + chatRoom.getValue());
+            index++;
+        }
+        Scanner scanner = new Scanner(System.in);
+        String choosen = scanner.nextLine();
+        getChoosenChatRoom(choosen);
+    }
+
+    public void getChoosenChatRoom(String nameOfRoom) {
+        String key;
+        for (Map.Entry<String, String> chatRoom : this.chatRoomList.entrySet()) {
+            if (chatRoom.getValue().matches(nameOfRoom)) {
+                NetworkClient.get().sendObjectToServer(this.chatRoomList.get(chatRoom.getKey()));
+                break;
+            }
+        }
     }
 }
