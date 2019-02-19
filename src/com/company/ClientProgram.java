@@ -37,6 +37,8 @@ public class ClientProgram{
                     //System.out.println("Recieving messageList! (Object)");
                     System.out.println("This message has the channel ID: " + ((Message) serverResponse).getChannelID());
                     ChatRoomList.get().getChatRooms().get(0).updateChatHistory(((Message) serverResponse));
+                }else if (serverResponse instanceof Wrapper){
+                    System.out.println("Wrapper recieved ");
                 }
             }
         }
