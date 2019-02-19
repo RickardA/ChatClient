@@ -20,7 +20,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //get and print user list
+        //get and print UsersOnlineList
         userbox.getItems().add("Sean");
         userbox.getItems().add("Johan");
         userbox.getItems().add("Rickard");
@@ -31,8 +31,6 @@ public class Controller implements Initializable {
 
     @FXML
     public void sendMessage(ActionEvent event) {
-//        UserInputField userInputField = new UserInputField();  // Fixa!
-//        userInputField.createMessage(inputbox.getText());
 // Skapa message object här istället?
         String timeStamp = new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
         NetworkClient.get().sendObjectToServer(new Message(inputbox.getText(), "TestUser", timeStamp));
@@ -41,7 +39,6 @@ public class Controller implements Initializable {
 
     @FXML
     public void recieveMessage(String message) {
-
         outputbox.appendText(message+"\n");
     }
 }
