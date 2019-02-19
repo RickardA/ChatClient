@@ -16,11 +16,11 @@ public class Message implements Serializable {
     static final long serialVersionUID = 50;
 
 
-    public Message(String message) {
+    public Message(String message,User user) {
         this.message = message;
         this.senderName = ClientProgram.get().getUser().getUserName();
         this.timeStamp = new SimpleDateFormat("yy-MM-dd HH:mm").format(Calendar.getInstance().getTime());
-        this.channelID = ChatRoomList.get().getChatRooms().get(0).getUniqeID();
+        this.channelID = ChatRoomList.get().getChatRooms().get(user.getChannelID()).getUniqeID();
     }
 
     public String getMessage() {
