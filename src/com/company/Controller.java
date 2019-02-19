@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -14,9 +15,14 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
+
     @FXML
     public TextArea inputbox, outputbox;
     public ListView userbox;
+
+
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -28,6 +34,13 @@ public class Controller implements Initializable {
         userbox.getItems().add("Mathias");
         //get and print chat history
     }
+
+    @FXML
+    public void onEnter(KeyEvent ke){
+        System.out.println("Key Pressed: " + ke.getCode());
+//        sendMessage(ae);
+    }
+
 
     @FXML
     public void sendMessage(ActionEvent event) {
