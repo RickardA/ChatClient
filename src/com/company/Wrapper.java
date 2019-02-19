@@ -17,12 +17,6 @@ public class Wrapper implements Serializable {
         this.chatRoomOptions = chatRoomOptions;
     }
 
-    public void collectChatRoomInfo( ){
-        for(Map.Entry<String, ChatRoom> chatRoom: ChatRoomList.get().getChatRooms().entrySet()){
-            chatRoomOptions.put(chatRoom.getValue().getUniqeID(), chatRoom.getValue().getName());
-        }
-    }
-
     public Map<String, String> getChatRoomOptions() {
         return chatRoomOptions;
     }
