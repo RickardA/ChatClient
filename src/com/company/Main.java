@@ -18,7 +18,6 @@ public class Main extends Application {
         Parent root = loader.load();
         controller = loader.getController();
 
-//        primaryStage.getProperties().put("controller", controller);
 
         primaryStage.setUserData(controller);
         primaryStage.setResizable(false);
@@ -26,10 +25,9 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
 
+        ClientProgram.get();
 
 
-        ClientController controller = new ClientController();
-        controller.startClient();
     }
 
 

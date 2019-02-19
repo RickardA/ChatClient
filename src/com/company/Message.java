@@ -1,5 +1,8 @@
 package com.company;
 
+import com.company.ChatRooms.ChatRoom;
+import com.company.ChatRooms.ChatRoomList;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -7,36 +10,34 @@ import java.util.Calendar;
 public class Message implements Serializable {
 
     private String message;
-    private String senderID;
+    private String senderName;
     private String timeStamp;
+    private String channelID;
+    static final long serialVersionUID = 50;
 
-    public Message(String message, String senderID, String timeStamp) {
+
+    public Message(String message) {
         this.message = message;
-        this.senderID = senderID;
-        this.timeStamp = timeStamp;
+        this.senderName = ClientProgram.get().getUser().getUserName();
+        this.timeStamp = new SimpleDateFormat("yy-MM-dd HH:mm").format(Calendar.getInstance().getTime());
+        this.channelID = ChatRoomList.get().getChatRooms().get(0).getUniqeID();
     }
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+
+    public String getSenderName() {
+        return senderName;
     }
 
-    public String getSenderID() {
-        return senderID;
-    }
-
-    public void setSenderID(String senderID) {
-        this.senderID = senderID;
-    }
 
     public String getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(String timeStamp) {
-        this.timeStamp = timeStamp;
+    public String getChannelID() {
+        return channelID;
     }
 }

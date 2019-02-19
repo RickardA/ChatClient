@@ -54,7 +54,7 @@ public class NetworkClient {
         DatagramPacket request = new DatagramPacket(byteArrayStream.toByteArray(), byteArrayStream.size());
         try {
             socket.send(request);
-            System.out.println("message object is finally sent to server");
+            //System.out.println("message object is finally sent to server");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,13 +1,24 @@
 package com.company;
+
 import com.company.ChatRooms.ChatRoom;
 import com.company.ChatRooms.ChatRoomList;
+
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ClientProgram{
     private StartPage startPage;
     private static ClientProgram _singelton = new ClientProgram();
+    User user;
+
 
     public ClientProgram() {
-        Thread incommingPackage = new Thread(this :: checkIncommingPackage);
+        NetworkClient.get();
+        user = new User("TestUser");
+        user.setUserSocketAddress();
+        NetworkClient.get().sendObjectToServer(user);
+
+        Thread incommingPackage = new Thread(this::checkIncommingPackage);
         incommingPackage.setDaemon(true);
         incommingPackage.start();
     }
@@ -23,14 +34,19 @@ public class ClientProgram{
                     ChatRoomList.get().updateChatRoomList(((ChatRoomList) serverResponse).getChatRooms());
                     userChooseChatRoom();
                 } else if (serverResponse instanceof Message) {
-                    System.out.println("Recieving messageList! (Object)");
+                    //System.out.println("Recieving messageList! (Object)");
+                    System.out.println("This message has the channel ID: " + ((Message) serverResponse).getChannelID());
                     ChatRoomList.get().getChatRooms().get(0).updateChatHistory(((Message) serverResponse));
                 }
             }
         }
     }
 
-    public static ClientProgram get(){
+    public User getUser() {
+        return user;
+    }
+
+    public static ClientProgram get() {
         return _singelton;
     }
 
@@ -48,8 +64,14 @@ public class ClientProgram{
         showChoosenChatRoom(0);
     }
 
-    private void showChoosenChatRoom(int index){
+    private void showChoosenChatRoom(int index) {
         ChatRoom chatRoom = ChatRoomList.get().getChatRooms().get(index);
         chatRoom.show();
+    }
+
+    private void sendUserJoinedChatRoomToServer() {
+        System.out.println("Sending to server... User " + NetworkClient.get().getSocketAdress() + " joined the channel "
+                + ChatRoomList.get().getChatRooms().get(0).getUniqeID());
+        NetworkClient.get().sendObjectToServer( ChatRoomList.get().getChatRooms().get(0).getUniqeID());
     }
 }

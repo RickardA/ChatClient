@@ -20,13 +20,14 @@ public class UserInputField implements Runnable{
     }
 
     public void getTextFromInput() {
-        System.out.println("please input your messages below!");
+        System.out.println("Please input your messages below!");
         while (!stopTyping) {
             String message;
             Scanner userInput = new Scanner(System.in);
             message = userInput.nextLine();
             System.out.println(message);
             createMessage(message);
+            // debug purpose
             if (message.equals("stop")) {
                 stopTyping = true;
             }
@@ -34,21 +35,11 @@ public class UserInputField implements Runnable{
     }
 
     public void createMessage(String message) {
-        //Here we should create an object of message to send
-        // Alternative format "yyyyMMdd_HHmmss"
-        String timeStamp = new SimpleDateFormat("yy-MM-dd HH:mm").format(Calendar.getInstance().getTime());
-        Message messageObject = new Message(message, "19234212313", timeStamp);
+        Message messageObject = new Message(message);
         sendMessageToServer(messageObject);
     }
 
     public void sendMessageToServer(Message message) {
-        System.out.println("Sending message object to server from user input field");
-        //Should take in a Message object instead of string
-        //But for test purposes we do this :)
-        //System.out.println("Sending message to server");
         NetworkClient.get().sendObjectToServer(message);
-
-
-
     }
 }
