@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.ChatRooms.ChatRoom;
 import com.company.ChatRooms.ChatRoomList;
 
 import java.io.Serializable;
@@ -17,8 +18,9 @@ public class Wrapper implements Serializable {
     }
 
     public void collectChatRoomInfo( ){
-        ChatRoomList.get().getChatRooms().forEach(chatRoom -> chatRoomOptions.put(chatRoom.getUniqeID(), chatRoom.getName()));
-        //NetworkServer.get().sendObjectToClient(chatRoomsListName,sendingClientsAdress );
+        for(Map.Entry<String, ChatRoom> chatRoom: ChatRoomList.get().getChatRooms().entrySet()){
+            chatRoomOptions.put(chatRoom.getValue().getUniqeID(), chatRoom.getValue().getName());
+        }
     }
 
     public Map<String, String> getChatRoomOptions() {
