@@ -37,25 +37,25 @@ public class Controller implements Initializable {
     @FXML
     public void enterPressed(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ENTER)  {
-            sendMessage();
+            sendMessage(inputbox.getText());
         }
     }
 
 
     @FXML
     public void sendButtonPressed(ActionEvent event) {
-    sendMessage();
+    sendMessage(inputbox.getText()+"\n");
     }
 
     @FXML
-    public void sendMessage() {
-        NetworkClient.get().sendObjectToServer(new Message(inputbox.getText()));
+    public void sendMessage(String message) {
+        NetworkClient.get().sendObjectToServer(new Message(message));
         inputbox.clear();
         inputbox.requestFocus();
     }
 
     @FXML
     public void recieveMessage(String message) {
-        outputbox.appendText(message+"\n");
+        outputbox.appendText(message);
     }
 }
