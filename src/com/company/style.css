@@ -1,0 +1,6 @@
+* {
+
+    -fx-faint-focus-color: transparent;
+
+    -fx-focus-color:rgba(0,0,0,0.2);
+}
