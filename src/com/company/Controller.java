@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 
 public class Controller implements Initializable {
-    
+
     @FXML
     public TextArea inputbox, outputbox;
     public ListView userbox;
