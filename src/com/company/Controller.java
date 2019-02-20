@@ -26,11 +26,11 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //get and print UsersOnlineList
-        userbox.getItems().add("Sean");
+       /* userbox.getItems().add("Sean");
         userbox.getItems().add("Johan");
         userbox.getItems().add("Rickard");
         userbox.getItems().add("Rami");
-        userbox.getItems().add("Mathias");
+        userbox.getItems().add("Mathias");*/
         //get and print chat history
     }
 
