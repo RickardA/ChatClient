@@ -33,7 +33,7 @@ public class Controller implements Initializable {
     public void sendMessage(ActionEvent event) {
 // Skapa message object här istället?
         String timeStamp = new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
-        NetworkClient.get().sendObjectToServer(new Message(inputbox.getText()));
+        NetworkClient.get().sendObjectToServer(new Message(inputbox.getText(),ClientProgram.get().getUser().getChannelID()));
         inputbox.clear();
     }
 

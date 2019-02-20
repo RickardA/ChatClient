@@ -1,8 +1,5 @@
 package com.company;
 
-import com.company.ChatRooms.ChatRoom;
-import com.company.ChatRooms.ChatRoomList;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +7,7 @@ import java.util.Map;
 public class Wrapper implements Serializable {
     private Map<String,String> chatRoomOptions = new HashMap<>();
     private String chatRoomID;
+    private User user;
     static final long serialVersionUID = 80;
 
     public Wrapper() {
@@ -19,8 +17,13 @@ public class Wrapper implements Serializable {
         this.chatRoomOptions = chatRoomOptions;
     }
 
-    public Wrapper (String chatRoomID){
+    public Wrapper (String chatRoomID,User user){
+        this.user = user;
         this.chatRoomID = chatRoomID;
+    }
+
+    public User getUser(){
+        return user;
     }
 
     public Map<String, String> getChatRoomOptions() {
