@@ -6,7 +6,6 @@ import javafx.application.Platform;
 
 public class ChatOutputField implements Runnable{
     private MessageList messages;
-    private Thread myListeningThread;
 
     public ChatOutputField(MessageList chatHistory) {
         messages = chatHistory;
@@ -18,19 +17,12 @@ public class ChatOutputField implements Runnable{
 
     }
 
-    public void getChatMessages() {
-
-    }
-
     public void UpdateChatMessages(MessageList messageList) {
         messages = messageList;
         showMessages();
     }
 
     private void showMessages() {
-
-
-
             if (messages.getMessagesList().isEmpty())
             {
                 Platform.runLater(()-> Main.controller.recieveMessage("No history..."));
