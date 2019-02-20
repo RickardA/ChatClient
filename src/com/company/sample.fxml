@@ -33,14 +33,14 @@
          </GridPane.margin></Button>
         <TextArea fx:id="outputbox" editable="false" prefHeight="200.0" prefWidth="460.0" wrapText="true" GridPane.rowIndex="1">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="Arial" size="16.0" />
          </font></TextArea>
       <ListView fx:id="userbox" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
          <children>
             <TextArea fx:id="inputbox" onKeyPressed="#enterPressed" prefHeight="70.0" prefWidth="460.0" promptText="Enter your message..." wrapText="true">
                <font>
-                  <Font name="Arial" size="14.0" />
+                  <Font name="Arial" size="16.0" />
                </font>
             </TextArea>
          </children>

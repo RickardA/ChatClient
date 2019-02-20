@@ -10,18 +10,14 @@ import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class Controller implements Initializable {
-
-
     @FXML
     public TextArea inputbox, outputbox;
     public ListView userbox;
-
-
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -41,7 +37,6 @@ public class Controller implements Initializable {
         }
     }
 
-
     @FXML
     public void sendButtonPressed(ActionEvent event) {
     sendMessage(inputbox.getText()+"\n");
@@ -49,9 +44,17 @@ public class Controller implements Initializable {
 
     @FXML
     public void sendMessage(String message) {
-        NetworkClient.get().sendObjectToServer(new Message(message));
-        inputbox.clear();
-        inputbox.requestFocus();
+        Pattern p = Pattern.compile("^\\s*");
+        Matcher m = p.matcher(message);
+        System.out.println(p);
+        System.out.println(m);
+
+        if(!m.matches()) {
+            System.out.println(message);
+            NetworkClient.get().sendObjectToServer(new Message(message));
+        }
+            inputbox.clear();
+            inputbox.requestFocus();
     }
 
     @FXML
