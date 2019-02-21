@@ -9,6 +9,7 @@ public class User implements Serializable {
     static final long serialVersionUID = 12;
     private String userName;
     /*  private String userID;*/
+    private String channelID;
     private SocketAddress userSocketAddress;
 
 
@@ -20,6 +21,14 @@ public class User implements Serializable {
 
     public String getUserName() {
         return userName;
+    }
+
+    public String getChannelID() {
+        return channelID;
+    }
+
+    public void setChannelID(String channelID) {
+        this.channelID = channelID;
     }
 
     public void setUserName(String userName) {
@@ -42,3 +51,5 @@ public class User implements Serializable {
         this.userSocketAddress = NetworkClient.get().getSocketAdress();
     }
 }
+
+
