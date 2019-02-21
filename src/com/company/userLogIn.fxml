@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="380.0" prefWidth="581.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Controller">
+   <children>
+      <Accordion />
+      <TextField fx:id="userNameBox" layoutX="267.0" layoutY="133.0" />
+      <TextField fx:id="userPasswordBox" layoutX="267.0" layoutY="187.0" />
+      <TextField fx:id="repeatPasswordBox" layoutX="267.0" layoutY="243.0" />
+      <Text layoutX="184.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User name" />
+      <Text layoutX="191.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+      <Text layoutX="145.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repeat password" />
+      <Text layoutX="245.0" layoutY="84.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="You have to sign up first" wrappingWidth="211.21875">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
