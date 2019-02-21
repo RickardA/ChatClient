@@ -10,11 +10,12 @@ public class ClientProgram{
     private static ClientProgram _singelton = new ClientProgram();
     private ChatRoom chatRoom;
     private User user;
+    private UserSignUp userSignUp;
 
 
     public ClientProgram() {
         NetworkClient.get();
-        user = new User("TestUser");
+        user = new User(userSignUp.getUserName());
         user.setUserSocketAddress();
         NetworkClient.get().sendObjectToServer(user);
 

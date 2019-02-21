@@ -3,8 +3,10 @@ package com.company;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -17,6 +19,8 @@ public class Controller implements Initializable {
     @FXML
     public TextArea inputbox, outputbox;
     public ListView userbox;
+    public TextField userNameBox, userNamePasswordBox, repeatPasswordBox;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -40,5 +44,11 @@ public class Controller implements Initializable {
     @FXML
     public void recieveMessage(String message) {
         outputbox.appendText(message+"\n");
+    }
+
+    @FXML
+    public void getUserInfo(ActionEvent event){
+        NetworkClient.get().sendObjectToServer(new UserSignUp(userNameBox.getText(), userNamePasswordBox.getText()));
+
     }
 }
