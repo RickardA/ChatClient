@@ -2,9 +2,7 @@ package com.company.ChatRooms;
 
 import com.company.*;
 
-import java.beans.Transient;
 import java.io.Serializable;
-import java.net.SocketAddress;
 import java.util.ArrayList;
 
 public class ChatRoom implements Serializable {
@@ -25,28 +23,10 @@ public class ChatRoom implements Serializable {
 
     public void show(){
         new Thread(chatOutputField = new ChatOutputField(chatHistory)).start();
-        new Thread(new UserInputField()).start();
     }
     public void updateChatHistory(Message message){
         chatHistory.setMessagesList(message);
         chatOutputField.UpdateChatMessages(chatHistory);
-    }
-
-    private void addUserToChatRoom(User user) {
-        usersInChatRooom.add(user);
-    }
-
-    private void removeUserFromChatRoom(User user) {
-        usersInChatRooom.remove(user);
-    }
-
-    private void checkUsersInChatRoom() {   }
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getUniqeID() {

@@ -1,4 +1,4 @@
-package com.company.ChatRooms;
+/*package com.company.ChatRooms;
 
 import com.company.Message;
 import com.company.NetworkClient;
@@ -42,4 +42,4 @@ public class UserInputField implements Runnable{
     public void sendMessageToServer(Message message) {
         NetworkClient.get().sendObjectToServer(message);
     }
-}
+}*/
