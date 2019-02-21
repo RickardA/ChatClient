@@ -13,9 +13,9 @@ public class User implements Serializable {
     private SocketAddress userSocketAddress;
 
 
-    public User(String name) {
+    public User() {
         //Creates a uniqe id and sets it to userID;
-        userName = name;
+        //userName = name;
         //userID = UUID.randomUUID().toString();
     }
 

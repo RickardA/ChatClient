@@ -48,7 +48,7 @@ public class Controller implements Initializable {
 
     @FXML
     public void getUserInfo(ActionEvent event){
-        NetworkClient.get().sendObjectToServer(new UserSignUp(userNameBox.getText(), userNamePasswordBox.getText()));
+        ClientProgram.get().getUser().setUserName(userNameBox.getText());
 
     }
 }
