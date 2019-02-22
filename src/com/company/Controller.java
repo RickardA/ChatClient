@@ -25,7 +25,7 @@ public class Controller implements Initializable {
     @FXML
     public TextArea inputbox, outputbox;
     public ListView userbox;
-    public TextField userNameBox, userNamePasswordBox, repeatPasswordBox;
+    public TextField userNameBox, userPasswordBox;
 
 
     @Override
@@ -80,8 +80,9 @@ public class Controller implements Initializable {
 
         }
         else {
-        ClientProgram.get().getUser().setUserName(userNameBox.getText());
         System.out.println("User name: "+ userNameBox.getText());
+        NetworkClient.get().sendObjectToServer(new LogInRequestMessage(userNameBox.getText(), userPasswordBox.getText()));
+
 
         Parent chatView = FXMLLoader.load(getClass().getResource("sample.fxml"));
         Scene scene = new Scene(chatView);
