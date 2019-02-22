@@ -2,11 +2,18 @@ package com.company;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -27,8 +34,10 @@ public class Controller implements Initializable {
         //get and print chat history here?
 
         // Limits the number of characters that is allowed to be typed in the message/inputbox
-        inputbox.setTextFormatter(new TextFormatter<String>(change ->
-                change.getControlNewText().length() <= 140 ? change : null));
+        if (inputbox != null) {
+            inputbox.setTextFormatter(new TextFormatter<String>(change ->
+                    change.getControlNewText().length() <= 140 ? change : null));
+        }
     }
 
     @FXML   // Listens for an Enter key to be pressed
@@ -62,8 +71,24 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    public void getUserInfo(ActionEvent event){
+    public void getUserInfo(ActionEvent event)throws IOException {
+        Pattern p = Pattern.compile("^\\s*");
+        Matcher m = p.matcher(userNameBox.getText());
+
+        if (m.matches()){
+            Label label= new Label("neeej");
+
+        }
+        else {
         ClientProgram.get().getUser().setUserName(userNameBox.getText());
+        System.out.println("User name: "+ userNameBox.getText());
+
+        Parent chatView = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Scene scene = new Scene(chatView);
+        Stage chatStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        chatStage.setScene(scene);
+        chatStage.show();
+        }
 
     }
 }
