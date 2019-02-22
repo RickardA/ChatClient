@@ -1,20 +1,13 @@
 package com.company;
 
-import com.company.ChatRooms.ChatRoom;
-
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingDeque;
 
 public class NetworkClient {
     private final String SERVER_IP = "127.0.0.1";
     private final int SERVER_PORT = 8080;
-    private final int MSG_SIZE = 1024;
+    private final int MSG_SIZE = 1000000;
 
     private DatagramSocket socket;
 

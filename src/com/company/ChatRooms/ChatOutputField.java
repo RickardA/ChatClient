@@ -25,7 +25,7 @@ public class ChatOutputField implements Runnable{
     private void showMessages() {
             if (messages.getMessagesList().isEmpty())
             {
-                Platform.runLater(()-> Main.controller.recieveMessage("No history..."));
+                Platform.runLater(()-> Main.controller.recieveMessage("No server history..."));
             }
             else
             {
