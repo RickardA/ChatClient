@@ -50,7 +50,7 @@ public class Controller implements Initializable {
 
         if(!m.matches()) {
             System.out.println(message);
-            NetworkClient.get().sendObjectToServer(new Message(message,"Channel"));
+            NetworkClient.get().sendObjectToServer(new Message(message, ClientProgram.get().getUser().getChannelID()));
         }
             inputbox.clear();
             inputbox.requestFocus();
