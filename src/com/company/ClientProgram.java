@@ -13,9 +13,6 @@ public class ClientProgram{
 
     public ClientProgram() {
         NetworkClient.get();
-        user = new User();
-        user.setUserSocketAddress();
-        NetworkClient.get().sendObjectToServer(user);
 
         Thread incommingPackage = new Thread(this::checkIncommingPackage);
         incommingPackage.setDaemon(true);
@@ -32,7 +29,10 @@ public class ClientProgram{
                 } else if (serverResponse instanceof Message) {
                     chatRoom.updateChatHistory((Message)serverResponse);
                 }else if (serverResponse instanceof Wrapper){
+
                     updateChatRoomList(((Wrapper) serverResponse).getChatRoomOptions());
+                }else if (serverResponse instanceof User){
+                    user = (User)serverResponse;
                 }
             }
         }
