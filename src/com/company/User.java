@@ -2,7 +2,6 @@ package com.company;
 
 import java.io.Serializable;
 import java.net.SocketAddress;
-import java.util.UUID;
 
 public class User implements Serializable {
 
