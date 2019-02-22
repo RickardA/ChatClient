@@ -18,6 +18,7 @@ public class Main extends Application {
         Parent root = loader.load();
         controller = loader.getController();
 
+        root.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
         primaryStage.setUserData(controller);
         primaryStage.setResizable(false);

@@ -1,14 +1,7 @@
 package com.company;
 
-import com.company.ChatRooms.ChatRoom;
-
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingDeque;
 
 public class NetworkClient {

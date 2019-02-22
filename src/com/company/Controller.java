@@ -5,53 +5,59 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class Controller implements Initializable {
-
 
     @FXML
     public TextArea inputbox, outputbox;
     public ListView userbox;
 
-
-
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //get and print UsersOnlineList
-       /* userbox.getItems().add("Sean");
-        userbox.getItems().add("Johan");
-        userbox.getItems().add("Rickard");
-        userbox.getItems().add("Rami");
-        userbox.getItems().add("Mathias");*/
-        //get and print chat history
+        //get and print UsersOnlineList here? syntax: userbox.getItems().add("Sean");
+        //get and print chat history here?
+
+        // Limits the number of characters that is allowed to be typed in the message/inputbox
+        inputbox.setTextFormatter(new TextFormatter<String>(change ->
+                change.getControlNewText().length() <= 140 ? change : null));
     }
 
-    @FXML
-    public void onEnter(KeyEvent ke){
-        System.out.println("Key Pressed: " + ke.getCode());
-//        sendMessage(ae);
+    @FXML   // Listens for an Enter key to be pressed
+    public void enterPressed(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ENTER)  {
+            sendMessage(inputbox.getText());
+        }
     }
 
-
-    @FXML
-    public void sendMessage(ActionEvent event) {
-// Skapa message object här istället?
-        String timeStamp = new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
-        NetworkClient.get().sendObjectToServer(new Message(inputbox.getText(),ClientProgram.get().getUser().getChannelID()));
-        inputbox.clear();
+    @FXML   // Listens for the Send button to be pressed
+    public void sendButtonPressed(ActionEvent event) {
+    sendMessage(inputbox.getText()+"\n");
     }
 
-    @FXML
+    @FXML  // Checks the beginning of the text for empty characters (including Enter). If none found, sends it.
+    public void sendMessage(String message) {
+        Pattern p = Pattern.compile("^\\s*");
+        Matcher m = p.matcher(message);
+
+        if(!m.matches()) {
+            System.out.println(message);
+            NetworkClient.get().sendObjectToServer(new Message(message, ClientProgram.get().getUser().getChannelID()));
+        }
+            inputbox.clear();
+            inputbox.requestFocus();
+    }
+
+    @FXML   // Recives messages and puts them in the Chat/Outputbox
     public void recieveMessage(String message) {
-        outputbox.appendText(message+"\n");
+        outputbox.appendText(message);
     }
 }
