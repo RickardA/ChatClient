@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.ChatRooms.ChatRoomList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -59,5 +60,10 @@ public class Controller implements Initializable {
     @FXML   // Recives messages and puts them in the Chat/Outputbox
     public void recieveMessage(String message) {
         outputbox.appendText(message);
+    }
+
+    @FXML
+    public void userbox () {
+        //userbox.getItems().add();
     }
 }
