@@ -23,7 +23,7 @@ public class Main extends Application {
         primaryStage.setUserData(controller);
         primaryStage.setResizable(false);
         primaryStage.setTitle("ChatApp");
-        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setScene(new Scene(root, 700, 400));
         primaryStage.show();
 
         ClientProgram.get();

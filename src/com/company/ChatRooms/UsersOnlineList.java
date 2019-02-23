@@ -5,15 +5,17 @@ import com.company.User;
 import java.util.ArrayList;
 
 public class UsersOnlineList {
-    private ArrayList<User> usersOnlineList;
+    private ArrayList<User> usersOnlineList = new ArrayList<>();
 
-    public UsersOnlineList(){ usersOnlineList = new ArrayList<User>(); }
-
-    public void getUserOnline(){
+    public UsersOnlineList() {
 
     }
 
-    public void displayUsersOnline(){
+    public ArrayList<User> getUsersOnlineList() {
+        return usersOnlineList;
+    }
 
+    public void addUser(User userToAdd) {
+        this.usersOnlineList.add(userToAdd);
     }
 }

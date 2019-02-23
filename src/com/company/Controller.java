@@ -1,6 +1,8 @@
 package com.company;
 
-import com.company.ChatRooms.ChatRoomList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,15 +14,13 @@ import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class Controller implements Initializable {
 
     @FXML
     public TextArea inputbox, outputbox;
-    public ListView userbox;
+    public ListView userBox, channels;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -34,14 +34,14 @@ public class Controller implements Initializable {
 
     @FXML   // Listens for an Enter key to be pressed
     public void enterPressed(KeyEvent keyEvent) {
-        if (keyEvent.getCode() == KeyCode.ENTER)  {
+        if (keyEvent.getCode() == KeyCode.ENTER) {
             sendMessage(inputbox.getText());
         }
     }
 
     @FXML   // Listens for the Send button to be pressed
     public void sendButtonPressed(ActionEvent event) {
-    sendMessage(inputbox.getText()+"\n");
+        sendMessage(inputbox.getText() + "\n");
     }
 
     @FXML  // Checks the beginning of the text for empty characters (including Enter). If none found, sends it.
@@ -49,12 +49,12 @@ public class Controller implements Initializable {
         Pattern p = Pattern.compile("^\\s*");
         Matcher m = p.matcher(message);
 
-        if(!m.matches()) {
+        if (!m.matches()) {
             System.out.println(message);
             NetworkClient.get().sendObjectToServer(new Message(message, ClientProgram.get().getUser().getChannelID()));
         }
-            inputbox.clear();
-            inputbox.requestFocus();
+        inputbox.clear();
+        inputbox.requestFocus();
     }
 
     @FXML   // Recives messages and puts them in the Chat/Outputbox
@@ -63,7 +63,15 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    public void userbox () {
-        //userbox.getItems().add();
+    public void goToChatRoom() {
+        String chosenRoom = channels.getSelectionModel().getSelectedItems().toString();
+        chosenRoom = chosenRoom.substring(1);
+        chosenRoom = chosenRoom.substring(0, chosenRoom.length() - 1);
+        System.out.println(chosenRoom);
+        //ChatRoomList.get().getChosenChatRoom(chosenRoom);
     }
+
+
+
 }
+//ChatRoomList.get().getChosenChatRoom(channels.getSelectionModel().getSelectedItems().toString());

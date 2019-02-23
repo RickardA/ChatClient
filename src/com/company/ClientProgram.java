@@ -30,7 +30,11 @@ public class ClientProgram{
             if (serverResponse != null) {
                 if (serverResponse instanceof ChatRoom) {
                     showChoosenChatRoom((ChatRoom)serverResponse);
-                } else if (serverResponse instanceof Message) {
+                    // only works here... why? It should work below :>
+                    updateUsersInRoom();
+                } else if (serverResponse instanceof User) {
+                }
+                else if (serverResponse instanceof Message) {
                     chatRoom.updateChatHistory((Message)serverResponse);
                 }else if (serverResponse instanceof Wrapper){
                     updateChatRoomList(((Wrapper) serverResponse).getChatRoomOptions());
@@ -47,6 +51,10 @@ public class ClientProgram{
         return _singelton;
     }
 
+    private void updateUsersInRoom() {
+        this.chatRoom.updateUsersInChatRoom();
+    }
+
     private void updateChatRoomList(Map<String, String> chatRoomsList){
         ChatRoomList chatRoomList = new ChatRoomList(user);
         chatRoomList.updateChatRoomList(chatRoomsList);
@@ -56,4 +64,6 @@ public class ClientProgram{
         this.chatRoom = chatRoomObject;
         this.chatRoom.show();
     }
+
+
 }
