@@ -2,28 +2,55 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Controller">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="388.0" prefWidth="682.0" style="-fx-background-color: #3D4956;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Controller">
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>
    <children>
-      <Button fx:id="sendbutton" layoutX="578.0" layoutY="314.0" mnemonicParsing="false" onAction="#sendButtonPressed" prefHeight="49.0" prefWidth="84.0" text="Send" />
-      <TextArea fx:id="outputbox" editable="false" layoutX="120.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="444.0" wrapText="true">
+      <Button fx:id="sendbutton" layoutX="577.0" layoutY="327.0" mnemonicParsing="false" onAction="#sendButtonPressed" prefHeight="44.0" prefWidth="84.0" style="-fx-background-color: #3D4956; -fx-background-insets: 2;" text="Send" textFill="#c9c9c9">
+         <font>
+            <Font name="Bauhaus 93" size="24.0" />
+         </font>
+         <effect>
+            <Glow level="0.11" />
+         </effect></Button>
+      <TextArea fx:id="outputbox" editable="false" layoutX="96.0" layoutY="35.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0" prefWidth="491.0" style="-fx-background-color: #ecf0f1; -fx-background-insets: 1;" wrapText="true">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </TextArea>
-      <TextArea fx:id="inputbox" layoutX="121.0" layoutY="299.0" onKeyPressed="#enterPressed" prefHeight="79.0" prefWidth="445.0" promptText="Enter your message..." wrapText="true">
+      <TextArea fx:id="inputbox" layoutX="15.0" layoutY="320.0" onKeyPressed="#enterPressed" prefHeight="58.0" prefWidth="551.0" promptText="Enter your message..." style="-fx-background-color: #ecf0f1;" wrapText="true">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </TextArea>
-      <ListView fx:id="userBox" layoutX="570.0" layoutY="14.0" prefHeight="277.0" prefWidth="100.0" />
-      <ListView fx:id="channels" layoutX="14.0" layoutY="13.0" onMouseClicked="#goToChatRoom" prefHeight="277.0" prefWidth="100.0" />
+      <ListView fx:id="userBox" layoutX="585.0" layoutY="35.0" prefHeight="272.0" prefWidth="84.0" style="-fx-background-insets: 1;" />
+      <ListView fx:id="channels" layoutX="14.0" layoutY="35.0" onMouseClicked="#goToChatRoom" prefHeight="272.0" prefWidth="84.0" style="-fx-background-insets: 1;" />
+      <Label layoutX="18.0" layoutY="8.0" text="Channels" textFill="#b8afaf">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="603.0" layoutY="9.0" prefHeight="26.0" prefWidth="49.0" text="Users" textFill="#b8afaf">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Text fill="#fcfcfc" layoutX="291.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chattia" textOrigin="CENTER" wrappingWidth="111.00000500679016">
+         <font>
+            <Font name="Bauhaus 93" size="30.0" />
+         </font>
+         <effect>
+            <InnerShadow color="#515151" />
+         </effect>
+      </Text>
    </children>
 </AnchorPane>
