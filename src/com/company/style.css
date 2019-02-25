@@ -1,12 +1,58 @@
 * {
     /*Removes blue focus color*/
     -fx-faint-focus-color: transparent;
-    -fx-focus-color:rgba(0,0,0,0.2);
+    -fx-focus-color:transparent;
+    -fx-text-box-border: transparent;
 }
+
+#background {
+    -fx-background-color:#2F3136;
+}
+
+#channels {
+    -fx-text-fill: #F9F6F9;
+    -fx-prompt-text-fill: #F9F6F9;
+    -fx-control-inner-background:#36393F;
+    -fx-background-color:transparent;
+}
+
+#userBox {
+    -fx-text-fill: #F9F6F9;
+    -fx-prompt-text-fill: #F9F6F9;
+    -fx-control-inner-background:#36393F;
+    -fx-background-color:transparent;
+}
+
+#inputbox {
+    -fx-text-fill: #F9F6F9;
+    -fx-prompt-text-fill: #F9F6F9;
+    -fx-control-inner-background:#484C52;
+}
+
+.text-input .content {
+    -fx-background-radius: 0 ;
+}
+
+#outputbox {
+    -fx-text-fill: #F9F6F9;
+    -fx-control-inner-background:#36393F;
+}
+
+.button {
+    -fx-background-color: #3D4956;
+    -fx-background-insets: 2;
+    -fx-text-fill:#c9c9c9
+}
+
+.button:hover {
+    -fx-background-color: #4D5966;
+}
+
+
     /*Removes colored cells from user list*/
-.list-view .list-cell:odd {
-    -fx-background-color: white;
-    -fx-text-fill: black;
+.list-view .list-cell {
+    -fx-background-color: #36393F;
+    -fx-text-fill: #F9F6F9;
 }
     /*Colors clicked cell*/
 .list-view:focused .list-cell:filled:focused:selected {
@@ -19,7 +65,33 @@
     -fx-text-fill: -fx-selection-bar-text;
 }
 
-.text-input {
-    -fx-text-fill:white; /*cursor*/
-    -fx-control-inner-background:#484C52;
+
+.scroll-pane {
+    -fx-background-color: #36393F;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    /*-fx-background-radius: 0em;*/
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #7E8084;
+    -fx-border-radius: 0em;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: #36393F;
 }
