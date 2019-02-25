@@ -34,12 +34,9 @@ public class ChatRoomList implements Serializable {
 
     public void updateChatRoomList(Map<String, String> chatRoomList) {
         this.chatRoomList = chatRoomList;
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                for (String room : chatRoomList.values()) {
-                    Main.controller.channels.getItems().add(room);
-                }
+        Platform.runLater(() -> {
+            for (String room : chatRoomList.values()) {
+                Main.controller.channels.getItems().add(room);
             }
         });
     }

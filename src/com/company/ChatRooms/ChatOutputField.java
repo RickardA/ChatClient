@@ -19,16 +19,13 @@ public class ChatOutputField implements Runnable {
 
     private void showMessageHistory() {
         Main.controller.outputbox.clear();
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i < chatHistory.getMessagesList().size(); i++) {
-                    Main.controller.recieveMessage(chatHistory.getMessagesList().get(i).getSenderName() + " "
-                            + chatHistory.getMessagesList().get(i).getTimeStamp() + "   "
-                            + chatHistory.getMessagesList().get(i).getMessage());
-                }
-
+        Platform.runLater(() -> {
+            for (int i = 0; i < chatHistory.getMessagesList().size(); i++) {
+                Main.controller.recieveMessage(chatHistory.getMessagesList().get(i).getSenderName() + " "
+                        + chatHistory.getMessagesList().get(i).getTimeStamp() + "   "
+                        + chatHistory.getMessagesList().get(i).getMessage());
             }
+
         });
     }
 
