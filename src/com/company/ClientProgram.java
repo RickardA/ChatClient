@@ -52,7 +52,7 @@ public class ClientProgram{
     }
 
     private void updateUsersInRoom() {
-        this.chatRoom.updateUsersInChatRoom();
+        this.chatRoom.getUsersOnlineList().updateUsersInChatRoom();
     }
 
     private void updateChatRoomList(Map<String, String> chatRoomsList) {

@@ -1,21 +1,32 @@
 package com.company.ChatRooms;
 
+import com.company.Main;
 import com.company.User.User;
+import javafx.application.Platform;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
-public class UsersOnlineList {
-    private ArrayList<User> usersOnlineList = new ArrayList<>();
+public class UsersOnlineList implements Serializable {
+    private Map<String, User> usersOnlineList;
+    static final long serialVersionUID = 260;
 
     public UsersOnlineList() {
-
+        usersOnlineList = new HashMap<>();
+        updateUsersInChatRoom();
     }
 
-    public ArrayList<User> getUsersOnlineList() {
-        return usersOnlineList;
+    public void updateUsersInChatRoom() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                for (Map.Entry<String, User> user : usersOnlineList.entrySet()) {
+                    Main.controller.userBox.getItems().add(user.getValue().getUserName());
+                }
+            }
+        });
     }
 
-    public void addUser(User userToAdd) {
-        this.usersOnlineList.add(userToAdd);
-    }
+
 }
