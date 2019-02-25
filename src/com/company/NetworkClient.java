@@ -37,6 +37,7 @@ public class NetworkClient {
     }
 
     public void sendObjectToServer(Serializable object) {
+        System.out.println("Sending to server....");
         ByteArrayOutputStream byteArrayStream = new ByteArrayOutputStream();
         try (ObjectOutputStream out = new ObjectOutputStream(byteArrayStream)) {
             out.writeObject(object);

@@ -13,24 +13,21 @@ public class ChatRoomList implements Serializable {
     private Map<String, String> chatRoomList;
     private User user;
     static final long serialVersionUID = 30;
-    // Made it into singleton again for testing purpose.. change to static later (need help to not break code)
     private static ChatRoomList _singleton = new ChatRoomList();
 
+
     public ChatRoomList() {
-
+        chatRoomList = new HashMap<>();
     }
 
-    public ChatRoomList(User user) {
+    public void setUser(User user) {
         this.user = user;
-        chatRoomList = new HashMap<String, String>();
     }
-
 
     public Map<String, String> getChatRooms() {
         return chatRoomList;
     }
 
-    // temporary until I figure out how to make it static without breaking code below
     public static ChatRoomList get() {
         return _singleton;
     }
@@ -40,12 +37,11 @@ public class ChatRoomList implements Serializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                for(String room : chatRoomList.values()) {
+                for (String room : chatRoomList.values()) {
                     Main.controller.channels.getItems().add(room);
                 }
             }
         });
-        getChosenChatRoom("General");
     }
 
     public void getChosenChatRoom(String nameOfRoom) {

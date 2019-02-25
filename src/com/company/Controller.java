@@ -3,6 +3,7 @@ package com.company;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.company.ChatRooms.ChatRoomList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,8 +29,10 @@ public class Controller implements Initializable {
         //get and print chat history here?
 
         // Limits the number of characters that is allowed to be typed in the message/inputbox
-        inputbox.setTextFormatter(new TextFormatter<String>(change ->
-                change.getControlNewText().length() <= 140 ? change : null));
+        if (inputbox != null) {
+            inputbox.setTextFormatter(new TextFormatter<String>(change ->
+                    change.getControlNewText().length() <= 140 ? change : null));
+        }
     }
 
     @FXML   // Listens for an Enter key to be pressed
@@ -68,9 +71,8 @@ public class Controller implements Initializable {
         chosenRoom = chosenRoom.substring(1);
         chosenRoom = chosenRoom.substring(0, chosenRoom.length() - 1);
         System.out.println(chosenRoom);
-        //ChatRoomList.get().getChosenChatRoom(chosenRoom);
+        ChatRoomList.get().getChosenChatRoom(chosenRoom);
     }
-
 
 
 }
