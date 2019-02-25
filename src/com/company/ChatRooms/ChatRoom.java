@@ -4,11 +4,13 @@ import com.company.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ChatRoom implements Serializable {
     private String uniqeID;
     private String name;
-    private ArrayList<User> usersInChatRooom;
+    private Map<String,User> usersInChatRooom;
     private MessageList chatHistory;
     private ChatOutputField chatOutputField;
     static final long serialVersionUID = 20;
@@ -17,7 +19,7 @@ public class ChatRoom implements Serializable {
     public ChatRoom(String name, String id) {
         this.name = name;
         this.uniqeID = id;
-        usersInChatRooom = new ArrayList<>();
+        usersInChatRooom = new HashMap<>();
         chatHistory = new MessageList();
     }
 

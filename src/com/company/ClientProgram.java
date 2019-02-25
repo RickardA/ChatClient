@@ -2,8 +2,11 @@ package com.company;
 
 import com.company.ChatRooms.ChatRoom;
 import com.company.ChatRooms.ChatRoomList;
+import javafx.stage.WindowEvent;
 
 import java.util.Map;
+
+import static com.company.Main.primaryStage;
 
 public class ClientProgram{
     private StartPage startPage;
@@ -23,8 +26,7 @@ public class ClientProgram{
         incommingPackage.start();
     }
 
-
-    public void checkIncommingPackage() {
+    private void checkIncommingPackage() {
         while (true) {
             var serverResponse = NetworkClient.get().pollMessage();
             if (serverResponse != null) {
@@ -32,7 +34,8 @@ public class ClientProgram{
                     showChoosenChatRoom((ChatRoom)serverResponse);
                 } else if (serverResponse instanceof Message) {
                     chatRoom.updateChatHistory((Message)serverResponse);
-                }else if (serverResponse instanceof Wrapper){
+                }
+                else if (serverResponse instanceof Wrapper){
                     updateChatRoomList(((Wrapper) serverResponse).getChatRoomOptions());
                 }
             }

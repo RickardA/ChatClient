@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.ChatRooms.ChatRoom;
+import com.company.Messages.HeartbeatMessage;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -67,9 +68,12 @@ public class NetworkClient {
                     continue;
                 }
 
-            System.out.println(serverRequest.getLength());
                 Object msg = deserializeRequest(serverRequest);
-                msgQueue.addLast(msg);
+                if (msg instanceof HeartbeatMessage){
+                    sendObjectToServer((HeartbeatMessage)msg);
+                }else {
+                    msgQueue.addLast(msg);
+                }
         }
     }
 
