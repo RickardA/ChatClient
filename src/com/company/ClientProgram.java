@@ -33,7 +33,7 @@ public class ClientProgram{
                     // only works here... why? It should work below :>
                     updateUsersInRoom();
                 } else if (serverResponse instanceof Message) {
-                    chatRoom.updateChatHistory((Message) serverResponse);
+                    chatRoom.getChatOutputField().printMessage((Message) serverResponse);
                 } else if (serverResponse instanceof Wrapper) {
                     updateChatRoomList(((Wrapper) serverResponse).getChatRoomOptions());
                 } else if (serverResponse instanceof User) {
@@ -62,6 +62,6 @@ public class ClientProgram{
 
     private void showChoosenChatRoom(ChatRoom chatRoomObject){
         this.chatRoom = chatRoomObject;
-        this.chatRoom.show();
+        this.chatRoom.createChatOutputField();
     }
 }

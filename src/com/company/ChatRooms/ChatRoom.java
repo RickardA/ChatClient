@@ -20,12 +20,8 @@ public class ChatRoom implements Serializable {
 
     }
 
-    public void show(){
+    public void createChatOutputField(){
         new Thread(chatOutputField = new ChatOutputField(chatHistory)).start();
-    }
-    public void updateChatHistory(Message message){
-        chatHistory.setMessagesList(message);
-        chatOutputField.UpdateChatMessages(chatHistory);
     }
 
     public String getUniqeID() {
@@ -34,5 +30,9 @@ public class ChatRoom implements Serializable {
 
     public UsersOnlineList getUsersOnlineList() {
         return usersOnlineList;
+    }
+
+    public ChatOutputField getChatOutputField() {
+        return chatOutputField;
     }
 }
