@@ -6,8 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.awt.*;
-
 public class Main extends Application {
     public static Stage primaryStage;
     public static Controller controller;
@@ -17,7 +15,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Main.primaryStage = primaryStage;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("XML/userLogIn.fxml"));
         Parent root = loader.load();
         controller = loader.getController();
 

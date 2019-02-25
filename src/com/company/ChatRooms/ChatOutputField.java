@@ -1,7 +1,7 @@
 package com.company.ChatRooms;
 
 import com.company.Main;
-import com.company.MessageList;
+import com.company.Message.MessageList;
 import javafx.application.Platform;
 
 public class ChatOutputField implements Runnable{

@@ -2,11 +2,12 @@ package com.company;
 
 import com.company.ChatRooms.ChatRoom;
 import com.company.ChatRooms.ChatRoomList;
+import com.company.Message.Message;
+import com.company.User.User;
 
 import java.util.Map;
 
 public class ClientProgram{
-    private StartPage startPage;
     private static ClientProgram _singelton = new ClientProgram();
     private ChatRoom chatRoom;
     private User user;
@@ -31,13 +32,13 @@ public class ClientProgram{
                     showChoosenChatRoom((ChatRoom) serverResponse);
                     // only works here... why? It should work below :>
                     updateUsersInRoom();
+                } else if (serverResponse instanceof Message) {
+                    chatRoom.updateChatHistory((Message) serverResponse);
+                } else if (serverResponse instanceof Wrapper) {
+                    updateChatRoomList(((Wrapper) serverResponse).getChatRoomOptions());
+                } else if (serverResponse instanceof User) {
+                    user = (User) serverResponse;
                 }
-            } else if (serverResponse instanceof Message) {
-                chatRoom.updateChatHistory((Message) serverResponse);
-            } else if (serverResponse instanceof Wrapper) {
-                updateChatRoomList(((Wrapper) serverResponse).getChatRoomOptions());
-            } else if (serverResponse instanceof User) {
-                user = (User) serverResponse;
             }
         }
     }

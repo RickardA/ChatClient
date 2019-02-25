@@ -1,7 +1,8 @@
-package com.company;
+package com.company.Message;
 
 import com.company.ChatRooms.ChatRoom;
 import com.company.ChatRooms.ChatRoomList;
+import com.company.ClientProgram;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;

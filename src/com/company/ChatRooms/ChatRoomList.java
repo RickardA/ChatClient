@@ -2,7 +2,7 @@ package com.company.ChatRooms;
 
 import com.company.Main;
 import com.company.NetworkClient;
-import com.company.User;
+import com.company.User.User;
 import com.company.Wrapper;
 import javafx.application.Platform;
 

@@ -4,6 +4,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.company.ChatRooms.ChatRoomList;
+import com.company.Message.Message;
+import com.company.MessageSendingClasses.LogInRequestMessage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +16,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -95,7 +96,7 @@ public class Controller implements Initializable {
             NetworkClient.get().sendObjectToServer(new LogInRequestMessage(userNameBox.getText(), userPasswordBox.getText()));
 
 
-            Parent chatView = FXMLLoader.load(getClass().getResource("sample.fxml"));
+            Parent chatView = FXMLLoader.load(getClass().getResource("XML/sample.fxml"));
             Scene scene = new Scene(chatView);
             Stage chatStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             chatStage.setScene(scene);

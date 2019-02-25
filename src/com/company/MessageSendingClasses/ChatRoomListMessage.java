@@ -1,4 +1,4 @@
-package com.company;
+package com.company.MessageSendingClasses;
 
 import java.util.HashMap;
 import java.util.Map;

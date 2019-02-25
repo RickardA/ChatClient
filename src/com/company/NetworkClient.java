@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.Messages.HeartbeatMessage;
+import com.company.MessageSendingClasses.HeartbeatMessage;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;

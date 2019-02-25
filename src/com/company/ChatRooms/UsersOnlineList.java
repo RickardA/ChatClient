@@ -1,6 +1,6 @@
 package com.company.ChatRooms;
 
-import com.company.User;
+import com.company.User.User;
 
 import java.util.ArrayList;
 

@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.User.User;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;

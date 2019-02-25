@@ -1,8 +1,6 @@
-package com.company;
+package com.company.MessageSendingClasses;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 public class LogInRequestMessage implements Serializable {
     private String name;

@@ -1,7 +1,10 @@
-package com.company;
+package com.company.User;
+
+import com.company.NetworkClient;
 
 import java.io.Serializable;
 import java.net.SocketAddress;
+import java.util.UUID;
 
 public class User implements Serializable {
 
