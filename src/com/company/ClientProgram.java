@@ -5,7 +5,7 @@ import com.company.ChatRooms.ChatRoomList;
 
 import java.util.Map;
 
-public class ClientProgram {
+public class ClientProgram{
     private StartPage startPage;
     private static ClientProgram _singelton = new ClientProgram();
     private ChatRoom chatRoom;
@@ -33,15 +33,20 @@ public class ClientProgram {
                     showChoosenChatRoom((ChatRoom) serverResponse);
                     // only works here... why? It should work below :>
                     updateUsersInRoom();
-                } else if (serverResponse instanceof User) {
+                }
                 } else if (serverResponse instanceof Message) {
                     chatRoom.updateChatHistory((Message) serverResponse);
                 } else if (serverResponse instanceof Wrapper) {
+                    chatRoom.updateChatHistory((Message)serverResponse);
+                }else if (serverResponse instanceof Wrapper){
+
                     updateChatRoomList(((Wrapper) serverResponse).getChatRoomOptions());
+                }else if (serverResponse instanceof User){
+                    user = (User)serverResponse;
                 }
             }
         }
-    }
+
 
     public User getUser() {
         return user;
