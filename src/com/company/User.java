@@ -12,9 +12,9 @@ public class User implements Serializable {
     private SocketAddress userSocketAddress;
 
 
-    public User() {
+    public User(String name) {
         //Creates a uniqe id and sets it to userID;
-        //userName = name;
+        userName = name;
         //userID = UUID.randomUUID().toString();
     }
 

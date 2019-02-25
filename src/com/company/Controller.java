@@ -26,7 +26,7 @@ public class Controller implements Initializable {
 
     @FXML
     public TextArea inputbox, outputbox;
-    public ListView userbox, channels;
+    public ListView userBox, channels;
     public TextField userNameBox, userPasswordBox;
 
 
@@ -80,9 +80,6 @@ public class Controller implements Initializable {
         System.out.println(chosenRoom);
         ChatRoomList.get().getChosenChatRoom(chosenRoom);
     }
-
-
-
 
     @FXML
     public void getUserInfo(ActionEvent event)throws IOException {
