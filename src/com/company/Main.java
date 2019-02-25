@@ -15,7 +15,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Main.primaryStage = primaryStage;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("XML/userLogIn.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("XML/sample.fxml"));
         Parent root = loader.load();
         controller = loader.getController();
 
