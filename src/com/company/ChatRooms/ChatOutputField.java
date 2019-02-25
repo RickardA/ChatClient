@@ -25,7 +25,7 @@ public class ChatOutputField implements Runnable{
     private void showMessages() {
             if (messages.getMessagesList().isEmpty())
             {
-                Platform.runLater(()-> Main.controller.recieveMessage("No history..."));
+                Platform.runLater(()-> Main.controller.recieveMessage("No server history..."));
             }
             else
             {
@@ -33,7 +33,9 @@ public class ChatOutputField implements Runnable{
                 Platform.runLater(new Runnable() {
                     @Override public void run() {
                         for (int i = 0; i < messages.getMessagesList().size(); i++) {
-                            Main.controller.recieveMessage(messages.getMessagesList().get(i).getSenderName() + " " + messages.getMessagesList().get(i).getTimeStamp() + "   " + messages.getMessagesList().get(i).getMessage());
+                            Main.controller.recieveMessage(messages.getMessagesList().get(i).getSenderName() + " "
+                                    + messages.getMessagesList().get(i).getTimeStamp() + "   "
+                                    + messages.getMessagesList().get(i).getMessage());
                         }
 
                     }

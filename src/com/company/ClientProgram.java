@@ -2,11 +2,8 @@ package com.company;
 
 import com.company.ChatRooms.ChatRoom;
 import com.company.ChatRooms.ChatRoomList;
-import javafx.stage.WindowEvent;
 
 import java.util.Map;
-
-import static com.company.Main.primaryStage;
 
 public class ClientProgram{
     private StartPage startPage;
@@ -31,13 +28,16 @@ public class ClientProgram{
             var serverResponse = NetworkClient.get().pollMessage();
             if (serverResponse != null) {
                 if (serverResponse instanceof ChatRoom) {
-                    showChoosenChatRoom((ChatRoom)serverResponse);
-                } else if (serverResponse instanceof Message) {
-                    chatRoom.updateChatHistory((Message)serverResponse);
+                    showChoosenChatRoom((ChatRoom) serverResponse);
+                    // only works here... why? It should work below :>
+                    updateUsersInRoom();
                 }
-                else if (serverResponse instanceof Wrapper){
-                    updateChatRoomList(((Wrapper) serverResponse).getChatRoomOptions());
-                }
+            } else if (serverResponse instanceof Message) {
+                chatRoom.updateChatHistory((Message) serverResponse);
+            } else if (serverResponse instanceof Wrapper) {
+                updateChatRoomList(((Wrapper) serverResponse).getChatRoomOptions());
+            } else if (serverResponse instanceof User) {
+                user = (User) serverResponse;
             }
         }
     }
@@ -50,9 +50,13 @@ public class ClientProgram{
         return _singelton;
     }
 
-    private void updateChatRoomList(Map<String, String> chatRoomsList){
-        ChatRoomList chatRoomList = new ChatRoomList(user);
-        chatRoomList.updateChatRoomList(chatRoomsList);
+    private void updateUsersInRoom() {
+        this.chatRoom.updateUsersInChatRoom();
+    }
+
+    private void updateChatRoomList(Map<String, String> chatRoomsList) {
+        ChatRoomList.get().setUser(user);
+        ChatRoomList.get().updateChatRoomList(chatRoomsList);
     }
 
     private void showChoosenChatRoom(ChatRoom chatRoomObject){

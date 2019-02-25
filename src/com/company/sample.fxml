@@ -2,39 +2,55 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Controller">
-    <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="472.0" minWidth="10.0" prefWidth="460.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="282.0" minWidth="10.0" prefWidth="115.0" />
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints maxHeight="118.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="304.0" minHeight="10.0" prefHeight="304.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="79.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
-    </rowConstraints>
-    <opaqueInsets>
-        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-    </opaqueInsets>
-    <padding>
-        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-    </padding>
-    <children>
-        <TextArea fx:id="inputbox" prefHeight="200.0" prefWidth="200.0" promptText="Enter your message..." wrapText="true" GridPane.rowIndex="2">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="388.0" prefWidth="682.0" style="-fx-background-color: #3D4956;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Controller">
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+   <children>
+      <Button fx:id="sendbutton" layoutX="577.0" layoutY="327.0" mnemonicParsing="false" onAction="#sendButtonPressed" prefHeight="44.0" prefWidth="84.0" style="-fx-background-color: #3D4956; -fx-background-insets: 2;" text="Send" textFill="#c9c9c9">
          <font>
-            <Font name="Arial" size="14.0" />
-         </font></TextArea>
-        <Button fx:id="sendbutton" mnemonicParsing="false" onAction="#sendMessage" text="Send" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <TextArea fx:id="outputbox" editable="false" prefHeight="200.0" prefWidth="460.0" wrapText="true" GridPane.rowIndex="1">
+            <Font name="Bauhaus 93" size="24.0" />
+         </font>
+         <effect>
+            <Glow level="0.11" />
+         </effect></Button>
+      <TextArea fx:id="outputbox" editable="false" layoutX="96.0" layoutY="35.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0" prefWidth="491.0" style="-fx-region-background: #3D4956; -fx-background-insets: 1;" wrapText="true">
          <font>
-            <Font name="Arial" size="14.0" />
-         </font></TextArea>
-      <ListView fx:id="userbox" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-    </children>
-</GridPane>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="inputbox" layoutX="15.0" layoutY="320.0" onKeyPressed="#enterPressed" prefHeight="58.0" prefWidth="551.0" promptText="Enter your message..." style="-fx-background-color: #ecf0f1;" wrapText="true">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </TextArea>
+      <ListView fx:id="userBox" layoutX="585.0" layoutY="35.0" prefHeight="272.0" prefWidth="84.0" style="-fx-background-insets: 1;" />
+      <ListView fx:id="channels" layoutX="14.0" layoutY="35.0" onMouseClicked="#goToChatRoom" prefHeight="272.0" prefWidth="84.0" style="-fx-background-insets: 1;" />
+      <Label layoutX="18.0" layoutY="8.0" text="Channels" textFill="#b8afaf">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="592.0" layoutY="9.0" prefHeight="26.0" prefWidth="49.0" text="Users" textFill="#b8afaf">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Text fill="#fcfcfc" layoutX="291.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chattia" textOrigin="CENTER" wrappingWidth="111.00000500679016">
+         <font>
+            <Font name="Bauhaus 93" size="30.0" />
+         </font>
+         <effect>
+            <InnerShadow color="#515151" />
+         </effect>
+      </Text>
+   </children>
+</AnchorPane>

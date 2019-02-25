@@ -1,6 +1,5 @@
 package com.company;
 
-import com.company.ChatRooms.ChatRoom;
 import com.company.Messages.HeartbeatMessage;
 
 import java.net.DatagramPacket;
@@ -9,7 +8,6 @@ import java.net.InetAddress;
 
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingDeque;
 
 public class NetworkClient {

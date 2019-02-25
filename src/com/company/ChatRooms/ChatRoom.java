@@ -1,6 +1,7 @@
 package com.company.ChatRooms;
 
 import com.company.*;
+import javafx.application.Platform;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,6 +16,9 @@ public class ChatRoom implements Serializable {
     private ChatOutputField chatOutputField;
     static final long serialVersionUID = 20;
 
+    public ChatRoom() {
+        updateUsersInChatRoom();
+    }
 
     public ChatRoom(String name, String id) {
         this.name = name;
@@ -29,6 +33,17 @@ public class ChatRoom implements Serializable {
     public void updateChatHistory(Message message){
         chatHistory.setMessagesList(message);
         chatOutputField.UpdateChatMessages(chatHistory);
+    }
+
+    public void updateUsersInChatRoom() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                for (User user : usersInChatRoom) {
+                    Main.controller.userBox.getItems().add(user.getUserName());
+                }
+            }
+        });
     }
 
     public String getUniqeID() {
