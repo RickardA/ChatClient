@@ -3,17 +3,18 @@ package com.company;
 import com.company.ChatRooms.ChatRoomList;
 import com.company.Message.Message;
 import com.company.MessageSendingClasses.LogInRequestMessage;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,6 +29,8 @@ public class Controller implements Initializable {
     public TextArea inputbox, outputbox;
     public ListView userBox, channels;
     public TextField userNameBox;
+    private static double xOffset = 0;
+    private static double yOffset = 0;
 
 
     @Override
@@ -40,6 +43,29 @@ public class Controller implements Initializable {
             inputbox.setTextFormatter(new TextFormatter<String>(change ->
                     change.getControlNewText().length() <= 140 ? change : null));
         }
+
+        if (Main.chatWindowRoot != null) {
+            Main.chatWindowRoot.setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    System.out.println("Click");
+                    xOffset = Main.primaryStage.getX() - event.getScreenX();
+                    yOffset = Main.primaryStage.getY() - event.getScreenY();
+
+                }
+            });
+
+            Main.chatWindowRoot.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    System.out.println("Dragged!");
+                    Main.primaryStage.setX(event.getScreenX() + xOffset);
+                    Main.primaryStage.setY(event.getScreenY() + yOffset);
+
+                }
+            });
+        }
+
     }
 
     @FXML   // Listens for an Enter key to be pressed
@@ -93,4 +119,19 @@ public class Controller implements Initializable {
             Main.displayChatWindow();
         }
     }
+
+    @FXML
+    protected void exitApp(ActionEvent event) {
+        System.out.println("EXIT");
+        Platform.exit();
+    }
+
+    @FXML
+    protected void minimize(ActionEvent event) {
+        System.out.println("MINIMIZE");
+    }
+
+
+
+
 }

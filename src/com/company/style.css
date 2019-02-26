@@ -38,6 +38,14 @@
     -fx-control-inner-background:#36393F;
 }
 
+#bar {
+    -fx-background-color:#202225;
+    -fx-faint-focus-color: transparent;
+    -fx-focus-color:transparent;
+
+
+}
+
 #loginpane {
     -fx-background-color:#2F3136;
     -fx-faint-focus-color: transparent;
@@ -62,6 +70,21 @@
     -fx-background-color: #4D5966;
 }
 
+#minimize {
+    -fx-background-color: #202225;
+}
+
+#minimize:hover {
+    -fx-background-color: #4D5966;
+}
+
+#close {
+    -fx-background-color: #202225;
+}
+
+#close:hover {
+    -fx-background-color: red;
+}
 
     /*Removes colored cells from user list*/
 .list-view .list-cell {
