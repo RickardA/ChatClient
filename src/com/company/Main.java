@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
     public static Stage primaryStage;
     public static Controller controller;
+    public static Parent helllo;
+    public static FXMLLoader loader1;
 
 
     @Override
@@ -18,6 +20,11 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("XML/userLogin.fxml"));
         Parent root = loader.load();
         controller = loader.getController();
+
+        loader1 = new FXMLLoader(getClass().getResource("XML/sample.fxml"));
+        helllo = loader1.load();
+
+
 
         root.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
@@ -33,6 +40,10 @@ public class Main extends Application {
 
     }
 
+    public static void setScene(){
+        controller = loader1.getController();
+        primaryStage.setScene(new Scene(helllo,700,700));
+    }
 
     public static void main(String[] args) {
         //hej hopp

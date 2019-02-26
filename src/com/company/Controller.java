@@ -94,13 +94,7 @@ public class Controller implements Initializable {
             System.out.println("User name: "+ userNameBox.getText());
             NetworkClient.get().sendObjectToServer(new LogInRequestMessage(userNameBox.getText()));
 
-
-            Parent chatView = FXMLLoader.load(getClass().getResource("XML/sample.fxml"));
-            Scene scene = new Scene(chatView, 685,388);
-            Stage chatStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-            chatStage.setScene(scene);
-            chatStage.show();
+            Main.setScene();
         }
 
     }
