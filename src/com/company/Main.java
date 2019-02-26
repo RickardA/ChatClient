@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     public static Stage primaryStage;
     public static Controller controller;
-    public static Parent helllo;
+    public static Parent chatWindowRoot;
     public static FXMLLoader loader1;
 
 
@@ -22,8 +22,8 @@ public class Main extends Application {
         controller = loader.getController();
 
         loader1 = new FXMLLoader(getClass().getResource("XML/sample.fxml"));
-        helllo = loader1.load();
-        helllo.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        chatWindowRoot = loader1.load();
+        chatWindowRoot.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
 
 
@@ -41,9 +41,9 @@ public class Main extends Application {
 
     }
 
-    public static void setScene(){
+    public static void displayChatWindow(){
         controller = loader1.getController();
-        primaryStage.setScene(new Scene(helllo,685,388));
+        primaryStage.setScene(new Scene(chatWindowRoot,685,388));
 
     }
 

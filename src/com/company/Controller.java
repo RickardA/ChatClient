@@ -94,7 +94,7 @@ public class Controller implements Initializable {
             System.out.println("User name: "+ userNameBox.getText());
             NetworkClient.get().sendObjectToServer(new LogInRequestMessage(userNameBox.getText()));
 
-            Main.setScene();
+            Main.displayChatWindow();
         }
 
     }
