@@ -3,8 +3,8 @@ package com.company.ChatRooms;
 import com.company.Main;
 import com.company.NetworkClient;
 import com.company.User.User;
-import com.company.Wrapper;
 import javafx.application.Platform;
+import com.company.MessageSendingClasses.chatRoomIDMessage;
 
 import java.io.Serializable;
 import java.util.*;
@@ -48,7 +48,7 @@ public class ChatRoomList implements Serializable {
         for (Map.Entry<String, String> chatRoom : this.chatRoomList.entrySet()) {
             if (chatRoom.getValue().matches(nameOfRoom)) {
                 user.setChannelID(chatRoom.getKey());
-                NetworkClient.get().sendObjectToServer(new Wrapper(chatRoom.getKey(), user));
+                NetworkClient.get().sendObjectToServer(new chatRoomIDMessage(chatRoom.getKey(), user));
                 break;
             }
         }

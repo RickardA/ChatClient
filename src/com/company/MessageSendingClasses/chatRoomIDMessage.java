@@ -5,6 +5,7 @@ import com.company.User.User;
 import java.io.Serializable;
 
 public class chatRoomIDMessage implements Serializable {
+    static final long serialVersionUID = 190;
     private String chatRoomID;
     private User user;
 
