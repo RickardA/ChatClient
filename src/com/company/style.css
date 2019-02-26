@@ -51,7 +51,7 @@
 
     /*Removes colored cells from user list*/
 .list-view .list-cell {
-    -fx-background-color: #36393F;
+    -fx-background-color: #2F3136;
     -fx-text-fill: #F9F6F9;
 }
     /*Colors clicked cell*/

@@ -27,8 +27,8 @@ public class ChatOutputField implements Runnable {
     }
 
     public void printMessage(Message message) {
-        Platform.runLater(() -> Main.controller.recieveMessage(message.getSenderName() + " "
-                + message.getTimeStamp() + "   "
+        Platform.runLater(() -> Main.controller.recieveMessage(message.getTimeStamp() + " "
+                + message.getSenderName() + " "
                 + message.getMessage()));
     }
 }
