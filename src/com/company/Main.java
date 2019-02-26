@@ -23,6 +23,7 @@ public class Main extends Application {
 
         loader1 = new FXMLLoader(getClass().getResource("XML/sample.fxml"));
         helllo = loader1.load();
+        helllo.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
 
 
@@ -42,7 +43,8 @@ public class Main extends Application {
 
     public static void setScene(){
         controller = loader1.getController();
-        primaryStage.setScene(new Scene(helllo,700,700));
+        primaryStage.setScene(new Scene(helllo,685,388));
+
     }
 
     public static void main(String[] args) {
