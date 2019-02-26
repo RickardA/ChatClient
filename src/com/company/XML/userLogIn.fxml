@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="261.0" prefWidth="473.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Controller">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="173.0" prefWidth="240.0" xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="com.company.Controller">
    <children>
       <Accordion />
-      <TextField fx:id="userNameBox" layoutX="198.0" layoutY="106.0" promptText="User name" />
-      <Text layoutX="116.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User name" />
-      <Text layoutX="96.0" layoutY="69.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="You have to enter your name first " wrappingWidth="292.21875">
+      <TextField fx:id="userNameBox" layoutX="94.0" layoutY="77.0" promptText="User name" />
+      <Text layoutX="28.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User name" />
+      <Text layoutX="54.0" layoutY="49.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Chattia!" wrappingWidth="340.21875">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="logInButton" layoutX="305.0" layoutY="206.0" mnemonicParsing="false" onAction="#getUserInfo" text="Log in " />
-      <TextField fx:id="userPasswordBox" layoutX="198.0" layoutY="154.0" promptText="Password" />
-      <Text layoutX="116.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+      <Button fx:id="logInButton" layoutX="199.0" layoutY="118.0" mnemonicParsing="false" onAction="#getUserInfo" text="Enter" />
+      <ListView fx:id="channels" layoutX="286.0" layoutY="12.0" prefHeight="149.0" prefWidth="85.0" />
    </children>
 </AnchorPane>

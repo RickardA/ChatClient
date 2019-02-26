@@ -1,8 +1,5 @@
 package com.company;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import com.company.ChatRooms.ChatRoomList;
 import com.company.Message.Message;
 import com.company.MessageSendingClasses.LogInRequestMessage;
@@ -21,6 +18,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class Controller implements Initializable {
@@ -28,7 +27,7 @@ public class Controller implements Initializable {
     @FXML
     public TextArea inputbox, outputbox;
     public ListView userBox, channels;
-    public TextField userNameBox, userPasswordBox;
+    public TextField userNameBox;
 
 
     @Override
@@ -93,12 +92,13 @@ public class Controller implements Initializable {
         }
         else {
             System.out.println("User name: "+ userNameBox.getText());
-            NetworkClient.get().sendObjectToServer(new LogInRequestMessage(userNameBox.getText(), userPasswordBox.getText()));
+            NetworkClient.get().sendObjectToServer(new LogInRequestMessage(userNameBox.getText()));
 
 
             Parent chatView = FXMLLoader.load(getClass().getResource("XML/sample.fxml"));
-            Scene scene = new Scene(chatView);
+            Scene scene = new Scene(chatView, 685,388);
             Stage chatStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
             chatStage.setScene(scene);
             chatStage.show();
         }

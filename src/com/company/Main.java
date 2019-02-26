@@ -15,7 +15,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Main.primaryStage = primaryStage;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("XML/sample.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("XML/userLogin.fxml"));
         Parent root = loader.load();
         controller = loader.getController();
 
@@ -24,7 +24,7 @@ public class Main extends Application {
         primaryStage.setUserData(controller);
         primaryStage.setResizable(false);
         primaryStage.setTitle("ChatApp");
-        primaryStage.setScene(new Scene(root, 685, 388));
+        primaryStage.setScene(new Scene(root, 380,175));
         primaryStage.show();
 
 
