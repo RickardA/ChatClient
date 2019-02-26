@@ -25,5 +25,12 @@ public class UsersOnlineList implements Serializable {
         });
     }
 
+    public void setUsersOnlineList(Map<String, User> usersOnlineList) {
+        this.usersOnlineList = usersOnlineList;
+        updateUsersInChatRoom();
+    }
 
+    public Map<String, User> getUsersOnlineList() {
+        return usersOnlineList;
+    }
 }
