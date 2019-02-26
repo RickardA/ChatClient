@@ -39,6 +39,7 @@ public class ClientProgram {
                 } else if (serverResponse instanceof ChatRoomListMessage) {
                     updateChatRoomList(((ChatRoomListMessage) serverResponse).getChatRoomOptions());
                 } else if (serverResponse instanceof User) {
+                    System.out.println("user is recieved");
                     user = (User) serverResponse;
                 }
             }
