@@ -86,16 +86,11 @@ public class Controller implements Initializable {
         Pattern p = Pattern.compile("^\\s*");
         Matcher m = p.matcher(userNameBox.getText());
 
-        if (m.matches()){
-            Label label= new Label("neeej");
-
-        }
-        else {
-            System.out.println("User name: "+ userNameBox.getText());
+        if (!m.matches()) {
+            System.out.println("User name: " + userNameBox.getText());
             NetworkClient.get().sendObjectToServer(new LogInRequestMessage(userNameBox.getText()));
 
             Main.displayChatWindow();
         }
-
     }
 }
