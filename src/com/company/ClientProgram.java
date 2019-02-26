@@ -17,6 +17,9 @@ public class ClientProgram {
 
     public ClientProgram() {
         NetworkClient.get();
+        user = new User("TestUser");
+        user.setUserSocketAddress();
+        NetworkClient.get().sendObjectToServer(user);
 
         Thread incomingPackage = new Thread(this::checkIncomingPackage);
         incomingPackage.setDaemon(true);
@@ -36,7 +39,7 @@ public class ClientProgram {
                 } else if (serverResponse instanceof ChatRoomListMessage) {
                     updateChatRoomList(((ChatRoomListMessage) serverResponse).getChatRoomOptions());
                 } else if (serverResponse instanceof User) {
-                    System.out.println("user " + ((User) serverResponse).getUserName());
+                    System.out.println("user is recieved");
                     user = (User) serverResponse;
                 }
             }
