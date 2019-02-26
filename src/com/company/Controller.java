@@ -83,7 +83,7 @@ public class Controller implements Initializable {
 
     @FXML
     public void getUserInfo(ActionEvent event)throws IOException {
-        Pattern p = Pattern.compile("^\\s*");
+        Pattern p = Pattern.compile("[a-zA-Z ]{2,10}+");
         Matcher m = p.matcher(userNameBox.getText());
 
         if (!m.matches()) {
