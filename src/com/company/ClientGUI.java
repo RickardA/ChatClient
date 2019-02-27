@@ -2,7 +2,6 @@ package com.company;
 
 import com.company.ChatRooms.ChatRoomList;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,8 +15,14 @@ public class ClientGUI extends Application {
     public static FXMLLoader loader1;
 
 
+    public static void displayChatWindow() {
+        controller = loader1.getController();
+        primaryStage.setScene(new Scene(chatWindowRoot, 685, 388));
+        ChatRoomList.get().getChosenChatRoom("General");
+    }
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         ClientGUI.primaryStage = primaryStage;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("XML/userLogin.fxml"));
@@ -29,24 +34,13 @@ public class ClientGUI extends Application {
         chatWindowRoot.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
 
-
         root.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
         primaryStage.setUserData(controller);
         primaryStage.setResizable(false);
         primaryStage.setTitle("ChatApp");
-        primaryStage.setScene(new Scene(root, 380,175));
+        primaryStage.setScene(new Scene(root, 380, 175));
         primaryStage.show();
-
-
         ClientProgram.get();
-
-
-    }
-
-    public static void displayChatWindow(){
-        controller = loader1.getController();
-        primaryStage.setScene(new Scene(chatWindowRoot,685,388));
-        ChatRoomList.get().getChosenChatRoom("General");
     }
 }

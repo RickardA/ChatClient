@@ -1,7 +1,5 @@
 package com.company.Message;
 
-import com.company.ChatRooms.ChatRoom;
-import com.company.ChatRooms.ChatRoomList;
 import com.company.ClientProgram;
 
 import java.io.Serializable;
@@ -36,9 +34,5 @@ public class Message implements Serializable {
 
     public String getTimeStamp() {
         return timeStamp;
-    }
-
-    public String getChannelID() {
-        return channelID;
     }
 }

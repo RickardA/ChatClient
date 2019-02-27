@@ -1,7 +1,7 @@
 package com.company.ChatRooms;
 
-import com.company.Message.Message;
 import com.company.Message.MessageList;
+
 import java.io.Serializable;
 
 public class ChatRoom implements Serializable {
@@ -22,10 +22,6 @@ public class ChatRoom implements Serializable {
 
     public void createChatOutputField(){
         new Thread(chatOutputField = new ChatOutputField(chatHistory)).start();
-    }
-
-    public String getUniqeID() {
-        return uniqeID;
     }
 
     public UsersOnlineList getUsersOnlineList() {

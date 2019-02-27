@@ -12,7 +12,7 @@ import java.util.*;
 public class ChatRoomList implements Serializable {
     private Map<String, String> chatRoomList;
     private User user;
-    static final long serialVersionUID = 30;
+    //    public final long serialVersionUID = 30;
     private static ChatRoomList _singleton = new ChatRoomList();
 
 
@@ -22,10 +22,6 @@ public class ChatRoomList implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Map<String, String> getChatRooms() {
-        return chatRoomList;
     }
 
     public static ChatRoomList get() {

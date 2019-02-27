@@ -37,7 +37,7 @@ public class User implements Serializable {
         this.userName = userName;
     }
 
-   public String getUserID() {
+    public String getUserID() {
         return userID;
     }
 
@@ -45,7 +45,7 @@ public class User implements Serializable {
         return userSocketAddress;
     }
 
-   public void setUserSocketAddress() {
+    public void setUserSocketAddress() {
         this.userSocketAddress = NetworkClient.get().getSocketAdress();
     }
 }

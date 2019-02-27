@@ -15,7 +15,6 @@ public class ClientProgram {
     private ChatRoom chatRoom;
     private User user;
 
-
     public ClientProgram() {
         NetworkClient.get();
 
