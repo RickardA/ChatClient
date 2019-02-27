@@ -3,7 +3,6 @@ package com.company;
 import com.company.ChatRooms.ChatRoomList;
 import com.company.Message.Message;
 import com.company.MessageSendingClasses.LogInRequestMessage;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -29,11 +28,14 @@ public class Controller implements Initializable {
     public TextArea inputbox, outputbox;
     public ListView userBox, channels;
     public TextField userNameBox;
-    private static double xOffset = 0;
-    private static double yOffset = 0;
+    public double xOffset;
+    public double yOffset;
+
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {  
+    public void initialize(URL location, ResourceBundle resources) {
+        //get and print UsersOnlineList here? syntax: userbox.getItems().add("Sean");
+        //get and print chat history here?
 
         // Limits the number of characters that is allowed to be typed in the message/inputbox
         if (inputbox != null) {
@@ -41,26 +43,25 @@ public class Controller implements Initializable {
                     change.getControlNewText().length() <= 140 ? change : null));
         }
 
-        if (Main.chatWindowRoot != null) {
-            Main.chatWindowRoot.setOnMousePressed(new EventHandler<MouseEvent>() {
+        if (ClientGUI.chatWindowRoot != null) {
+            ClientGUI.chatWindowRoot.setOnMousePressed(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    xOffset = Main.primaryStage.getX() - event.getScreenX();
-                    yOffset = Main.primaryStage.getY() - event.getScreenY();
+                    xOffset = ClientGUI.primaryStage.getX() - event.getScreenX();
+                    yOffset = ClientGUI.primaryStage.getY() - event.getScreenY();
 
                 }
             });
 
-            Main.chatWindowRoot.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            ClientGUI.chatWindowRoot.setOnMouseDragged(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    Main.primaryStage.setX(event.getScreenX() + xOffset);
-                    Main.primaryStage.setY(event.getScreenY() + yOffset);
+                    ClientGUI.primaryStage.setX(event.getScreenX() + xOffset);
+                    ClientGUI.primaryStage.setY(event.getScreenY() + yOffset);
 
                 }
             });
         }
-
     }
 
     @FXML   // Listens for an Enter key to be pressed
@@ -103,7 +104,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    public void getUserInfo(ActionEvent event)throws IOException {
+    public void getUserInfo(ActionEvent event) throws IOException {
         Pattern p = Pattern.compile("[a-zA-Z ]{2,10}+");
         Matcher m = p.matcher(userNameBox.getText());
 
@@ -113,16 +114,4 @@ public class Controller implements Initializable {
             ClientGUI.displayChatWindow();
         }
     }
-
-    @FXML
-    protected void exitApp(ActionEvent event) {
-        Platform.exit();
-    }
-
-    @FXML
-    protected void handleMinimize(ActionEvent event) {
-        Main.primaryStage.setIconified(true);
-    }
-
-
 }
