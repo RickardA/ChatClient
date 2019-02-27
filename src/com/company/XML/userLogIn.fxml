@@ -1,26 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="loginpane" prefHeight="173.0" prefWidth="240.0" xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="com.company.Controller">
-   <children>
-      <Accordion />
-      <TextField fx:id="userNameBox" layoutX="110.0" layoutY="77.0" promptText="User name" />
-      <Text fill="#b8afaf" layoutX="18.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User name">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font></Text>
-      <Text fill="#b8afaf" layoutX="54.0" layoutY="49.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Chattia!" wrappingWidth="340.21875">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Text>
-      <Button fx:id="logInButton" layoutX="214.0" layoutY="118.0" mnemonicParsing="false" onAction="#getUserInfo" text="Enter" />
-   </children>
+    <children>
+        <Accordion />
+        <TextField fx:id="userNameBox" layoutX="110.0" layoutY="77.0" promptText="User name" />
+        <Text fill="#b8afaf" layoutX="18.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User name">
+            <font>
+                <Font name="System Bold" size="17.0" />
+            </font></Text>
+        <Text fill="#b8afaf" layoutX="54.0" layoutY="49.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Chattia!" wrappingWidth="340.21875">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+        <Button fx:id="logInButton" layoutX="214.0" layoutY="118.0" mnemonicParsing="false" onAction="#getUserInfo" text="Enter" />
+        <ListView fx:id="channels" layoutX="281.0" layoutY="30.0" prefHeight="139.0" prefWidth="108.0" />
+        <HBox fx:id="bar" prefHeight="14.0" prefWidth="395.0">
+            <children>
+                <Button fx:id="close" mnemonicParsing="false" onAction="#exitApp" prefHeight="13.0" prefWidth="11.0" text="X">
+                    <HBox.margin>
+                        <Insets left="355.0" />
+                    </HBox.margin></Button>
+                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="⬜">
+                    <HBox.margin>
+                        <Insets left="-48.0" />
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="minimize" mnemonicParsing="false" onAction="#handleMinimize" prefHeight="13.0" prefWidth="11.0" text="_">
+                    <HBox.margin>
+                        <Insets left="-45.0" />
+                    </HBox.margin>
+                </Button>
+            </children></HBox>
+    </children>
 </AnchorPane>
+
+
