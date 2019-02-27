@@ -16,7 +16,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -36,7 +35,6 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        // Limits the number of characters that is allowed to be typed in the message/inputbox
         if (inputbox != null) {
             inputbox.setTextFormatter(new TextFormatter<String>(change ->
                     change.getControlNewText().length() <= 140 ? change : null));
@@ -65,22 +63,19 @@ public class Controller implements Initializable {
 
     }
 
-
-
-
-    @FXML   // Listens for an Enter key to be pressed
+    @FXML
     public void enterPressed(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             sendMessage(inputbox.getText());
         }
     }
 
-    @FXML   // Listens for the Send button to be pressed
+    @FXML
     public void sendButtonPressed(ActionEvent event) {
         sendMessage(inputbox.getText() + "\n");
     }
 
-    @FXML  // Checks the beginning of the text for empty characters (including Enter). If none found, sends it.
+    @FXML
     public void sendMessage(String message) {
         Pattern p = Pattern.compile("^\\s*");
         Matcher m = p.matcher(message);
@@ -93,7 +88,7 @@ public class Controller implements Initializable {
         inputbox.requestFocus();
     }
 
-    @FXML   // Recives messages and puts them in the Chat/Outputbox
+    @FXML
     public void recieveMessage(String message) {
         outputbox.appendText(message);
     }
@@ -108,14 +103,13 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    public void getUserInfo(ActionEvent event)throws IOException {
+    public void getUserInfo(ActionEvent event) {
         Pattern p = Pattern.compile("[a-zA-Z ]{2,10}+");
         Matcher m = p.matcher(userNameBox.getText());
 
         if (m.matches()) {
             System.out.println("User name: " + userNameBox.getText());
             NetworkClient.get().sendObjectToServer(new LogInRequestMessage(userNameBox.getText()));
-            ClientGUI.displayChatWindow();
         }
     }
 

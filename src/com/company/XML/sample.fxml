@@ -11,43 +11,51 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="background" minHeight="-Infinity" minWidth="-Infinity" prefHeight="388.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Controller">
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </padding>
-   <children>
-      <Button fx:id="sendbutton" layoutX="600.0" layoutY="333.0" mnemonicParsing="false" onAction="#sendButtonPressed" prefHeight="26.0" prefWidth="63.0" text="Send">
-         <font>
-            <Font name="Bauhaus 93" size="18.0" />
-         </font>
-         <effect>
-            <Glow level="0.11" />
-         </effect></Button>
-      <TextArea fx:id="outputbox" editable="false" layoutX="96.0" layoutY="6.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="491.0" wrapText="true">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-      </TextArea>
-      <TextArea fx:id="inputbox" layoutX="98.0" layoutY="320.0" onKeyPressed="#enterPressed" prefHeight="58.0" prefWidth="491.0" promptText="Enter your message..." wrapText="true">
-         <font>
-            <Font name="Arial" size="16.0" />
-         </font>
-      </TextArea>
-      <ListView fx:id="userBox" layoutX="587.0" layoutY="20.0" prefHeight="287.0" prefWidth="84.0" />
-      <ListView fx:id="channels" layoutX="5.0" layoutY="35.0" onMouseClicked="#goToChatRoom" prefHeight="272.0" prefWidth="84.0" />
-      <Label layoutX="593.0" prefHeight="26.0" prefWidth="49.0" text="Users" textFill="#b8afaf">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
-      <Text fill="#fcfcfc" layoutX="6.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chattia" textOrigin="CENTER" wrappingWidth="84.0000011920929">
-         <font>
-            <Font name="Bauhaus 93" size="24.0" />
-         </font>
-         <effect>
-            <InnerShadow color="#515151" />
-         </effect>
-      </Text>
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="background" minHeight="-Infinity" minWidth="-Infinity" prefHeight="388.0"
+            prefWidth="682.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
+            fx:controller="com.company.Controller">
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+    </padding>
+    <children>
+        <Button fx:id="sendbutton" layoutX="600.0" layoutY="333.0" mnemonicParsing="false" onAction="#sendButtonPressed"
+                prefHeight="26.0" prefWidth="63.0" text="Send">
+            <font>
+                <Font name="Bauhaus 93" size="18.0"/>
+            </font>
+            <effect>
+                <Glow level="0.11"/>
+            </effect>
+        </Button>
+        <TextArea fx:id="outputbox" editable="false" layoutX="96.0" layoutY="6.0" minHeight="-Infinity"
+                  minWidth="-Infinity" prefHeight="301.0" prefWidth="491.0" wrapText="true">
+            <font>
+                <Font name="Arial" size="14.0"/>
+            </font>
+        </TextArea>
+        <TextArea fx:id="inputbox" layoutX="98.0" layoutY="320.0" onKeyPressed="#enterPressed" prefHeight="58.0"
+                  prefWidth="491.0" promptText="Enter your message..." wrapText="true">
+            <font>
+                <Font name="Arial" size="16.0"/>
+            </font>
+        </TextArea>
+        <ListView fx:id="userBox" layoutX="587.0" layoutY="20.0" prefHeight="287.0" prefWidth="84.0"/>
+        <ListView fx:id="channels" layoutX="5.0" layoutY="35.0" onMouseClicked="#goToChatRoom" prefHeight="272.0"
+                  prefWidth="84.0"/>
+        <Label layoutX="593.0" prefHeight="26.0" prefWidth="49.0" text="Users" textFill="#b8afaf">
+            <font>
+                <Font name="System Bold" size="17.0"/>
+            </font>
+        </Label>
+        <Text fill="#fcfcfc" layoutX="6.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chattia"
+              textOrigin="CENTER" wrappingWidth="84.0000011920929">
+            <font>
+                <Font name="Bauhaus 93" size="24.0"/>
+            </font>
+            <effect>
+                <InnerShadow color="#515151"/>
+            </effect>
+        </Text>
+    </children>
 </AnchorPane>
 

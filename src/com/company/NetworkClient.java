@@ -60,18 +60,18 @@ public class NetworkClient {
 
     private void loop() {
         while (true) {
-                DatagramPacket serverRequest = new DatagramPacket(new byte[MSG_SIZE], MSG_SIZE);
+            DatagramPacket serverRequest = new DatagramPacket(new byte[MSG_SIZE], MSG_SIZE);
 
-                if (!receiveMessageFromServer(serverRequest)) {
-                    continue;
-                }
+            if (!receiveMessageFromServer(serverRequest)) {
+                continue;
+            }
 
-                Object msg = deserializeRequest(serverRequest);
-                if (msg instanceof HeartbeatMessage){
-                    sendObjectToServer((HeartbeatMessage)msg);
-                }else {
-                    msgQueue.addLast(msg);
-                }
+            Object msg = deserializeRequest(serverRequest);
+            if (msg instanceof HeartbeatMessage) {
+                sendObjectToServer((HeartbeatMessage) msg);
+            } else {
+                msgQueue.addLast(msg);
+            }
         }
     }
 
@@ -94,14 +94,13 @@ public class NetworkClient {
                     return ois.readObject();
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public SocketAddress getSocketAdress(){
+    public SocketAddress getSocketAdress() {
         return _singleton.socket.getLocalSocketAddress();
     }
 }
