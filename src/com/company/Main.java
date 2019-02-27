@@ -1,11 +1,9 @@
 package com.company;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -15,8 +13,7 @@ public class Main extends Application {
     public static Controller controller;
     public static Parent chatWindowRoot;
     public static FXMLLoader loader1;
-    private static double xOffset = 0;
-    private static double yOffset = 0;
+
     private AnchorPane anchorPane;
 
 
@@ -44,22 +41,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 380,175));
         primaryStage.show();
 
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = primaryStage.getX() - event.getScreenX();
-                yOffset = primaryStage.getY() - event.getScreenY();
-            }
-        });
 
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setX(event.getScreenX() + xOffset);
-                primaryStage.setY(event.getScreenY() + yOffset);
-
-            }
-        });
 
         ClientProgram.get();
 

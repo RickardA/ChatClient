@@ -1,9 +1,11 @@
 package com.company;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class ClientGUI extends Application {
@@ -12,6 +14,8 @@ public class ClientGUI extends Application {
     public static Controller controller;
     public static Parent chatWindowRoot;
     public static FXMLLoader loader1;
+    private static double xOffset = 0;
+    private static double yOffset = 0;
 
 
     @Override
@@ -39,6 +43,22 @@ public class ClientGUI extends Application {
 
         ClientProgram.get();
 
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = primaryStage.getX() - event.getScreenX();
+                yOffset = primaryStage.getY() - event.getScreenY();
+            }
+        });
+
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setX(event.getScreenX() + xOffset);
+                primaryStage.setY(event.getScreenY() + yOffset);
+
+            }
+        });
 
     }
 
