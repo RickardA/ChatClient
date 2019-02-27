@@ -8,17 +8,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="173.0" prefWidth="240.0" xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="com.company.Controller">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="loginpane" prefHeight="173.0" prefWidth="240.0" xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="com.company.Controller">
    <children>
       <Accordion />
-      <TextField fx:id="userNameBox" layoutX="94.0" layoutY="77.0" promptText="User name" />
-      <Text layoutX="28.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User name" />
-      <Text layoutX="54.0" layoutY="49.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Chattia!" wrappingWidth="340.21875">
+      <TextField fx:id="userNameBox" layoutX="110.0" layoutY="77.0" promptText="User name" />
+      <Text fill="#b8afaf" layoutX="18.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User name">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="17.0" />
+         </font></Text>
+      <Text fill="#b8afaf" layoutX="54.0" layoutY="49.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Chattia!" wrappingWidth="340.21875">
+         <font>
+            <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <Button fx:id="logInButton" layoutX="199.0" layoutY="118.0" mnemonicParsing="false" onAction="#getUserInfo" text="Enter" />
+      <Button fx:id="logInButton" layoutX="214.0" layoutY="118.0" mnemonicParsing="false" onAction="#getUserInfo" text="Enter" />
       <ListView fx:id="channels" layoutX="286.0" layoutY="12.0" prefHeight="149.0" prefWidth="85.0" />
    </children>
 </AnchorPane>
