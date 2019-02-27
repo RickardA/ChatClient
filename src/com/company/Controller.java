@@ -4,11 +4,16 @@ import com.company.ChatRooms.ChatRoomList;
 import com.company.Message.Message;
 import com.company.MessageSendingClasses.LogInRequestMessage;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,19 +28,44 @@ public class Controller implements Initializable {
     public TextArea inputbox, outputbox;
     public ListView userBox, channels;
     public TextField userNameBox;
+    public double xOffset;
+    public double yOffset;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //get and print UsersOnlineList here? syntax: userbox.getItems().add("Sean");
-        //get and print chat history here?
 
         // Limits the number of characters that is allowed to be typed in the message/inputbox
         if (inputbox != null) {
             inputbox.setTextFormatter(new TextFormatter<String>(change ->
                     change.getControlNewText().length() <= 140 ? change : null));
         }
+
+        if (ClientGUI.chatWindowRoot != null) {
+            ClientGUI.chatWindowRoot.setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    xOffset = ClientGUI.primaryStage.getX() - event.getScreenX();
+                    yOffset = ClientGUI.primaryStage.getY() - event.getScreenY();
+
+                }
+            });
+
+            ClientGUI.chatWindowRoot.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    ClientGUI.primaryStage.setX(event.getScreenX() + xOffset);
+                    ClientGUI.primaryStage.setY(event.getScreenY() + yOffset);
+
+                }
+            });
+        }
+
+
     }
+
+
+
 
     @FXML   // Listens for an Enter key to be pressed
     public void enterPressed(KeyEvent keyEvent) {
