@@ -4,7 +4,7 @@ import com.company.NetworkClient;
 import com.company.ClientGUI;
 import com.company.User.User;
 import javafx.application.Platform;
-import com.company.MessageSendingClasses.ChatRoomIDMessage;
+import com.company.MessageSendingClasses.ChosenChatRoomMessage;
 
 import java.io.Serializable;
 import java.util.*;
@@ -42,7 +42,7 @@ public class ChatRoomList implements Serializable {
         for (Map.Entry<String, String> chatRoom : this.chatRoomList.entrySet()) {
             if (chatRoom.getValue().matches(nameOfRoom)) {
                 user.setChannelID(chatRoom.getKey());
-                NetworkClient.get().sendObjectToServer(new ChatRoomIDMessage(chatRoom.getKey(), user));
+                NetworkClient.get().sendObjectToServer(new ChosenChatRoomMessage(chatRoom.getKey(), user));
                 break;
             }
         }
