@@ -32,7 +32,6 @@ public class Controller implements Initializable {
     private static double xOffset = 0;
     private static double yOffset = 0;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //get and print UsersOnlineList here? syntax: userbox.getItems().add("Sean");
@@ -127,11 +126,8 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    protected void minimize(ActionEvent event) {
+    protected void handleMinimize(ActionEvent event) {
         System.out.println("MINIMIZE");
+        Main.primaryStage.setIconified(true);
     }
-
-
-
-
 }

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -16,6 +17,8 @@ public class Main extends Application {
     public static FXMLLoader loader1;
     private static double xOffset = 0;
     private static double yOffset = 0;
+    private AnchorPane anchorPane;
+
 
 
     @Override
@@ -27,7 +30,7 @@ public class Main extends Application {
         controller = loader.getController();
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
-        loader1 = new FXMLLoader(getClass().getResource("XML/sample.fxml"));
+        loader1 = new FXMLLoader(getClass().getResource("XML/chat.fxml"));
         chatWindowRoot = loader1.load();
         chatWindowRoot.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
@@ -47,7 +50,6 @@ public class Main extends Application {
                 System.out.println("Click");
                 xOffset = primaryStage.getX() - event.getScreenX();
                 yOffset = primaryStage.getY() - event.getScreenY();
-
             }
         });
 
@@ -62,6 +64,8 @@ public class Main extends Application {
         });
 
 
+
+
         ClientProgram.get();
 
 
@@ -72,8 +76,6 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(chatWindowRoot,685,388));
 
     }
-
-
 
 
     public static void main(String[] args) {

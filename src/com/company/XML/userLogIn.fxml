@@ -36,7 +36,7 @@
                   <Insets left="-48.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="minimize" mnemonicParsing="false" prefHeight="13.0" prefWidth="11.0" text="_">
+            <Button fx:id="minimize" mnemonicParsing="false" onAction="#handleMinimize" prefHeight="13.0" prefWidth="11.0" text="_">
                <HBox.margin>
                   <Insets left="-45.0" />
                </HBox.margin>
