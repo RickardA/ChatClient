@@ -24,23 +24,5 @@
          </font>
       </Text>
       <Button fx:id="logInButton" layoutX="214.0" layoutY="118.0" mnemonicParsing="false" onAction="#getUserInfo" text="Enter" />
-      <ListView fx:id="channels" layoutX="281.0" layoutY="30.0" prefHeight="139.0" prefWidth="108.0" />
-      <HBox fx:id="bar" prefHeight="14.0" prefWidth="395.0">
-         <children>
-            <Button fx:id="close" mnemonicParsing="false" onAction="#exitApp" prefHeight="13.0" prefWidth="11.0" text="X">
-               <HBox.margin>
-                  <Insets left="355.0" />
-               </HBox.margin></Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="⬜">
-               <HBox.margin>
-                  <Insets left="-48.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="minimize" mnemonicParsing="false" onAction="#handleMinimize" prefHeight="13.0" prefWidth="11.0" text="_">
-               <HBox.margin>
-                  <Insets left="-45.0" />
-               </HBox.margin>
-            </Button>
-         </children></HBox>
    </children>
 </AnchorPane>
