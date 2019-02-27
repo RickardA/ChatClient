@@ -7,10 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -30,6 +27,7 @@ public class Controller implements Initializable {
     public TextArea inputbox, outputbox;
     public ListView userBox, channels;
     public TextField userNameBox;
+    public Label errorMessageBox;
     public static double xOffset;
     public static double yOffset;
 
@@ -41,7 +39,6 @@ public class Controller implements Initializable {
             inputbox.setTextFormatter(new TextFormatter<String>(change ->
                     change.getControlNewText().length() <= 140 ? change : null));
         }
-
     }
 
     @FXML
@@ -96,7 +93,10 @@ public class Controller implements Initializable {
         if (m.matches()) {
             System.out.println("User name: " + userNameBox.getText());
             NetworkClient.get().sendObjectToServer(new LogInRequestMessage(userNameBox.getText()));
+        } else {
+            Platform.runLater(() -> errorMessageBox.setText("FelmeddelandeTest"));
         }
+
     }
 
     @FXML
@@ -116,5 +116,6 @@ public class Controller implements Initializable {
     @FXML
     protected void handleMinimize(ActionEvent event) {
         primaryStage.setIconified(true);
+
     }
 }

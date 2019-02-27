@@ -17,7 +17,7 @@
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
     </padding>
     <children>
-        <Button fx:id="sendbutton" layoutX="603.0" layoutY="357.0" mnemonicParsing="false" onAction="#sendButtonPressed" prefHeight="26.0" prefWidth="63.0" text="Send">
+        <Button fx:id="sendbutton" layoutX="603.0" layoutY="365.0" mnemonicParsing="false" onAction="#sendButtonPressed" prefHeight="26.0" prefWidth="63.0" text="Send" textFill="#b8afaf">
             <font>
                 <Font name="Bauhaus 93" size="18.0" />
             </font>
@@ -25,36 +25,39 @@
                 <Glow level="0.11" />
             </effect>
         </Button>
-        <TextArea fx:id="outputbox" editable="false" layoutX="99.0" layoutY="30.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="491.0" wrapText="true">
+        <TextArea fx:id="outputbox" editable="false" layoutX="97.0" layoutY="38.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="491.0" wrapText="true">
             <font>
                 <Font name="Arial" size="14.0" />
             </font>
         </TextArea>
-        <TextArea fx:id="inputbox" layoutX="101.0" layoutY="344.0" onKeyPressed="#enterPressed" prefHeight="58.0" prefWidth="491.0" promptText="Enter your message..." wrapText="true">
+        <TextArea fx:id="inputbox" layoutX="97.0" layoutY="352.0" onKeyPressed="#enterPressed" prefHeight="58.0" prefWidth="491.0" promptText="Enter your message..." wrapText="true">
             <font>
                 <Font name="Arial" size="16.0" />
             </font>
         </TextArea>
-        <ListView fx:id="userBox" layoutX="590.0" layoutY="44.0" prefHeight="287.0" prefWidth="84.0" />
-        <ListView fx:id="channels" layoutX="8.0" layoutY="59.0" onMouseClicked="#goToChatRoom" prefHeight="272.0" prefWidth="91.0" />
-        <Label layoutX="608.0" layoutY="17.0" prefHeight="26.0" prefWidth="49.0" text="Users" textFill="#b8afaf">
+        <ListView fx:id="userBox" layoutX="588.0" layoutY="67.0" prefHeight="272.0" prefWidth="91.0" />
+        <ListView fx:id="channels" layoutX="6.0" layoutY="67.0" onMouseClicked="#goToChatRoom" prefHeight="272.0" prefWidth="91.0" />
+        <Label layoutX="608.0" layoutY="38.0" prefHeight="26.0" prefWidth="49.0" text="Users" textFill="#b8afaf">
             <font>
                 <Font name="System Bold" size="17.0" />
             </font>
         </Label>
-        <Text fill="#fcfcfc" layoutX="9.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chattia" textOrigin="CENTER" wrappingWidth="84.0000011920929">
-            <font>
-                <Font name="Bauhaus 93" size="24.0" />
-            </font>
-            <effect>
-                <InnerShadow color="#515151" />
-            </effect>
-        </Text>
       <HBox fx:id="bar" prefHeight="25.0" prefWidth="685.0">
          <children>
+            <Text fill="#fcfcfc" strokeType="OUTSIDE" strokeWidth="0.0" text="Chattia" textOrigin="CENTER" wrappingWidth="84.0000011920929">
+               <font>
+                  <Font name="Bauhaus 93" size="24.0" />
+               </font>
+               <effect>
+                  <InnerShadow color="#515151" />
+               </effect>
+               <HBox.margin>
+                  <Insets left="300.0" />
+               </HBox.margin>
+            </Text>
             <Button fx:id="close" mnemonicParsing="false" onAction="#exitApp" prefHeight="13.0" prefWidth="11.0" text="X">
                <HBox.margin>
-                  <Insets left="650.0" />
+                  <Insets left="277.0" />
                </HBox.margin>
             </Button>
             <Button fx:id="maximize" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="⬜">
@@ -69,5 +72,10 @@
             </Button>
          </children>
       </HBox>
+      <Label layoutX="24.0" layoutY="38.0" prefHeight="26.0" prefWidth="60.0" text="Rooms" textFill="#b8afaf">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
