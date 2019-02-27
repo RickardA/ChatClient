@@ -47,7 +47,6 @@ public class Controller implements Initializable {
             Main.chatWindowRoot.setOnMousePressed(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    System.out.println("Click");
                     xOffset = Main.primaryStage.getX() - event.getScreenX();
                     yOffset = Main.primaryStage.getY() - event.getScreenY();
 
@@ -57,7 +56,6 @@ public class Controller implements Initializable {
             Main.chatWindowRoot.setOnMouseDragged(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    System.out.println("Dragged!");
                     Main.primaryStage.setX(event.getScreenX() + xOffset);
                     Main.primaryStage.setY(event.getScreenY() + yOffset);
 
@@ -121,13 +119,13 @@ public class Controller implements Initializable {
 
     @FXML
     protected void exitApp(ActionEvent event) {
-        System.out.println("EXIT");
         Platform.exit();
     }
 
     @FXML
     protected void handleMinimize(ActionEvent event) {
-        System.out.println("MINIMIZE");
         Main.primaryStage.setIconified(true);
     }
+
+
 }

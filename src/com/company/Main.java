@@ -47,7 +47,6 @@ public class Main extends Application {
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("Click");
                 xOffset = primaryStage.getX() - event.getScreenX();
                 yOffset = primaryStage.getY() - event.getScreenY();
             }
@@ -56,18 +55,13 @@ public class Main extends Application {
         root.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("Dragged!");
                 primaryStage.setX(event.getScreenX() + xOffset);
                 primaryStage.setY(event.getScreenY() + yOffset);
 
             }
         });
 
-
-
-
         ClientProgram.get();
-
 
     }
 
