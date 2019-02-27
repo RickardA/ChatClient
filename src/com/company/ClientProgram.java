@@ -4,7 +4,7 @@ import com.company.ChatRooms.ChatRoom;
 import com.company.ChatRooms.ChatRoomList;
 import com.company.ChatRooms.UsersOnlineList;
 import com.company.Message.Message;
-import com.company.MessageSendingClasses.ChatRoomListMessage;
+import com.company.MessageSendingClasses.ChatRoomNamesMessage;
 import com.company.User.User;
 import javafx.application.Platform;
 
@@ -34,8 +34,8 @@ public class ClientProgram {
                     updateUsersInRoom((UsersOnlineList) serverResponse);
                 } else if (serverResponse instanceof Message) {
                     chatRoom.getChatOutputField().printMessage((Message) serverResponse);
-                } else if (serverResponse instanceof ChatRoomListMessage) {
-                    updateChatRoomList(((ChatRoomListMessage) serverResponse).getChatRoomOptions());
+                } else if (serverResponse instanceof ChatRoomNamesMessage) {
+                    updateChatRoomList(((ChatRoomNamesMessage) serverResponse).getChatRoomNames());
                 } else if (serverResponse instanceof User) {
                     user = (User) serverResponse;
                     Platform.runLater(ClientGUI::displayChatWindow);
