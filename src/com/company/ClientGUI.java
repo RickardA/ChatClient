@@ -2,11 +2,9 @@ package com.company;
 
 import com.company.ChatRooms.ChatRoomList;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -14,16 +12,33 @@ public class ClientGUI extends Application {
 
     public static Stage primaryStage;
     public static Controller controller;
-    public static Parent chatWindowRoot;
-    public static FXMLLoader loader1;
-    public double yOffset;
-    public double xOffset;
+    private static Parent chatWindowRoot;
+    private static FXMLLoader chatWindowLoader;
+    private static double yOffset;
+    private static double xOffset;
 
 
     public static void displayChatWindow() {
-        controller = loader1.getController();
-        primaryStage.setScene(new Scene(chatWindowRoot, 685, 388));
+        controller = chatWindowLoader.getController();
+        primaryStage.setScene(new Scene(chatWindowRoot, 685, 420));
         ChatRoomList.get().getChosenChatRoom("General");
+        setWindowDragListener(chatWindowRoot);
+    }
+
+    private static void setWindowDragListener(Parent root) {
+
+        root.setOnMousePressed(event -> {
+            xOffset = primaryStage.getX() - event.getScreenX();
+            yOffset = primaryStage.getY() - event.getScreenY();
+        });
+
+        root.setOnMouseDragged(event -> {
+            primaryStage.setX(event.getScreenX() + xOffset);
+            primaryStage.setY(event.getScreenY() + yOffset);
+
+        });
+
+
     }
 
     @Override
@@ -33,9 +48,10 @@ public class ClientGUI extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("XML/userLogin.fxml"));
         Parent root = loader.load();
         controller = loader.getController();
+        setWindowDragListener(root);
 
-        loader1 = new FXMLLoader(getClass().getResource("XML/sample.fxml"));
-        chatWindowRoot = loader1.load();
+        chatWindowLoader = new FXMLLoader(getClass().getResource("XML/sample.fxml"));
+        chatWindowRoot = chatWindowLoader.load();
         chatWindowRoot.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
 
@@ -48,24 +64,5 @@ public class ClientGUI extends Application {
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
         ClientProgram.get();
-
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = primaryStage.getX() - event.getScreenX();
-                yOffset = primaryStage.getY() - event.getScreenY();
-            }
-        });
-
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setX(event.getScreenX() + xOffset);
-                primaryStage.setY(event.getScreenY() + yOffset);
-
-            }
-        });
-
-
     }
 }

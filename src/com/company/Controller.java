@@ -5,7 +5,6 @@ import com.company.Message.Message;
 import com.company.MessageSendingClasses.LogInRequestMessage;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -14,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -39,27 +37,6 @@ public class Controller implements Initializable {
             inputbox.setTextFormatter(new TextFormatter<String>(change ->
                     change.getControlNewText().length() <= 140 ? change : null));
         }
-
-        if (ClientGUI.chatWindowRoot != null) {
-            ClientGUI.chatWindowRoot.setOnMousePressed(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    xOffset = ClientGUI.primaryStage.getX() - event.getScreenX();
-                    yOffset = ClientGUI.primaryStage.getY() - event.getScreenY();
-
-                }
-            });
-
-            ClientGUI.chatWindowRoot.setOnMouseDragged(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    ClientGUI.primaryStage.setX(event.getScreenX() + xOffset);
-                    ClientGUI.primaryStage.setY(event.getScreenY() + yOffset);
-
-                }
-            });
-        }
-
 
     }
 
