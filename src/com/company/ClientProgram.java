@@ -5,7 +5,6 @@ import com.company.ChatRooms.ChatRoomList;
 import com.company.ChatRooms.UsersOnlineList;
 import com.company.Message.Message;
 import com.company.MessageSendingClasses.ChatRoomListMessage;
-import com.company.MessageSendingClasses.FirstContactMessage;
 import com.company.User.User;
 
 import java.util.Map;
@@ -18,7 +17,6 @@ public class ClientProgram {
 
     public ClientProgram() {
         NetworkClient.get();
-        NetworkClient.get().sendObjectToServer(new FirstContactMessage());
 
         Thread incomingPackage = new Thread(this::checkIncomingPackage);
         incomingPackage.setDaemon(true);
