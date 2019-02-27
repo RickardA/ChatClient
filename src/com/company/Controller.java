@@ -33,9 +33,7 @@ public class Controller implements Initializable {
     private static double yOffset = 0;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        //get and print UsersOnlineList here? syntax: userbox.getItems().add("Sean");
-        //get and print chat history here?
+    public void initialize(URL location, ResourceBundle resources) {  
 
         // Limits the number of characters that is allowed to be typed in the message/inputbox
         if (inputbox != null) {
