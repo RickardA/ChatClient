@@ -3,6 +3,7 @@ package com.company;
 import com.company.ChatRooms.ChatRoomList;
 import com.company.Message.Message;
 import com.company.MessageSendingClasses.LogInRequestMessage;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,6 +36,7 @@ public class Controller implements Initializable {
             inputbox.setTextFormatter(new TextFormatter<String>(change ->
                     change.getControlNewText().length() <= 140 ? change : null));
         }
+
     }
 
     @FXML   // Listens for an Enter key to be pressed
@@ -84,7 +86,6 @@ public class Controller implements Initializable {
         if (m.matches()) {
             System.out.println("User name: " + userNameBox.getText());
             NetworkClient.get().sendObjectToServer(new LogInRequestMessage(userNameBox.getText()));
-            ClientGUI.displayChatWindow();
         }
     }
 }

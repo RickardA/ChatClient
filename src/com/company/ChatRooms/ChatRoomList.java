@@ -42,6 +42,7 @@ public class ChatRoomList implements Serializable {
     }
 
     public void getChosenChatRoom(String nameOfRoom) {
+        System.out.println("a" + this.chatRoomList.size());
         for (Map.Entry<String, String> chatRoom : this.chatRoomList.entrySet()) {
             if (chatRoom.getValue().matches(nameOfRoom)) {
                 user.setChannelID(chatRoom.getKey());

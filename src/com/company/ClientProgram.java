@@ -6,6 +6,7 @@ import com.company.ChatRooms.UsersOnlineList;
 import com.company.Message.Message;
 import com.company.MessageSendingClasses.ChatRoomListMessage;
 import com.company.User.User;
+import javafx.application.Platform;
 
 import java.util.Map;
 
@@ -37,6 +38,7 @@ public class ClientProgram {
                     updateChatRoomList(((ChatRoomListMessage) serverResponse).getChatRoomOptions());
                 } else if (serverResponse instanceof User) {
                     user = (User) serverResponse;
+                    Platform.runLater(ClientGUI::displayChatWindow);
                 }
             }
         }

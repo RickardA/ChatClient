@@ -1,6 +1,8 @@
 package com.company;
 
+import com.company.ChatRooms.ChatRoomList;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -45,6 +47,6 @@ public class ClientGUI extends Application {
     public static void displayChatWindow(){
         controller = loader1.getController();
         primaryStage.setScene(new Scene(chatWindowRoot,685,388));
-
+        ChatRoomList.get().getChosenChatRoom("General");
     }
 }
