@@ -3,6 +3,7 @@ package com.company;
 import com.company.ChatRooms.ChatRoomList;
 import com.company.Message.Message;
 import com.company.MessageSendingClasses.LogInRequestMessage;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -116,5 +117,15 @@ public class Controller implements Initializable {
             NetworkClient.get().sendObjectToServer(new LogInRequestMessage(userNameBox.getText()));
             ClientGUI.displayChatWindow();
         }
+    }
+
+    @FXML
+    protected void exitApp(ActionEvent event) {
+        Platform.exit();
+    }
+
+    @FXML
+    protected void handleMinimize(ActionEvent event) {
+        ClientGUI.primaryStage.setIconified(true);
     }
 }
