@@ -5,15 +5,10 @@ import com.company.Message.Message;
 import com.company.MessageSendingClasses.LogInRequestMessage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -89,7 +84,7 @@ public class Controller implements Initializable {
         if (m.matches()) {
             System.out.println("User name: " + userNameBox.getText());
             NetworkClient.get().sendObjectToServer(new LogInRequestMessage(userNameBox.getText()));
-            Main.displayChatWindow();
+            ClientGUI.displayChatWindow();
         }
     }
 }

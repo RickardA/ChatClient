@@ -1,8 +1,8 @@
 package com.company.ChatRooms;
 
-import com.company.Main;
 import com.company.Message.Message;
 import com.company.Message.MessageList;
+import com.company.ClientGUI;
 import javafx.application.Platform;
 
 public class ChatOutputField implements Runnable {
@@ -18,16 +18,16 @@ public class ChatOutputField implements Runnable {
     }
 
     private void showMessageHistory() {
-        Main.controller.outputbox.clear();
+        ClientGUI.controller.outputbox.clear();
         Platform.runLater(() -> {
             for (Message msg : chatHistory.getMessagesList()) {
-                Main.controller.recieveMessage(msg.getTimeStamp() + " " + msg.getSenderName() + " " + msg.getMessage());
+                ClientGUI.controller.recieveMessage(msg.getTimeStamp() + " " + msg.getSenderName() + " " + msg.getMessage());
             }
         });
     }
 
     public void printMessage(Message message) {
-        Platform.runLater(() -> Main.controller.recieveMessage(message.getTimeStamp() + " "
+        Platform.runLater(() -> ClientGUI.controller.recieveMessage(message.getTimeStamp() + " "
                 + message.getSenderName() + " "
                 + message.getMessage()));
     }

@@ -1,6 +1,6 @@
 package com.company.ChatRooms;
 
-import com.company.Main;
+import com.company.ClientGUI;
 import com.company.User.User;
 import javafx.application.Platform;
 
@@ -20,7 +20,7 @@ public class UsersOnlineList implements Serializable {
     public void updateUsersInChatRoom() {
         Platform.runLater(() -> {
             for (Map.Entry<String, User> user : usersOnlineList.entrySet()) {
-                Main.controller.userBox.getItems().add(user.getValue().getUserName());
+                ClientGUI.controller.userBox.getItems().add(user.getValue().getUserName());
             }
         });
     }

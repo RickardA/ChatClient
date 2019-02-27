@@ -1,7 +1,7 @@
 package com.company.ChatRooms;
 
-import com.company.Main;
 import com.company.NetworkClient;
+import com.company.ClientGUI;
 import com.company.User.User;
 import javafx.application.Platform;
 import com.company.MessageSendingClasses.ChatRoomIDMessage;
@@ -36,7 +36,7 @@ public class ChatRoomList implements Serializable {
         this.chatRoomList = chatRoomList;
         Platform.runLater(() -> {
             for (String room : chatRoomList.values()) {
-                Main.controller.channels.getItems().add(room);
+                ClientGUI.controller.channels.getItems().add(room);
             }
         });
     }
