@@ -1,10 +1,7 @@
 package com.company.User;
 
-import com.company.NetworkClient;
-
 import java.io.Serializable;
 import java.net.SocketAddress;
-import java.util.UUID;
 
 public class User implements Serializable {
 
@@ -15,11 +12,7 @@ public class User implements Serializable {
     private SocketAddress userSocketAddress;
 
 
-    public User(String name) {
-        userName = name;
-        //Creates a uniqe id and sets it to userID;
-        userID = UUID.randomUUID().toString();
-    }
+    public User() {}
 
     public String getUserName() {
         return userName;
@@ -27,26 +20,6 @@ public class User implements Serializable {
 
     public String getChannelID() {
         return channelID;
-    }
-
-    public void setChannelID(String channelID) {
-        this.channelID = channelID;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserID() {
-        return userID;
-    }
-
-    public SocketAddress getUserSocketAddress() {
-        return userSocketAddress;
-    }
-
-    public void setUserSocketAddress() {
-        this.userSocketAddress = NetworkClient.get().getSocketAdress();
     }
 }
 

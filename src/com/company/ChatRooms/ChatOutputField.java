@@ -21,13 +21,13 @@ public class ChatOutputField implements Runnable {
         ClientGUI.controller.outputbox.clear();
         Platform.runLater(() -> {
             for (Message msg : chatHistory.getMessagesList()) {
-                ClientGUI.controller.recieveMessage(msg.getTimeStamp() + " " + msg.getSenderName() + " " + msg.getMessage());
+                ClientGUI.controller.printMessage(msg.getTimeStamp() + " " + msg.getSenderName() + " " + msg.getMessage());
             }
         });
     }
 
     public void printMessage(Message message) {
-        Platform.runLater(() -> ClientGUI.controller.recieveMessage(message.getTimeStamp() + " "
+        Platform.runLater(() -> ClientGUI.controller.printMessage(message.getTimeStamp() + " "
                 + message.getSenderName() + " "
                 + message.getMessage()));
     }

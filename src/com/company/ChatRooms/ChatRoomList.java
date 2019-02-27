@@ -1,31 +1,23 @@
 package com.company.ChatRooms;
 
-import com.company.NetworkClient;
 import com.company.ClientGUI;
-import com.company.User.User;
-import javafx.application.Platform;
 import com.company.MessageSendingClasses.ChosenChatRoomMessage;
+import com.company.NetworkClient;
+import javafx.application.Platform;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.company.ClientProgram.getLoggedInUser;
 
 public class ChatRoomList implements Serializable {
     private Map<String, String> chatRoomList;
-    private User user;
-    //    public final long serialVersionUID = 30;
-    private static ChatRoomList _singleton = new ChatRoomList();
+    static final long serialVersionUID = 30;
 
 
     public ChatRoomList() {
         chatRoomList = new HashMap<>();
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public static ChatRoomList get() {
-        return _singleton;
     }
 
     public void updateChatRoomList(Map<String, String> chatRoomList) {
@@ -38,11 +30,9 @@ public class ChatRoomList implements Serializable {
     }
 
     public void getChosenChatRoom(String nameOfRoom) {
-        System.out.println("a" + this.chatRoomList.size());
         for (Map.Entry<String, String> chatRoom : this.chatRoomList.entrySet()) {
             if (chatRoom.getValue().matches(nameOfRoom)) {
-                user.setChannelID(chatRoom.getKey());
-                NetworkClient.get().sendObjectToServer(new ChosenChatRoomMessage(chatRoom.getKey(), user));
+                NetworkClient.get().sendObjectToServer(new ChosenChatRoomMessage(chatRoom.getKey(), getLoggedInUser()));
                 break;
             }
         }

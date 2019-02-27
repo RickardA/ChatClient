@@ -11,9 +11,9 @@ import javafx.application.Platform;
 import java.util.Map;
 
 public class ClientProgram {
-    private static ClientProgram _singleton = new ClientProgram();
     private ChatRoom chatRoom;
-    private User user;
+    private static User loggedInUser;
+    private static ChatRoomList chatRoomList = new ChatRoomList();
 
     public ClientProgram() {
         NetworkClient.get();
@@ -21,6 +21,14 @@ public class ClientProgram {
         Thread incomingPackage = new Thread(this::checkIncomingPackage);
         incomingPackage.setDaemon(true);
         incomingPackage.start();
+    }
+
+    public static ChatRoomList getChatRoomList() {
+        return chatRoomList;
+    }
+
+    public static User getLoggedInUser() {
+        return loggedInUser;
     }
 
     private void checkIncomingPackage() {
@@ -34,21 +42,14 @@ public class ClientProgram {
                 } else if (serverResponse instanceof Message) {
                     chatRoom.getChatOutputField().printMessage((Message) serverResponse);
                 } else if (serverResponse instanceof ChatRoomNamesMessage) {
+                    System.out.println(((ChatRoomNamesMessage) serverResponse).getChatRoomNames().size());
                     updateChatRoomList(((ChatRoomNamesMessage) serverResponse).getChatRoomNames());
                 } else if (serverResponse instanceof User) {
-                    user = (User) serverResponse;
+                    loggedInUser = (User) serverResponse;
                     Platform.runLater(ClientGUI::displayChatWindow);
                 }
             }
         }
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public static ClientProgram get() {
-        return _singleton;
     }
 
     private void updateUsersInRoom(UsersOnlineList usersOnlineList) {
@@ -56,8 +57,7 @@ public class ClientProgram {
     }
 
     private void updateChatRoomList(Map<String, String> chatRoomsList) {
-        ChatRoomList.get().setUser(user);
-        ChatRoomList.get().updateChatRoomList(chatRoomsList);
+        chatRoomList.updateChatRoomList(chatRoomsList);
     }
 
     private void showChosenChatRoom(ChatRoom chatRoomObject) {

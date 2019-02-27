@@ -1,10 +1,10 @@
 package com.company.Message;
 
-import com.company.ClientProgram;
-
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import static com.company.ClientProgram.getLoggedInUser;
 
 public class Message implements Serializable {
 
@@ -17,7 +17,7 @@ public class Message implements Serializable {
 
     public Message(String message,String channelID) {
         this.message = message;
-        this.senderName = ClientProgram.get().getUser().getUserName();
+        this.senderName = getLoggedInUser().getUserName();
         this.timeStamp = new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
         this.channelID = channelID;
     }

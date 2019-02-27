@@ -1,12 +1,12 @@
 package com.company;
 
-import com.company.ChatRooms.ChatRoomList;
 import com.company.Message.Message;
 import com.company.MessageSendingClasses.LogInRequestMessage;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -19,6 +19,10 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.company.ClientGUI.primaryStage;
+import static com.company.ClientProgram.getChatRoomList;
+import static com.company.ClientProgram.getLoggedInUser;
+
 
 public class Controller implements Initializable {
 
@@ -26,8 +30,8 @@ public class Controller implements Initializable {
     public TextArea inputbox, outputbox;
     public ListView userBox, channels;
     public TextField userNameBox;
-    public double xOffset;
-    public double yOffset;
+    public static double xOffset;
+    public static double yOffset;
 
 
     @Override
@@ -52,6 +56,20 @@ public class Controller implements Initializable {
         sendMessage(inputbox.getText() + "\n");
     }
 
+    public static void setWindowDragListener(Parent root) {
+
+        root.setOnMousePressed(event -> {
+            xOffset = primaryStage.getX() - event.getScreenX();
+            yOffset = primaryStage.getY() - event.getScreenY();
+        });
+
+        root.setOnMouseDragged(event -> {
+            primaryStage.setX(event.getScreenX() + xOffset);
+            primaryStage.setY(event.getScreenY() + yOffset);
+
+        });
+    }
+
     @FXML
     public void sendMessage(String message) {
         Pattern p = Pattern.compile("^\\s*");
@@ -59,24 +77,15 @@ public class Controller implements Initializable {
 
         if (!m.matches()) {
             System.out.println(message);
-            NetworkClient.get().sendObjectToServer(new Message(message, ClientProgram.get().getUser().getChannelID()));
+            NetworkClient.get().sendObjectToServer(new Message(message, getLoggedInUser().getChannelID()));
         }
         inputbox.clear();
         inputbox.requestFocus();
     }
 
     @FXML
-    public void recieveMessage(String message) {
+    public void printMessage(String message) {
         outputbox.appendText(message);
-    }
-
-    @FXML
-    public void goToChatRoom() {
-        String chosenRoom = channels.getSelectionModel().getSelectedItems().toString();
-        chosenRoom = chosenRoom.substring(1);
-        chosenRoom = chosenRoom.substring(0, chosenRoom.length() - 1);
-        System.out.println(chosenRoom);
-        ChatRoomList.get().getChosenChatRoom(chosenRoom);
     }
 
     @FXML
@@ -91,12 +100,21 @@ public class Controller implements Initializable {
     }
 
     @FXML
+    public void goToChatRoom() {
+        String chosenRoom = channels.getSelectionModel().getSelectedItems().toString();
+        chosenRoom = chosenRoom.substring(1);
+        chosenRoom = chosenRoom.substring(0, chosenRoom.length() - 1);
+        System.out.println(chosenRoom);
+        getChatRoomList().getChosenChatRoom(chosenRoom);
+    }
+
+    @FXML
     protected void exitApp(ActionEvent event) {
         Platform.exit();
     }
 
     @FXML
     protected void handleMinimize(ActionEvent event) {
-        ClientGUI.primaryStage.setIconified(true);
+        primaryStage.setIconified(true);
     }
 }
