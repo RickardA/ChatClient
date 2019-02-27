@@ -42,22 +42,30 @@
     -fx-background-color:#202225;
     -fx-faint-focus-color: transparent;
     -fx-focus-color:transparent;
-
-
 }
 
 #loginpane {
     -fx-background-color:#2F3136;
     -fx-faint-focus-color: transparent;
     -fx-focus-color:transparent;
-
-
 }
 
 #userNameBox {
     -fx-text-fill: #F9F6F9;
     -fx-prompt-text-fill: #F9F6F9;
     -fx-control-inner-background:#484C52;
+}
+
+#passwordBox {
+    -fx-text-fill: #F9F6F9;
+    -fx-prompt-text-fill: #F9F6F9;
+    -fx-control-inner-background:#484C52;
+}
+
+#warningbox {
+    -fx-text-fill: #D32D27;
+    -fx-control-inner-background:#2F3136;
+    -fx-background-color: none;
 }
 
 .button {
@@ -84,6 +92,10 @@
 
 #close:hover {
     -fx-background-color: red;
+}
+
+#maximize {
+    -fx-background-color: #202225;
 }
 
 /*Removes colored cells from user list*/

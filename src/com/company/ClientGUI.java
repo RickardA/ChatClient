@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class ClientGUI extends Application {
 
@@ -37,7 +38,8 @@ public class ClientGUI extends Application {
         primaryStage.setUserData(controller);
         primaryStage.setResizable(false);
         primaryStage.setTitle("ChatApp");
-        primaryStage.setScene(new Scene(root, 380,175));
+        primaryStage.setScene(new Scene(root, 350,220));
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
 
 
