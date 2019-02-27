@@ -19,6 +19,7 @@ public class UsersOnlineList implements Serializable {
 
     public void updateUsersInChatRoom() {
         Platform.runLater(() -> {
+            ClientGUI.controller.userBox.getItems().clear();
             for (Map.Entry<String, User> user : usersOnlineList.entrySet()) {
                 ClientGUI.controller.userBox.getItems().add(user.getValue().getUserName());
             }
