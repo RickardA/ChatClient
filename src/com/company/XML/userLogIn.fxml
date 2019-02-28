@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="loginpane" prefHeight="235.0" prefWidth="395.0" xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="com.company.Controller">
+<AnchorPane id="loginpane" prefHeight="235.0" prefWidth="395.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Controller">
     <children>
         <Accordion />
         <TextField fx:id="userNameBox" layoutX="138.0" layoutY="101.0" promptText="User name" />
@@ -48,6 +48,6 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Text>
-      <Label fx:id="errorMessageBox" layoutX="94.0" layoutY="178.0" prefHeight="17.0" prefWidth="137.0" textFill="RED" />
+      <Label fx:id="errorMessageBox" layoutX="5.0" layoutY="199.0" prefHeight="17.0" prefWidth="414.0" textFill="RED" />
     </children>
 </AnchorPane>
