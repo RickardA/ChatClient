@@ -86,6 +86,7 @@ public class Controller implements Initializable {
 
     @FXML
     public void getUserInfo(ActionEvent event) {
+        
         Pattern p = Pattern.compile("[a-zA-Z ]{2,10}+");
         Matcher m = p.matcher(userNameBox.getText());
 
@@ -94,7 +95,6 @@ public class Controller implements Initializable {
         } else {
             Platform.runLater(() -> errorMessageBox.setText("FelmeddelandeTest"));
         }
-
     }
 
     @FXML
