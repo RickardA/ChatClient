@@ -37,7 +37,7 @@ public class ClientGUI extends Application {
         controller = loginWindowLoader.getController();
         setWindowDragListener(loginWindowRoot);
 
-        chatWindowLoader = new FXMLLoader(getClass().getResource("XML/sample.fxml"));
+        chatWindowLoader = new FXMLLoader(getClass().getResource("XML/chat.fxml"));
         chatWindowRoot = chatWindowLoader.load();
         chatWindowRoot.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 

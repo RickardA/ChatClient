@@ -60,7 +60,6 @@ public class Controller implements Initializable {
     @FXML
     public void tabToPwField(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.TAB) {
-            System.out.println("TABBED");
             passwordBox.requestFocus();
         }
     }

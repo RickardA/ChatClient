@@ -27,6 +27,7 @@
     -fx-text-fill: #F9F6F9;
     -fx-prompt-text-fill: #F9F6F9;
     -fx-control-inner-background:#484C52;
+    -fx-accent: grey;
 }
 
 .text-input .content {
@@ -36,6 +37,7 @@
 #outputbox {
     -fx-text-fill: #F9F6F9;
     -fx-control-inner-background:#36393F;
+    -fx-accent: grey;
 }
 
 #bar {
@@ -54,12 +56,14 @@
     -fx-text-fill: #F9F6F9;
     -fx-prompt-text-fill: #F9F6F9;
     -fx-control-inner-background:#484C52;
+    -fx-accent: grey;
 }
 
 #passwordBox {
     -fx-text-fill: #F9F6F9;
     -fx-prompt-text-fill: #F9F6F9;
     -fx-control-inner-background:#484C52;
+    -fx-accent: grey;
 }
 
 #warningbox {
