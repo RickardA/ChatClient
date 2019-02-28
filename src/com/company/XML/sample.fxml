@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="background" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="com.company.Controller">
+<AnchorPane fx:id="background" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Controller">
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
     </padding>
@@ -37,7 +37,7 @@
         </TextArea>
         <ListView fx:id="userBox" layoutX="588.0" layoutY="67.0" prefHeight="272.0" prefWidth="91.0" />
         <ListView fx:id="channels" layoutX="6.0" layoutY="67.0" onMouseClicked="#goToChatRoom" prefHeight="272.0" prefWidth="91.0" />
-        <Label layoutX="608.0" layoutY="38.0" prefHeight="26.0" prefWidth="49.0" text="Users" textFill="#b8afaf">
+        <Label layoutX="595.0" layoutY="38.0" prefHeight="26.0" prefWidth="49.0" text="Users" textFill="#b8afaf">
             <font>
                 <Font name="System Bold" size="17.0" />
             </font>
@@ -72,7 +72,7 @@
             </Button>
          </children>
       </HBox>
-      <Label layoutX="24.0" layoutY="38.0" prefHeight="26.0" prefWidth="60.0" text="Rooms" textFill="#b8afaf">
+      <Label layoutX="14.0" layoutY="38.0" prefHeight="26.0" prefWidth="60.0" text="Rooms" textFill="#b8afaf">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
