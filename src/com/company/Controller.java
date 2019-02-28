@@ -27,6 +27,7 @@ public class Controller implements Initializable {
     public TextArea inputbox, outputbox;
     public ListView userBox, channels;
     public TextField userNameBox;
+    public PasswordField passwordBox;
     public Label errorMessageBox;
     public static double xOffset;
     public static double yOffset;
@@ -86,13 +87,21 @@ public class Controller implements Initializable {
 
     @FXML
     public void getUserInfo(ActionEvent event) {
-        Pattern p = Pattern.compile("[a-zA-Z ]{2,10}+");
-        Matcher m = p.matcher(userNameBox.getText());
+        Platform.runLater(() -> errorMessageBox.setText(""));
+        Pattern userNamePattern = Pattern.compile("[a-zA-Z ]{2,10}+");
+        Matcher userNameMatcher = userNamePattern.matcher(userNameBox.getText());
+        Pattern passwordPattern = Pattern.compile(".{2,20}");
+        Matcher passwordMatcher = passwordPattern.matcher(passwordBox.getText());
 
-        if (m.matches()) {
-            NetworkClient.get().sendObjectToServer(new LogInRequestMessage(userNameBox.getText()));
+        if (userNameMatcher.matches()) {
+            if(passwordMatcher.matches()){
+                NetworkClient.get()
+                        .sendObjectToServer(new LogInRequestMessage(userNameBox.getText(),passwordBox.getText()));
+            }else{
+                Platform.runLater(() -> errorMessageBox.setText("Kontrollera lösenordet: Minst 2 karaktärer Max 20"));
+            }
         } else {
-            Platform.runLater(() -> errorMessageBox.setText("FelmeddelandeTest"));
+            Platform.runLater(() -> errorMessageBox.setText("Kontrollera användarnamnet: Endast bokstäver, minst 2 max 10"));
         }
 
     }

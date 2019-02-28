@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.MessageSendingClasses.HeartbeatMessage;
+import javafx.application.Platform;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -81,7 +82,7 @@ public class NetworkClient {
             return true;
         } catch (SocketTimeoutException e) { // Ignore timeout
         } catch (Exception e) {
-            e.printStackTrace();
+            Platform.runLater(() -> ClientGUI.controller.errorMessageBox.setText("Servern är offline,försök igen om en liten stund"));
         }
 
         return false;
@@ -98,9 +99,5 @@ public class NetworkClient {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public SocketAddress getSocketAdress() {
-        return _singleton.socket.getLocalSocketAddress();
     }
 }
