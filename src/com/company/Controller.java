@@ -73,8 +73,7 @@ public class Controller implements Initializable {
         Matcher m = p.matcher(message);
 
         if (!m.matches()) {
-            System.out.println(message);
-            NetworkClient.get().sendObjectToServer(new Message(message, getLoggedInUser().getChannelID()));
+            NetworkClient.get().sendObjectToServer(new Message(message, getLoggedInUser().getUserID()));
         }
         inputbox.clear();
         inputbox.requestFocus();
@@ -92,7 +91,6 @@ public class Controller implements Initializable {
         Matcher m = p.matcher(userNameBox.getText());
 
         if (m.matches()) {
-            System.out.println("User name: " + userNameBox.getText());
             NetworkClient.get().sendObjectToServer(new LogInRequestMessage(userNameBox.getText()));
         } else {
             Platform.runLater(() -> errorMessageBox.setText("FelmeddelandeTest"));
@@ -104,7 +102,6 @@ public class Controller implements Initializable {
         String chosenRoom = channels.getSelectionModel().getSelectedItems().toString();
         chosenRoom = chosenRoom.substring(1);
         chosenRoom = chosenRoom.substring(0, chosenRoom.length() - 1);
-        System.out.println(chosenRoom);
         getChatRoomList().getChosenChatRoom(chosenRoom);
     }
 

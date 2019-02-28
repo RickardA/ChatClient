@@ -42,7 +42,6 @@ public class ClientProgram {
                 } else if (serverResponse instanceof Message) {
                     chatRoom.getChatOutputField().printMessage((Message) serverResponse);
                 } else if (serverResponse instanceof ChatRoomNamesMessage) {
-                    System.out.println(((ChatRoomNamesMessage) serverResponse).getChatRoomNames().size());
                     updateChatRoomList(((ChatRoomNamesMessage) serverResponse).getChatRoomNames());
                 } else if (serverResponse instanceof User) {
                     loggedInUser = (User) serverResponse;
