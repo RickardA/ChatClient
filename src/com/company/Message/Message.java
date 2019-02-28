@@ -14,8 +14,10 @@ public class Message implements Serializable {
     private String userID;
     static final long serialVersionUID = 50;
 
+    public Message() {
+    }
 
-    public Message(String message,String userID) {
+    public Message(String message, String userID) {
         this.message = message;
         this.senderName = getLoggedInUser().getUserName();
         this.timeStamp = new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
