@@ -5,6 +5,7 @@ import com.company.ChatRooms.ChatRoomList;
 import com.company.ChatRooms.UsersOnlineList;
 import com.company.Message.Message;
 import com.company.MessageSendingClasses.ChatRoomNamesMessage;
+import com.company.MessageSendingClasses.ErrorMessage;
 import com.company.User.User;
 import javafx.application.Platform;
 
@@ -46,6 +47,11 @@ public class ClientProgram {
                 } else if (serverResponse instanceof User) {
                     loggedInUser = (User) serverResponse;
                     Platform.runLater(ClientGUI::displayChatWindow);
+                }else if (serverResponse instanceof ErrorMessage){
+                    Platform.runLater(() -> ClientGUI.
+                            controller.errorMessageBox
+                            .setText(((ErrorMessage) serverResponse)
+                                    .getErrorMessage()));
                 }
             }
         }
