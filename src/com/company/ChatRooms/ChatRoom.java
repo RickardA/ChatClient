@@ -5,7 +5,7 @@ import com.company.Message.MessageList;
 import java.io.Serializable;
 
 public class ChatRoom implements Serializable {
-    private String uniqeID;
+    private String uniqueID;
     private String name;
     private UsersOnlineList usersOnlineList;
     private MessageList chatHistory;
@@ -14,7 +14,7 @@ public class ChatRoom implements Serializable {
 
     public ChatRoom(String name, String id) {
         this.name = name;
-        this.uniqeID = id;
+        this.uniqueID = id;
         this.usersOnlineList = new UsersOnlineList();
         chatHistory = new MessageList();
 
