@@ -23,7 +23,7 @@ public class ChatOutputField implements Runnable {
             for (Message msg : chatHistory.getMessagesList()) {
                 ClientGUI.controller.printMessage(msg.getTimeStamp()
                         + " " + msg.getSenderName()
-                        + " " + msg.getMessage());
+                        + ": " + msg.getMessage());
             }
             ClientGUI.controller.printMessage(chatHistory.getWelcomeMessage().getTimeStamp()
                     + " " + chatHistory.getWelcomeMessage().getSenderName()
@@ -33,7 +33,7 @@ public class ChatOutputField implements Runnable {
 
     public void printMessage(Message message) {
         Platform.runLater(() -> ClientGUI.controller.printMessage(message.getTimeStamp() + " "
-                + message.getSenderName() + " "
+                + message.getSenderName() + ": "
                 + message.getMessage()));
     }
 }
