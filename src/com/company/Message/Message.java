@@ -11,15 +11,15 @@ public class Message implements Serializable {
     private String message;
     private String senderName;
     private String timeStamp;
-    private String channelID;
+    private String userID;
     static final long serialVersionUID = 50;
 
 
-    public Message(String message,String channelID) {
+    public Message(String message,String userID) {
         this.message = message;
         this.senderName = getLoggedInUser().getUserName();
         this.timeStamp = new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
-        this.channelID = channelID;
+        this.userID = userID;
     }
 
     public String getMessage() {
