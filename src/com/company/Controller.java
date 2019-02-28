@@ -39,6 +39,7 @@ public class Controller implements Initializable {
         if (inputbox != null) {
             inputbox.setTextFormatter(new TextFormatter<String>(change ->
                     change.getControlNewText().length() <= 140 ? change : null));
+
         }
     }
 
@@ -46,6 +47,21 @@ public class Controller implements Initializable {
     public void enterPressed(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             sendMessage(inputbox.getText());
+        }
+    }
+
+    @FXML
+    public void loginEnterKey(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            sendUserInfo();
+        }
+    }
+
+    @FXML
+    public void tabToPwField(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.TAB) {
+            System.out.println("TABBED");
+            passwordBox.requestFocus();
         }
     }
 
@@ -87,6 +103,11 @@ public class Controller implements Initializable {
 
     @FXML
     public void getUserInfo(ActionEvent event) {
+        sendUserInfo();
+    }
+
+    @FXML
+    public void sendUserInfo() {
         Platform.runLater(() -> errorMessageBox.setText(""));
         Pattern userNamePattern = Pattern.compile("[a-zA-Z ]{2,10}+");
         Matcher userNameMatcher = userNamePattern.matcher(userNameBox.getText());
@@ -103,7 +124,6 @@ public class Controller implements Initializable {
         } else {
             Platform.runLater(() -> errorMessageBox.setText("Kontrollera användarnamnet: Endast bokstäver, minst 2 max 10"));
         }
-
     }
 
     @FXML

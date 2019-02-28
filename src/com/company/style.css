@@ -110,12 +110,9 @@
     -fx-font-weight: bold;
 }
 /*Makes last clicked cell to stay bold when changing focus.*/
-.list-cell:filled:selected:focused, .list-cell:filled:selected, .list-view:horizontal .list-cell:filled:selected {
-    -fx-background-color: white;
-    -fx-text-fill: -fx-selection-bar-text;
+#channels .list-cell:filled:selected:focused, .list-cell:filled:selected, .list-view:horizontal {
     -fx-font-weight: bold;
 }
-
 
 .scroll-pane {
     -fx-background-color: #36393F;

@@ -14,7 +14,7 @@
 <AnchorPane id="loginpane" prefHeight="235.0" prefWidth="395.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Controller">
     <children>
         <Accordion />
-        <TextField fx:id="userNameBox" layoutX="138.0" layoutY="101.0" promptText="User name" />
+        <TextField fx:id="userNameBox" layoutX="138.0" layoutY="101.0" promptText="User name" onKeyPressed="#tabToPwField" />
         <Text fill="#b8afaf" layoutX="46.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User name">
             <font>
                 <Font name="System Bold" size="17.0" />
@@ -42,7 +42,7 @@
                     </HBox.margin>
                 </Button>
             </children></HBox>
-      <PasswordField fx:id="passwordBox" layoutX="138.0" layoutY="139.0" promptText="Password" />
+      <PasswordField fx:id="passwordBox" layoutX="138.0" layoutY="139.0" promptText="Password" onKeyPressed="#loginEnterKey" />
       <Text fill="#b8afaf" layoutX="50.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
             <Font name="System Bold" size="17.0" />
