@@ -1,5 +1,4 @@
 * {
-    /*Removes blue focus color*/
     -fx-faint-focus-color: transparent;
     -fx-focus-color:transparent;
     -fx-text-box-border: transparent;
@@ -9,21 +8,21 @@
     -fx-background-color:#2F3136;
 }
 
-#channels {
+#roomListBox {
     -fx-text-fill: #F9F6F9;
     -fx-prompt-text-fill: #F9F6F9;
     -fx-control-inner-background:#36393F;
     -fx-background-color:transparent;
 }
 
-#userBox {
+#userListBox {
     -fx-text-fill: #F9F6F9;
     -fx-prompt-text-fill: #F9F6F9;
     -fx-control-inner-background:#36393F;
     -fx-background-color:transparent;
 }
 
-#inputbox {
+#chatInputBox {
     -fx-text-fill: #F9F6F9;
     -fx-prompt-text-fill: #F9F6F9;
     -fx-control-inner-background:#484C52;
@@ -34,7 +33,7 @@
     -fx-background-radius: 0 ;
 }
 
-#outputbox {
+#chatOutputBox {
     -fx-text-fill: #F9F6F9;
     -fx-control-inner-background:#36393F;
     -fx-accent: grey;
@@ -52,14 +51,14 @@
     -fx-focus-color:transparent;
 }
 
-#userNameBox {
+#loginNameBox {
     -fx-text-fill: #F9F6F9;
     -fx-prompt-text-fill: #F9F6F9;
     -fx-control-inner-background:#484C52;
     -fx-accent: grey;
 }
 
-#passwordBox {
+#loginPasswordBox {
     -fx-text-fill: #F9F6F9;
     -fx-prompt-text-fill: #F9F6F9;
     -fx-control-inner-background:#484C52;
@@ -114,7 +113,7 @@
     -fx-font-weight: bold;
 }
 /*Makes last clicked cell to stay bold when changing focus.*/
-#channels .list-cell:filled:selected:focused, .list-cell:filled:selected, .list-view:horizontal {
+#roomListBox .list-cell:filled:selected:focused, .list-cell:filled:selected, .list-view:horizontal {
     -fx-font-weight: bold;
 }
 
@@ -135,8 +134,7 @@
 .scroll-bar:vertical .track{
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    /*-fx-background-radius: 0em;*/
-}
+   }
 
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
@@ -147,4 +145,3 @@
 .scroll-pane > .corner {
     -fx-background-color: #36393F;
 }
-

@@ -18,7 +18,7 @@ public class ChatOutputField implements Runnable {
     }
 
     private void showMessageHistory() {
-        ClientGUI.controller.outputbox.clear();
+        ClientGUI.controller.chatOutputBox.clear();
         Platform.runLater(() -> {
             for (Message msg : chatHistory.getMessagesList()) {
                 ClientGUI.controller.printMessage(msg.getTimeStamp()

@@ -17,16 +17,12 @@ public class ClientGUI extends Application {
     private static Parent chatWindowRoot;
     private static FXMLLoader chatWindowLoader;
 
-
-
     public static void displayChatWindow() {
         controller = chatWindowLoader.getController();
         primaryStage.setScene(new Scene(chatWindowRoot, 685, 420));
         getChatRoomList().getChosenChatRoom("General");
         setWindowDragListener(chatWindowRoot);
     }
-
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -40,7 +36,6 @@ public class ClientGUI extends Application {
         chatWindowLoader = new FXMLLoader(getClass().getResource("XML/chat.fxml"));
         chatWindowRoot = chatWindowLoader.load();
         chatWindowRoot.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-
 
         loginWindowRoot.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 

@@ -14,7 +14,7 @@
 <AnchorPane id="loginpane" prefHeight="235.0" prefWidth="395.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Controller">
     <children>
         <Accordion />
-        <TextField fx:id="userNameBox" layoutX="138.0" layoutY="101.0" promptText="User name" onKeyPressed="#tabToPwField" />
+        <TextField fx:id="loginNameBox" layoutX="138.0" layoutY="101.0" onKeyPressed="#tabToPasswordBox" promptText="User name" />
         <Text fill="#b8afaf" layoutX="46.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User name">
             <font>
                 <Font name="System Bold" size="17.0" />
@@ -27,22 +27,17 @@
         <Button fx:id="logInButton" layoutX="243.0" layoutY="174.0" mnemonicParsing="false" onAction="#getUserInfo" text="Enter" />
         <HBox fx:id="bar" prefHeight="14.0" prefWidth="395.0">
             <children>
-                <Button fx:id="close" mnemonicParsing="false" onAction="#exitApp" prefHeight="13.0" prefWidth="11.0" text="X">
+                <Button fx:id="close" mnemonicParsing="false" onAction="#handleExit" prefHeight="13.0" prefWidth="11.0" text="X">
                     <HBox.margin>
                         <Insets left="326.0" />
                     </HBox.margin></Button>
-                <Button fx:id="maximize" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="⬜">
-                    <HBox.margin>
-                        <Insets left="-48.0" />
-                    </HBox.margin>
-                </Button>
                 <Button fx:id="minimize" mnemonicParsing="false" onAction="#handleMinimize" prefHeight="13.0" prefWidth="11.0" text="_">
                     <HBox.margin>
                         <Insets left="-45.0" />
                     </HBox.margin>
                 </Button>
             </children></HBox>
-      <PasswordField fx:id="passwordBox" layoutX="138.0" layoutY="139.0" promptText="Password" onKeyPressed="#loginEnterKey" />
+      <PasswordField fx:id="loginPasswordBox" layoutX="138.0" layoutY="139.0" onKeyPressed="#loginEnterPressed" promptText="Password" />
       <Text fill="#b8afaf" layoutX="50.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
             <Font name="System Bold" size="17.0" />

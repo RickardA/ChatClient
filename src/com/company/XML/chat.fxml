@@ -25,18 +25,18 @@
                 <Glow level="0.11" />
             </effect>
         </Button>
-        <TextArea fx:id="outputbox" editable="false" layoutX="97.0" layoutY="38.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="491.0" wrapText="true">
+        <TextArea fx:id="chatOutputBox" editable="false" layoutX="97.0" layoutY="38.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="491.0" wrapText="true">
             <font>
                 <Font name="Arial" size="14.0" />
             </font>
         </TextArea>
-        <TextArea fx:id="inputbox" layoutX="97.0" layoutY="352.0" onKeyPressed="#enterPressed" prefHeight="58.0" prefWidth="491.0" promptText="Enter your message..." wrapText="true">
+        <TextArea fx:id="chatInputBox" layoutX="97.0" layoutY="352.0" onKeyPressed="#chatEnterPressed" prefHeight="58.0" prefWidth="491.0" promptText="Enter your message..." wrapText="true">
             <font>
                 <Font name="Arial" size="16.0" />
             </font>
         </TextArea>
-        <ListView fx:id="userBox" layoutX="588.0" layoutY="67.0" prefHeight="272.0" prefWidth="91.0" />
-        <ListView fx:id="channels" layoutX="6.0" layoutY="67.0" onMouseClicked="#goToChatRoom" prefHeight="272.0" prefWidth="91.0" />
+        <ListView fx:id="userListBox" layoutX="588.0" layoutY="67.0" prefHeight="272.0" prefWidth="91.0" />
+        <ListView fx:id="roomListBox" layoutX="6.0" layoutY="67.0" onMouseClicked="#goToChatRoom" prefHeight="272.0" prefWidth="91.0" />
         <Label layoutX="595.0" layoutY="38.0" prefHeight="26.0" prefWidth="49.0" text="Users" textFill="#b8afaf">
             <font>
                 <Font name="System Bold" size="17.0" />
@@ -55,14 +55,9 @@
                   <Insets left="300.0" />
                </HBox.margin>
             </Text>
-            <Button fx:id="close" mnemonicParsing="false" onAction="#exitApp" prefHeight="13.0" prefWidth="11.0" text="X">
+            <Button fx:id="close" mnemonicParsing="false" onAction="#handleExit" prefHeight="13.0" prefWidth="11.0" text="X">
                <HBox.margin>
                   <Insets left="277.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="maximize" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="⬜">
-               <HBox.margin>
-                  <Insets left="-48.0" />
                </HBox.margin>
             </Button>
             <Button fx:id="minimize" mnemonicParsing="false" onAction="#handleMinimize" prefHeight="13.0" prefWidth="11.0" text="_">

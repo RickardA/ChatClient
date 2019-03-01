@@ -24,7 +24,7 @@ public class ChatRoomList implements Serializable {
         this.chatRoomList = chatRoomList;
         Platform.runLater(() -> {
             for (String room : chatRoomList.values()) {
-                ClientGUI.controller.channels.getItems().add(room);
+                ClientGUI.controller.roomListBox.getItems().add(room);
             }
         });
     }

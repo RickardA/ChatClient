@@ -20,53 +20,50 @@ import static com.company.ClientGUI.primaryStage;
 import static com.company.ClientProgram.getChatRoomList;
 import static com.company.ClientProgram.getLoggedInUser;
 
-
 public class Controller implements Initializable {
 
     @FXML
-    public TextArea inputbox, outputbox;
-    public ListView userBox, channels;
-    public TextField userNameBox;
-    public PasswordField passwordBox;
+    public TextArea chatInputBox, chatOutputBox;
+    public ListView userListBox, roomListBox;
+    public TextField loginNameBox;
+    public PasswordField loginPasswordBox;
     public Label errorMessageBox;
     public static double xOffset;
     public static double yOffset;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        if (inputbox != null) {
-            inputbox.setTextFormatter(new TextFormatter<String>(change ->
+        if (chatInputBox != null) {
+            chatInputBox.setTextFormatter(new TextFormatter<String>(change ->
                     change.getControlNewText().length() <= 140 ? change : null));
-
         }
     }
 
     @FXML
-    public void enterPressed(KeyEvent keyEvent) {
+    public void chatEnterPressed(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ENTER) {
-            sendMessage(inputbox.getText());
+            sendMessage(chatInputBox.getText());
         }
     }
 
     @FXML
-    public void loginEnterKey(KeyEvent keyEvent) {
+    public void loginEnterPressed(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             sendUserInfo();
         }
     }
 
     @FXML
-    public void tabToPwField(KeyEvent keyEvent) {
+    public void tabToPasswordBox(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.TAB) {
-            passwordBox.requestFocus();
+            loginPasswordBox.requestFocus();
         }
     }
 
     @FXML
     public void sendButtonPressed(ActionEvent event) {
-        sendMessage(inputbox.getText() + "\n");
+        sendMessage(chatInputBox.getText() + "\n");
     }
 
     public static void setWindowDragListener(Parent root) {
@@ -79,7 +76,6 @@ public class Controller implements Initializable {
         root.setOnMouseDragged(event -> {
             primaryStage.setX(event.getScreenX() + xOffset);
             primaryStage.setY(event.getScreenY() + yOffset);
-
         });
     }
 
@@ -91,13 +87,13 @@ public class Controller implements Initializable {
         if (!m.matches()) {
             NetworkClient.get().sendObjectToServer(new Message(message, getLoggedInUser().getUserID()));
         }
-        inputbox.clear();
-        inputbox.requestFocus();
+        chatInputBox.clear();
+        chatInputBox.requestFocus();
     }
 
     @FXML
     public void printMessage(String message) {
-        outputbox.appendText(message);
+        chatOutputBox.appendText(message);
     }
 
     @FXML
@@ -109,16 +105,16 @@ public class Controller implements Initializable {
     public void sendUserInfo() {
         Platform.runLater(() -> errorMessageBox.setText(""));
         Pattern userNamePattern = Pattern.compile("[a-zA-Z ]{2,10}+");
-        Matcher userNameMatcher = userNamePattern.matcher(userNameBox.getText());
+        Matcher userNameMatcher = userNamePattern.matcher(loginNameBox.getText());
         Pattern passwordPattern = Pattern.compile(".{2,20}");
-        Matcher passwordMatcher = passwordPattern.matcher(passwordBox.getText());
+        Matcher passwordMatcher = passwordPattern.matcher(loginPasswordBox.getText());
 
         if (userNameMatcher.matches()) {
             if(passwordMatcher.matches()){
                 NetworkClient.get()
-                        .sendObjectToServer(new LogInRequestMessage(userNameBox.getText(),passwordBox.getText()));
+                        .sendObjectToServer(new LogInRequestMessage(loginNameBox.getText(), loginPasswordBox.getText()));
             }else{
-                Platform.runLater(() -> errorMessageBox.setText("Kontrollera lösenordet: Minst 2 karaktärer Max 20"));
+                Platform.runLater(() -> errorMessageBox.setText("Kontrollera lösenordet: Minst 2 tecken Max 20"));
             }
         } else {
             Platform.runLater(() -> errorMessageBox.setText("Kontrollera användarnamnet: Endast bokstäver, minst 2 max 10"));
@@ -127,20 +123,19 @@ public class Controller implements Initializable {
 
     @FXML
     public void goToChatRoom() {
-        String chosenRoom = channels.getSelectionModel().getSelectedItems().toString();
+        String chosenRoom = roomListBox.getSelectionModel().getSelectedItems().toString();
         chosenRoom = chosenRoom.substring(1);
         chosenRoom = chosenRoom.substring(0, chosenRoom.length() - 1);
         getChatRoomList().getChosenChatRoom(chosenRoom);
     }
 
     @FXML
-    protected void exitApp(ActionEvent event) {
+    protected void handleExit(ActionEvent event) {
         Platform.exit();
     }
 
     @FXML
     protected void handleMinimize(ActionEvent event) {
         primaryStage.setIconified(true);
-
     }
 }
