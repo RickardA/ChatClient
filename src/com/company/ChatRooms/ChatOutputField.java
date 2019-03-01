@@ -25,9 +25,7 @@ public class ChatOutputField implements Runnable {
                         + " " + msg.getSenderName()
                         + ": " + msg.getMessage());
             }
-            ClientGUI.controller.printMessage(chatHistory.getWelcomeMessage().getTimeStamp()
-                    + " " + chatHistory.getWelcomeMessage().getSenderName()
-                    + " " + chatHistory.getWelcomeMessage().getMessage());
+            ClientGUI.controller.printMessage(chatHistory.getWelcomeMessage().getMessage());
         });
     }
 
